@@ -1,48 +1,51 @@
-# Reglas de Trabajo del Proyecto PropSaaS (GEMINI.md)
+# Directrices de Desarrollo y Estándares de Ingeniería (GEMINI.md)
 
-Este documento define las directrices operativas, estándares de ingeniería, Atomic Knowledge y protocolos que rigen el desarrollo en este repositorio.
-
----
-
-## 🧠 1. Atomic Knowledge & Arquitectura
-
-- **Propósito del Producto**: SaaS de gestión inmobiliaria y CRM multicanal (WhatsApp, Instagram, Facebook) adaptado al mercado inmobiliario de Argentina.
-- **Identidad Visual & Sistema de Diseño**:
-  - Basado en el Design System **Estate Logic** de Stitch (ID Proyecto: `16732967349855074016`).
-  - **Paleta Base**:
-    - Primario (Brand & Headers): `#091426`
-    - Superficie / Fondo general: `#F7F9FB`
-    - Tarjetas / Contenedores: `#FFFFFF` con borde `#E6E8EA` y sombra `0 4px 6px -1px rgba(0,0,0,0.04)`.
-    - Acciones / Éxito / ICL: `#006C49`
-    - Alertas / Urgencias: `#BA1A1A` / Fondo `#FFDAD6`
-  - **Geometría**: Bordes redondeados estandarizados a **12px** (`rounded-xl` / `0.75rem`).
-  - **Modo de Visualización**: Modo claro obligatorio por defecto, limpio, sin ruido visual y descansado a la vista.
-- **Tono & Copy**: Vocabulario inmobiliario claro y accesible (evitar tecnicismos innecesarios para el usuario final).
+Este documento establece las reglas operativas, arquitectura de software, Atomic Knowledge y protocolos de ingeniería aplicables a este repositorio.
 
 ---
 
-## 🛡️ 2. Regla de Cero Deuda Técnica & Tareas Pendientes
+## 🧠 1. Atomic Knowledge Base & Arquitectura del Sistema
 
-1. **Prohibido Dejar Tareas en el Aire**:
-   - Todo cambio o refactor debe quedar completamente implementado, probado y compilando sin errores (`npm run build`).
-   - Si una tarea o mejora excede el alcance inmediato o depende de servicios externos no configurados, **es obligatorio crear un Issue en GitHub** o registrar un ticket explícito con contexto, criterios de aceptación y prioridad, referenciándolo en el commit.
-2. **Integridad del Código**:
-   - No introducir código muerto, `TODOs` huérfanos sin issue asociado, ni parches temporales sin tipado estricto en TypeScript.
-   - Mantener todas las dependencias funcionales y libres de advertencias críticas de compilación.
+### 1.1 Propósito y Dominio del Negocio
+- **PropSaaS** es un sistema CRM y gestor administrativo inmobiliario optimizado para el mercado de la República Argentina (martilleros públicos, corredores y administraciones de alquileres).
+- **Entidades Core**:
+  - `Tenant`: Inmobiliaria o sucursal. Soporte multi-inquilino estricto mediante discriminador `tenantId` en toda colección de datos.
+  - `Lead`: Consulta comercial proveniente de canales externos (WhatsApp, Instagram Direct, Facebook Messenger, Portales Web).
+  - `Contract`: Contrato de locación con esquema de ajuste periódico basado en índices oficiales (ICL, IPC, Casa Propia).
+  - `Property`: Ficha técnica de inmueble (alquiler o venta).
+  - `PaymentReceipt`: Comprobante de pago emitido con folio y desglose legal.
+
+### 1.2 Sistema de Diseño: Stitch *Estate Logic* (ID: `16732967349855074016`)
+- **Modo de Visualización**: Modo claro estricto y descansado. Prohibido reintroducir temas oscuros o fondos negros en vistas principales.
+- **Paleta de Colores Oficial**:
+  - `primary` (`#091426`): Deep Corporate Navy para barras de título, encabezados y botones primarios.
+  - `surface / background` (`#F7F9FB`): Lienzo base de la aplicación.
+  - `surface-container-lowest` (`#FFFFFF`): Fondo de tarjetas y tablas de datos.
+  - `outline / border` (`#E6E8EA`): Borde estandarizado de 1px en todos los contenedores.
+  - `secondary` (`#006C49`): Verde esmeralda para estados exitosos, coeficientes ICL y aprobaciones.
+  - `error / alert` (`#BA1A1A` con fondo `#FFDAD6`): Alertas de consultas sin responder y vencimientos críticos.
+- **Geometría y Tipografía**:
+  - Radio de curvatura: `12px` (`rounded-xl` / `0.75rem`) en tarjetas, inputs y modales.
+  - Tipografía: `Inter` (pesos 400, 500, 600, 700). Familias monoespaciadas (`font-mono`) reservadas para importes monetarios, CUITs y fechas de ajuste.
 
 ---
 
-## 📐 3. Estándares de Frontend & React
+## 🛡️ 2. Protocolo de Cero Deuda Técnica y Gestión de Issues
 
-- **Framework & Build**: React 18 / 19 + TypeScript + Vite + Tailwind CSS.
-- **Rutas & Despliegue**: Soporte estricto de GitHub Pages con `base: '/propsaas/'` en `vite.config.ts`.
-- **Componentes**: Modulares, desacoplados, con manejo robusto de estados locales y callbacks claros.
-- **Multi-Tenant Ready**: Toda entidad (propiedades, leads, contratos, usuarios) debe asociarse a `tenantId`.
+1. **Compilación Obligatoria**:
+   - Todo cambio en el código fuente debe validar su compilación con `npm run build` con código de salida `0` antes de cerrar la tarea.
+2. **Tratamiento de Tareas Pendientes**:
+   - Está terminantemente prohibido dejar código con `// TODO` huérfanos o funciones stub incompletas.
+   - Si una integración externa (ej: APIs de Meta, Supabase, BCRA en vivo) excede el alcance del bloque de trabajo actual, **se debe crear un issue mediante la CLI de GitHub**:
+     ```bash
+     gh issue create --title "[Módulo] Descripción clara de la tarea" --body "Contexto técnico, requerimientos y criterios de aceptación."
+     ```
+   - El commit resultante debe incluir la referencia del issue creado (ej. `Refs #12`).
 
 ---
 
-## 🚀 4. Protocolo de Commit & Entrega
+## 📐 3. Convenciones Técnicas de Frontend
 
-- Cada bloque de trabajo debe ser validado con `npm run build` antes de realizar commit.
-- Los mensajes de commit deben ser semánticos, descriptivos y claros.
-- Toda actualización a la rama principal `main` debe verificar que el pipeline de GitHub Actions finalice con éxito.
+- **Stack**: React 19 + TypeScript + Vite + Tailwind CSS.
+- **Ruta Base de Despliegue**: Soporte estricto de GitHub Pages con `base: '/propsaas/'` en `vite.config.ts`.
+- **Exportaciones y Documentos**: La generación de recibos PDF se realiza en el cliente mediante `jspdf` y la exportación de tablas mediante formato CSV UTF-8 con BOM (`\uFEFF`).

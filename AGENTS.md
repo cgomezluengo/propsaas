@@ -1,50 +1,45 @@
 # Directrices de Agentes Autónomos y Subagentes (AGENTS.md)
 
-Este documento instruye a cualquier agente o subagente de IA que interactúe, diagnostique, diseñe o modifique este repositorio.
+Este documento instruye a cualquier agente o subagente de IA que diagnostique, planifique o modifique este repositorio.
 
 ---
 
-## 🤖 1. Roles y Responsabilidades de Agentes
+## 🤖 1. Roles y Responsabilidades de Subagentes
 
 1. **Lead Architect & Coordinator**:
-   - Coordina tareas complejas, desglosa épicas en sub-tareas y delega en agentes especializados.
+   - Analiza los requerimientos del usuario, desglosa tareas complejas y orquesta a los subagentes especializados.
 2. **Senior UI/UX & Product Designer**:
-   - Custodio del Design System *Estate Logic* de Stitch.
-   - Garantiza accesibilidad (contrastes WCAG), legibilidad, responsive design y microinteracciones limpias.
-3. **Core Engineer & Fullstack Dev**:
-   - Implementa componentes funcionales, validaciones TypeScript y lógica de negocio (ICL/IPC, parsers de mensajes, exportadores).
+   - Asegura la coherencia visual bajo los tokens de *Estate Logic* de Stitch.
+   - Supervisa accesibilidad (contraste WCAG), microinteracciones (estados hover/active) y diseño responsive en dispositivos móviles y de escritorio.
+3. **Core Fullstack Engineer**:
+   - Implementa componentes funcionales, validaciones TypeScript estrictas y algoritmos de negocio (cálculo de índices ICL/IPC, serializadores de recibos y conectores de mensajería).
 
 ---
 
-## 🧩 2. Atomic Knowledge Base
+## 🧩 2. Atomic Knowledge & Reglas de Flujos de Trabajo
 
-- **Gestión de Estados**: El CRM opera bajo un pipeline guiado de 3 pasos:
-  - **Paso 1**: Nuevas consultas entrantes (urgencia <24h / >48h).
-  - **Paso 2**: En conversación (objetivo: coordinar visita).
-  - **Paso 3**: Visita programada (objetivo: pasar a firma/seña).
-- **Atención Multicanal Inteligente**:
-  - `WhatsApp`: Apertura directa vía API WhatsApp Web/App.
-  - `Instagram`: Copia al portapapeles + redirección a Instagram Direct Inbox.
-  - `Facebook`: Copia al portapapeles + redirección a Messenger.
-- **Cálculo de Aumentos de Alquiler**:
-  - Soporte de coeficientes ICL (BCRA), IPC (INDEC) y Casa Propia.
-  - Generación de comprobantes y recibos de pago en PDF mediante `jspdf`.
+### 2.1 Pipeline Guiado del CRM (3 Pasos)
+- **Paso 1 (Nuevas Consultas)**:
+  - Clasificación por urgencia temporal: consultas con más de 24h y más de 48h sin respuesta.
+  - Botón de respuesta adaptativo según canal (`WhatsApp`, `Instagram`, `Facebook`).
+- **Paso 2 (En Conversación)**:
+  - Prospectos contactados cuyo objetivo inmediato es agendar fecha y hora de visita o solicitar requisitos de garantía.
+- **Paso 3 (Visita Programada)**:
+  - Prospectos con visita coordinada con martillero, con opción de enviar ubicación exacta o avanzar a reserva/contrato.
 
----
-
-## ⛔ 3. Políticas de Cero Deuda Técnica y Gestión de Issues
-
-- **Validación Obligatoria**: Jamás cerrar una intervención o responder al usuario sin haber ejecutado `npm run build` con salida exitosa (`exit code 0`).
-- **Gestión de Pendientes & Issues**:
-  - Si un agente identifica una mejora técnica, un bug futuro o una integración pendiente que no puede completarse en la sesión actual, debe:
-    1. Redactar el issue utilizando la CLI de GitHub: `gh issue create --title "..." --body "..."`
-    2. Documentar la referencia `#issue_id` en el log o commit.
-- **Sin Código Muerto ni Placeholders**:
-  - No dejar imports sin usar, funciones incompletas con `return null` o comentarios `// TODO` sin issue vinculado.
+### 2.2 Motor de Cálculo de Aumentos de Alquiler
+- **Índice ICL (Banco Central)**: Aplica la variación porcentual del coeficiente oficial entre fecha base y fecha de ajuste.
+- **Índice IPC (INDEC)**: Aplica la tasa de inflación acumulada del período contractual.
+- **Emisión de Recibos**: Todo ajuste ejecutado debe permitir descargar inmediatamente el recibo legal en formato PDF con desglose del período.
 
 ---
 
-## ⚙️ 4. Protocolo de Despliegue en GitHub Pages
+## ⛔ 3. Políticas de Ejecución y Cero Deuda Técnica
 
-- Toda modificación en `main` dispara automáticamente el workflow `.github/workflows/deploy.yml`.
-- Antes de dar por concluida una solicitud, el agente debe verificar el estado del workflow mediante `gh run list --limit 1` y asegurar que concluya en `success`.
+1. **Validación Previa**:
+   - Antes de responder al usuario, el agente debe ejecutar `npm run build` en el directorio raíz y verificar salida exitosa.
+2. **Registro Obligatorio de Tareas Pendientes en GitHub Issues**:
+   - Ante cualquier limitación técnica o servicio externo pendiente de credenciales, el agente debe crear el issue vía GitHub CLI:
+     `gh issue create --title "..." --body "..."`
+3. **Verificación de Despliegue**:
+   - Verificar la correcta ejecución del pipeline `.github/workflows/deploy.yml` mediante `gh run list --limit 1`.
