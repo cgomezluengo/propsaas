@@ -50,7 +50,7 @@ export const Navbar: React.FC<Props> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-white dark:bg-slate-900 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#E6E8EA] shadow-[0_1px_3px_0_rgba(0,0,0,0.03)] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           
@@ -60,16 +60,16 @@ export const Navbar: React.FC<Props> = ({
               onClick={() => onNavigate('landing')}
               className="flex items-center gap-2.5 text-left focus:outline-none group"
             >
-              <div className="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-base shadow-sm group-hover:bg-blue-700 transition-colors">
+              <div className="w-9 h-9 rounded-xl bg-[#091426] text-white flex items-center justify-center font-bold text-base shadow-sm group-hover:bg-[#1E293B] transition-colors">
                 P
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <span className="font-bold text-base tracking-tight text-slate-900 dark:text-white block leading-tight">
+                  <span className="font-bold text-base tracking-tight text-[#191C1E] block leading-tight">
                     PropSaaS
                   </span>
                 </div>
-                <span className="text-[10px] font-semibold text-blue-600 dark:text-blue-400 block -mt-0.5">
+                <span className="text-[10px] font-semibold text-[#006C49] block -mt-0.5">
                   {currentTenant.name} ({currentTenant.city})
                 </span>
               </div>
@@ -80,15 +80,15 @@ export const Navbar: React.FC<Props> = ({
               <button
                 type="button"
                 onClick={() => setIsTenantDropdownOpen(!isTenantDropdownOpen)}
-                className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-medium text-slate-700 dark:text-slate-200 transition-all border border-slate-200 dark:border-slate-700"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#F2F4F6] hover:bg-[#E6E8EA] text-xs font-semibold text-[#191C1E] transition-all border border-[#E6E8EA]"
               >
-                <Building2 className="w-3.5 h-3.5 text-blue-600" />
+                <Building2 className="w-3.5 h-3.5 text-[#091426]" />
                 <span className="max-w-[130px] truncate">{currentTenant.name}</span>
                 <ChevronDown className="w-3 h-3 text-slate-400" />
               </button>
 
               {isTenantDropdownOpen && (
-                <div className="absolute left-0 mt-2 w-64 bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-200 dark:border-slate-800 py-1.5 z-50 animate-fadeIn">
+                <div className="absolute left-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-[#E6E8EA] py-1.5 z-50 animate-fadeIn">
                   <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400">
                     Cambiar Sucursal / Inmobiliaria
                   </div>
@@ -99,15 +99,15 @@ export const Navbar: React.FC<Props> = ({
                         onSelectTenant(t);
                         setIsTenantDropdownOpen(false);
                       }}
-                      className={`w-full px-3 py-2 text-left text-xs font-medium flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors ${
-                        currentTenant.id === t.id ? 'text-blue-600 dark:text-blue-400 font-bold bg-blue-50/50 dark:bg-blue-950/30' : 'text-slate-700 dark:text-slate-300'
+                      className={`w-full px-3 py-2 text-left text-xs font-medium flex items-center justify-between hover:bg-[#F7F9FB] transition-colors ${
+                        currentTenant.id === t.id ? 'text-[#091426] font-bold bg-[#F2F4F6]' : 'text-slate-700'
                       }`}
                     >
                       <div>
-                        <div>{t.name}</div>
+                        <div className="font-semibold">{t.name}</div>
                         <div className="text-[10px] text-slate-400">📍 {t.city} • {t.totalProperties} Propiedades</div>
                       </div>
-                      {currentTenant.id === t.id && <Check className="w-4 h-4 text-blue-600" />}
+                      {currentTenant.id === t.id && <Check className="w-4 h-4 text-[#006C49]" />}
                     </button>
                   ))}
                 </div>
@@ -116,7 +116,7 @@ export const Navbar: React.FC<Props> = ({
           </div>
 
           {/* Desktop Nav Items */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-1 bg-[#F2F4F6] p-1 rounded-xl border border-[#E6E8EA]">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeModule === item.id;
@@ -124,13 +124,13 @@ export const Navbar: React.FC<Props> = ({
                 <button
                   key={item.id}
                   onClick={() => onNavigate(item.id)}
-                  className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                     isActive
-                      ? 'bg-slate-900 text-white dark:bg-blue-600 dark:text-white shadow-sm'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
+                      ? 'bg-white text-[#091426] shadow-sm font-bold border border-[#E6E8EA]'
+                      : 'text-slate-600 hover:text-[#091426] hover:bg-white/60'
                   }`}
                 >
-                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-blue-400 dark:text-white' : 'text-slate-500'}`} />
+                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#091426]' : 'text-slate-500'}`} />
                   {item.label}
                 </button>
               );

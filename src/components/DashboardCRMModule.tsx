@@ -211,22 +211,22 @@ export const DashboardCRMModule: React.FC<Props> = ({
   const visitsTodayCount = leads.filter(l => l.status === 'visit_scheduled').length;
 
   return (
-    <div className="space-y-6 animate-fadeIn">
+    <div className="space-y-6 animate-fadeIn text-[#191C1E]">
       
       {/* 1. Header with Daily Summary & Quick Mode Switcher */}
-      <div className="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 pb-4 border-b border-slate-100 dark:border-slate-800">
+      <div className="bg-white p-5 rounded-2xl border border-[#E6E8EA] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.04)]">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 pb-4 border-b border-[#E6E8EA]">
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              <h1 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+              <h1 className="text-xl font-bold text-[#191C1E]">
                 Consultas & Clientes Interesados
               </h1>
-              <span className="text-xs px-2.5 py-0.5 rounded-md bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 font-bold border border-blue-200 dark:border-blue-800">
+              <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#F2F4F6] text-[#091426] font-bold border border-[#E6E8EA]">
                 {currentTenant.name}
               </span>
             </div>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-              Hola, <span className="font-semibold text-slate-800 dark:text-slate-200">{currentUser.name}</span>. Acá tenés todas las personas que consultaron por tus propiedades ordenadas por urgencia.
+            <p className="text-xs text-slate-500 mt-1">
+              Hola, <span className="font-semibold text-[#191C1E]">{currentUser.name}</span>. Acá tenés todas las personas que consultaron por tus propiedades ordenadas por urgencia.
             </p>
           </div>
 
@@ -234,7 +234,7 @@ export const DashboardCRMModule: React.FC<Props> = ({
           <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
             <button
               onClick={() => exportLeadsToCSV(leads)}
-              className="flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-2 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold rounded-lg border border-slate-200 dark:border-slate-700 transition-all shadow-sm"
+              className="flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3.5 py-2 bg-white hover:bg-[#F2F4F6] text-[#191C1E] text-xs font-semibold rounded-xl border border-[#CBD5E1] transition-all shadow-sm"
               title="Descargar lista de consultas en Excel"
             >
               <Download className="w-3.5 h-3.5 text-slate-500" /> Descargar Excel
@@ -242,7 +242,7 @@ export const DashboardCRMModule: React.FC<Props> = ({
 
             <button
               onClick={() => setIsNewLeadModalOpen(true)}
-              className="flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow-sm transition-all active:scale-95"
+              className="flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-4 py-2 bg-[#091426] hover:bg-[#1E293B] text-white text-xs font-bold rounded-xl shadow-sm transition-all active:scale-95"
             >
               <Plus className="w-4 h-4" /> + Cargar Consulta
             </button>
@@ -251,25 +251,25 @@ export const DashboardCRMModule: React.FC<Props> = ({
 
         {/* View Mode Toggle Bar */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pt-3">
-          <div className="flex flex-wrap items-center gap-1.5 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg w-full sm:w-auto">
+          <div className="flex flex-wrap items-center gap-1.5 bg-[#F2F4F6] p-1 rounded-xl border border-[#E6E8EA] w-full sm:w-auto">
             <button
               onClick={() => setViewMode('easy_flow')}
-              className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-3 py-1.5 rounded-md text-xs font-bold transition-all ${
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
                 viewMode === 'easy_flow'
-                  ? 'bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 shadow-sm'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  ? 'bg-white text-[#091426] shadow-sm border border-[#E6E8EA]'
+                  : 'text-slate-600 hover:text-[#091426]'
               }`}
             >
-              <Zap className="w-3.5 h-3.5 text-amber-500" />
+              <Zap className="w-3.5 h-3.5 text-[#006C49]" />
               <span>⚡ Modo Paso a Paso</span>
             </button>
 
             <button
               onClick={() => setViewMode('kanban')}
-              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 viewMode === 'kanban'
-                  ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  ? 'bg-white text-[#091426] shadow-sm border border-[#E6E8EA]'
+                  : 'text-slate-600 hover:text-[#091426]'
               }`}
             >
               <LayoutGrid className="w-3.5 h-3.5" />
@@ -278,10 +278,10 @@ export const DashboardCRMModule: React.FC<Props> = ({
 
             <button
               onClick={() => setViewMode('list')}
-              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 viewMode === 'list'
-                  ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  ? 'bg-white text-[#091426] shadow-sm border border-[#E6E8EA]'
+                  : 'text-slate-600 hover:text-[#091426]'
               }`}
             >
               <List className="w-3.5 h-3.5" />
@@ -293,13 +293,13 @@ export const DashboardCRMModule: React.FC<Props> = ({
           <div className="flex items-center gap-2 w-full sm:w-auto">
             <button
               onClick={() => setUrgencyFilterOnly(!urgencyFilterOnly)}
-              className={`w-full sm:w-auto justify-center px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 border ${
+              className={`w-full sm:w-auto justify-center px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 border ${
                 urgencyFilterOnly
-                  ? 'bg-red-500 text-white border-red-600 shadow-sm'
-                  : 'bg-slate-50 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100'
+                  ? 'bg-[#BA1A1A] text-white border-[#BA1A1A] shadow-sm'
+                  : 'bg-[#F2F4F6] text-[#191C1E] border-[#E6E8EA] hover:bg-[#E6E8EA]'
               }`}
             >
-              <AlertTriangle className={`w-3.5 h-3.5 ${urgencyFilterOnly ? 'text-white' : 'text-red-500'}`} />
+              <AlertTriangle className={`w-3.5 h-3.5 ${urgencyFilterOnly ? 'text-white' : 'text-[#BA1A1A]'}`} />
               <span>Sin responder ({unansweredCount})</span>
             </button>
           </div>
