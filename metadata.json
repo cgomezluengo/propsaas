@@ -1,0 +1,6 @@
+{
+  "name": "PropTech Pro - Gestión Inmobiliaria Inteligente",
+  "description": "Plataforma SaaS B2B Multi-Tenant para agencias inmobiliarias y martilleros en Argentina con CRM de prospectos, actualización de contratos por índices ICL/IPC, portal móvil de inquilinos e IA de scoring.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
