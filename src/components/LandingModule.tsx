@@ -136,22 +136,22 @@ export const LandingModule: React.FC<Props> = ({ onNavigate }) => {
       </section>
 
       {/* Interactive ROI Calculator for Realtors */}
-      <section className="py-12 bg-slate-50 dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800">
+      <section className="py-12 bg-slate-50  border-y border-slate-200 ">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
+          <div className="bg-white  p-6 rounded-xl shadow-sm border border-slate-200 ">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-9 h-9 rounded-lg bg-[#F2F4F6] dark:bg-[#F2F4F6] text-[#091426] dark:text-[#091426] flex items-center justify-center border border-[#E6E8EA] dark:border-[#E6E8EA]">
+              <div className="w-9 h-9 rounded-lg bg-[#F2F4F6]  text-[#091426]  flex items-center justify-center border border-[#E6E8EA] ">
                 <Calculator className="w-4 h-4" />
               </div>
               <div>
-                <h3 className="text-base font-bold text-slate-900 dark:text-white">Calculadora de Ganancia por Respuestas Rápidas</h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400">Mirá cuánto dinero extra genera tu inmobiliaria respondiendo a tiempo las consultas</p>
+                <h3 className="text-base font-bold text-slate-900 ">Calculadora de Ganancia por Respuestas Rápidas</h3>
+                <p className="text-xs text-slate-500 ">Mirá cuánto dinero extra genera tu inmobiliaria respondiendo a tiempo las consultas</p>
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
-                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase mb-2">
+                <label className="block text-xs font-semibold text-slate-700  uppercase mb-2">
                   Consultas mensuales recibidas: <span className="text-[#091426] font-bold">{calculatorLeads}</span>
                 </label>
                 <input 
@@ -160,12 +160,12 @@ export const LandingModule: React.FC<Props> = ({ onNavigate }) => {
                   max="150" 
                   value={calculatorLeads}
                   onChange={(e) => setCalculatorLeads(Number(e.target.value))}
-                  className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                  className="w-full h-2 bg-slate-200  rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase mb-2">
+                <label className="block text-xs font-semibold text-slate-700  uppercase mb-2">
                   Valor promedio del alquiler/operación: <span className="text-[#091426] font-bold">{formatCurrency(avgTicket)}</span>
                 </label>
                 <input 
@@ -175,19 +175,19 @@ export const LandingModule: React.FC<Props> = ({ onNavigate }) => {
                   step="25000"
                   value={avgTicket}
                   onChange={(e) => setAvgTicket(Number(e.target.value))}
-                  className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                  className="w-full h-2 bg-slate-200  rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
               </div>
             </div>
 
-            <div className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4 bg-[#F2F4F6] dark:bg-[#F2F4F6]/20 p-4 rounded-lg border border-blue-100 dark:border-[#E6E8EA]/40">
+            <div className="mt-6 pt-6 border-t border-slate-100  flex flex-col sm:flex-row justify-between items-center gap-4 bg-[#F2F4F6]  p-4 rounded-lg border border-blue-100 ">
               <div>
-                <span className="text-xs text-slate-600 dark:text-slate-400">Consultas convertidas en visitas/reservas:</span>
-                <p className="text-base font-bold text-slate-900 dark:text-white">~{recoveredLeads} operaciones adicionales al mes</p>
+                <span className="text-xs text-slate-600 ">Consultas convertidas en visitas/reservas:</span>
+                <p className="text-base font-bold text-slate-900 ">~{recoveredLeads} operaciones adicionales al mes</p>
               </div>
               <div className="text-right">
-                <span className="text-xs text-[#091426] dark:text-[#091426] font-semibold uppercase">Comisiones ganadas estimadas:</span>
-                <p className="text-xl font-bold text-[#091426] dark:text-[#091426]">{formatCurrency(estimatedSavings)} / mes</p>
+                <span className="text-xs text-[#091426]  font-semibold uppercase">Comisiones ganadas estimadas:</span>
+                <p className="text-xl font-bold text-[#091426] ">{formatCurrency(estimatedSavings)} / mes</p>
               </div>
             </div>
           </div>

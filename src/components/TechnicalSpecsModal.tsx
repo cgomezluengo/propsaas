@@ -138,7 +138,7 @@ CREATE POLICY tenant_isolation_leads ON leads
 
   return (
     <div className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-white dark:bg-slate-900 w-full max-w-5xl h-[90vh] rounded-xl shadow-2xl border border-slate-200 dark:border-slate-800 flex flex-col overflow-hidden">
+      <div className="bg-white  w-full max-w-5xl h-[90vh] rounded-xl shadow-2xl border border-slate-200  flex flex-col overflow-hidden">
         {/* Header */}
         <div className="bg-slate-900 text-white px-6 py-4 flex justify-between items-center border-b border-slate-800">
           <div className="flex items-center gap-3">
@@ -164,13 +164,13 @@ CREATE POLICY tenant_isolation_leads ON leads
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 px-6 overflow-x-auto">
+        <div className="flex border-b border-slate-200  bg-slate-50  px-6 overflow-x-auto">
           <button
             onClick={() => setActiveTab('stack')}
             className={`flex items-center gap-2 py-3 px-4 font-semibold text-xs border-b-2 transition-colors whitespace-nowrap ${
               activeTab === 'stack'
-                ? 'border-[#091426] text-[#091426] dark:text-[#091426]'
-                : 'border-transparent text-slate-500 hover:text-slate-900 dark:hover:text-white'
+                ? 'border-[#091426] text-[#091426] '
+                : 'border-transparent text-slate-500 hover:text-slate-900 :text-white'
             }`}
           >
             <Layers className="w-4 h-4" /> 1. Arquitectura del Sistema (Stack)
@@ -179,8 +179,8 @@ CREATE POLICY tenant_isolation_leads ON leads
             onClick={() => setActiveTab('db_schema')}
             className={`flex items-center gap-2 py-3 px-4 font-semibold text-xs border-b-2 transition-colors whitespace-nowrap ${
               activeTab === 'db_schema'
-                ? 'border-[#091426] text-[#091426] dark:text-[#091426]'
-                : 'border-transparent text-slate-500 hover:text-slate-900 dark:hover:text-white'
+                ? 'border-[#091426] text-[#091426] '
+                : 'border-transparent text-slate-500 hover:text-slate-900 :text-white'
             }`}
           >
             <Database className="w-4 h-4" /> 2. Esquema PostgreSQL & RLS
@@ -189,8 +189,8 @@ CREATE POLICY tenant_isolation_leads ON leads
             onClick={() => setActiveTab('api_definition')}
             className={`flex items-center gap-2 py-3 px-4 font-semibold text-xs border-b-2 transition-colors whitespace-nowrap ${
               activeTab === 'api_definition'
-                ? 'border-[#091426] text-[#091426] dark:text-[#091426]'
-                : 'border-transparent text-slate-500 hover:text-slate-900 dark:hover:text-white'
+                ? 'border-[#091426] text-[#091426] '
+                : 'border-transparent text-slate-500 hover:text-slate-900 :text-white'
             }`}
           >
             <Code className="w-4 h-4" /> 3. Definición de API REST
@@ -199,8 +199,8 @@ CREATE POLICY tenant_isolation_leads ON leads
             onClick={() => setActiveTab('mvp_roadmap')}
             className={`flex items-center gap-2 py-3 px-4 font-semibold text-xs border-b-2 transition-colors whitespace-nowrap ${
               activeTab === 'mvp_roadmap'
-                ? 'border-[#091426] text-[#091426] dark:text-[#091426]'
-                : 'border-transparent text-slate-500 hover:text-slate-900 dark:hover:text-white'
+                ? 'border-[#091426] text-[#091426] '
+                : 'border-transparent text-slate-500 hover:text-slate-900 :text-white'
             }`}
           >
             <Milestone className="w-4 h-4" /> 4. Roadmap del MVP (Sprints)
@@ -208,63 +208,63 @@ CREATE POLICY tenant_isolation_leads ON leads
         </div>
 
         {/* Content Area */}
-        <div className="flex-1 overflow-y-auto p-6 text-slate-800 dark:text-slate-200">
+        <div className="flex-1 overflow-y-auto p-6 text-slate-800 ">
           {/* TAB 1: STACK */}
           {activeTab === 'stack' && (
             <div className="space-y-6">
-              <div className="bg-[#F2F4F6] dark:bg-[#F2F4F6] border border-[#E6E8EA] dark:border-[#E6E8EA]/40 rounded-xl p-4">
-                <h4 className="font-bold text-[#091426] dark:text-[#091426] text-xs flex items-center gap-2">
+              <div className="bg-[#F2F4F6]  border border-[#E6E8EA]  rounded-xl p-4">
+                <h4 className="font-bold text-[#091426]  text-xs flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-[#091426]" />
                   Dictamen del Arquitecto: Stack Tecnológico de Máxima Velocidad y Aislamiento Multi-Tenant
                 </h4>
-                <p className="text-xs text-[#091426] dark:text-[#091426] mt-1">
+                <p className="text-xs text-[#091426]  mt-1">
                   Optimizamos para despliegue rápido, costo operativo bajo (scale-to-zero) y absoluta seguridad en la separación de datos entre inmobiliarias competidoras en la misma región.
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="border border-slate-200 dark:border-slate-800 rounded-xl p-4 bg-white dark:bg-slate-900 shadow-sm">
-                  <div className="flex items-center gap-2 text-slate-900 dark:text-white font-bold mb-2">
-                    <span className="w-7 h-7 rounded-lg bg-[#E6E8EA] dark:bg-[#F2F4F6] text-[#091426] flex items-center justify-center text-xs">FE</span>
+                <div className="border border-slate-200  rounded-xl p-4 bg-white  shadow-sm">
+                  <div className="flex items-center gap-2 text-slate-900  font-bold mb-2">
+                    <span className="w-7 h-7 rounded-lg bg-[#E6E8EA]  text-[#091426] flex items-center justify-center text-xs">FE</span>
                     Frontend & Portal Inquilino
                   </div>
-                  <ul className="text-xs space-y-2 text-slate-600 dark:text-slate-400">
+                  <ul className="text-xs space-y-2 text-slate-600 ">
                     <li>• <strong>React 19 + TypeScript + Vite:</strong> Rendimiento instantáneo, SPA ultra responsiva en móviles.</li>
                     <li>• <strong>Tailwind CSS v4 + Motion:</strong> Animaciones fluidas, microinteracciones y modo oscuro nativo.</li>
                     <li>• <strong>PWA (Progressive Web App):</strong> Para que los inquilinos instalen el portal como app nativa sin pasar por App Store.</li>
                   </ul>
                 </div>
 
-                <div className="border border-slate-200 dark:border-slate-800 rounded-xl p-4 bg-white dark:bg-slate-900 shadow-sm">
-                  <div className="flex items-center gap-2 text-slate-900 dark:text-white font-bold mb-2">
-                    <span className="w-7 h-7 rounded-lg bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 flex items-center justify-center text-xs">BE</span>
+                <div className="border border-slate-200  rounded-xl p-4 bg-white  shadow-sm">
+                  <div className="flex items-center gap-2 text-slate-900  font-bold mb-2">
+                    <span className="w-7 h-7 rounded-lg bg-indigo-100  text-indigo-600 flex items-center justify-center text-xs">BE</span>
                     Backend & Lógica de Negocio
                   </div>
-                  <ul className="text-xs space-y-2 text-slate-600 dark:text-slate-400">
+                  <ul className="text-xs space-y-2 text-slate-600 ">
                     <li>• <strong>Node.js / Express / Fastify con TypeScript:</strong> Ecosistema maduro, bajo overhead de memoria.</li>
                     <li>• <strong>Drizzle ORM / Prisma:</strong> Type-safety total de extremo a extremo, migraciones declarativas seguras.</li>
                     <li>• <strong>BullMQ + Redis:</strong> Colas para cron jobs automáticos de actualización ICL/IPC y alertas de leads &gt;48h.</li>
                   </ul>
                 </div>
 
-                <div className="border border-slate-200 dark:border-slate-800 rounded-xl p-4 bg-white dark:bg-slate-900 shadow-sm">
-                  <div className="flex items-center gap-2 text-slate-900 dark:text-white font-bold mb-2">
-                    <span className="w-7 h-7 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 flex items-center justify-center text-xs">DB</span>
+                <div className="border border-slate-200  rounded-xl p-4 bg-white  shadow-sm">
+                  <div className="flex items-center gap-2 text-slate-900  font-bold mb-2">
+                    <span className="w-7 h-7 rounded-lg bg-emerald-100  text-emerald-600 flex items-center justify-center text-xs">DB</span>
                     Base de Datos & Seguridad
                   </div>
-                  <ul className="text-xs space-y-2 text-slate-600 dark:text-slate-400">
-                    <li>• <strong>PostgreSQL 16+ con Row-Level Security (RLS):</strong> Esquema compartido con discriminador <code className="bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">tenant_id</code>.</li>
-                    <li>• <strong>JWT con Custom Claims:</strong> El token de sesión inyecta el <code className="bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">app.current_tenant_id</code> a nivel de conexión SQL.</li>
+                  <ul className="text-xs space-y-2 text-slate-600 ">
+                    <li>• <strong>PostgreSQL 16+ con Row-Level Security (RLS):</strong> Esquema compartido con discriminador <code className="bg-slate-100  px-1 py-0.5 rounded">tenant_id</code>.</li>
+                    <li>• <strong>JWT con Custom Claims:</strong> El token de sesión inyecta el <code className="bg-slate-100  px-1 py-0.5 rounded">app.current_tenant_id</code> a nivel de conexión SQL.</li>
                     <li>• <strong>Cifrado AES-256 en reposo:</strong> Para proteger contratos y recibos de sueldo.</li>
                   </ul>
                 </div>
 
-                <div className="border border-slate-200 dark:border-slate-800 rounded-xl p-4 bg-white dark:bg-slate-900 shadow-sm">
-                  <div className="flex items-center gap-2 text-slate-900 dark:text-white font-bold mb-2">
-                    <span className="w-7 h-7 rounded-lg bg-purple-100 dark:bg-purple-900/50 text-purple-600 flex items-center justify-center text-xs">AI</span>
+                <div className="border border-slate-200  rounded-xl p-4 bg-white  shadow-sm">
+                  <div className="flex items-center gap-2 text-slate-900  font-bold mb-2">
+                    <span className="w-7 h-7 rounded-lg bg-purple-100  text-purple-600 flex items-center justify-center text-xs">AI</span>
                     Motor de Inteligencia Artificial
                   </div>
-                  <ul className="text-xs space-y-2 text-slate-600 dark:text-slate-400">
+                  <ul className="text-xs space-y-2 text-slate-600 ">
                     <li>• <strong>Gemini 2.5 Flash / Google GenAI SDK:</strong> Scoring en 180ms, extracción estructurada JSON de intención y garantía.</li>
                     <li>• <strong>Meta Graph API / WhatsApp Cloud API:</strong> Ingesta omnicanal de mensajes en tiempo real vía Webhooks.</li>
                   </ul>
@@ -302,73 +302,73 @@ CREATE POLICY tenant_isolation_leads ON leads
 
               <div className="space-y-3">
                 {/* Endpoint 1 */}
-                <div className="border border-slate-200 dark:border-slate-800 rounded-xl p-4 bg-white dark:bg-slate-900">
+                <div className="border border-slate-200  rounded-xl p-4 bg-white ">
                   <div className="flex items-center gap-3">
-                    <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-[#E6E8EA] text-[#091426] dark:bg-[#1E293B]/60 dark:text-[#091426]">POST</span>
-                    <code className="text-xs font-mono font-semibold text-slate-900 dark:text-white">/api/v1/auth/register-tenant</code>
+                    <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-[#E6E8EA] text-[#091426]  ">POST</span>
+                    <code className="text-xs font-mono font-semibold text-slate-900 ">/api/v1/auth/register-tenant</code>
                     <span className="text-xs text-slate-500 ml-auto">Onboarding de Agencia</span>
                   </div>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-2">
+                  <p className="text-xs text-slate-600  mt-2">
                     Crea el espacio de trabajo del tenant, el usuario administrador principal y provisiona el subdominio.
                   </p>
                 </div>
 
                 {/* Endpoint 2 */}
-                <div className="border border-slate-200 dark:border-slate-800 rounded-xl p-4 bg-white dark:bg-slate-900">
+                <div className="border border-slate-200  rounded-xl p-4 bg-white ">
                   <div className="flex items-center gap-3">
-                    <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/60 dark:text-emerald-300">GET</span>
-                    <code className="text-xs font-mono font-semibold text-slate-900 dark:text-white">/api/v1/leads?status=new&unanswered_gt=48</code>
+                    <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-100 text-emerald-700  ">GET</span>
+                    <code className="text-xs font-mono font-semibold text-slate-900 ">/api/v1/leads?status=new&unanswered_gt=48</code>
                     <span className="text-xs text-slate-500 ml-auto">CRM Kanban & Alertas</span>
                   </div>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-2">
+                  <p className="text-xs text-slate-600  mt-2">
                     Retorna los prospectos clasificados por columnas del embudo, destacando leads con &gt;48 horas sin respuesta.
                   </p>
                 </div>
 
                 {/* Endpoint 3 */}
-                <div className="border border-slate-200 dark:border-slate-800 rounded-xl p-4 bg-white dark:bg-slate-900">
+                <div className="border border-slate-200  rounded-xl p-4 bg-white ">
                   <div className="flex items-center gap-3">
-                    <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-purple-100 text-purple-700 dark:bg-purple-900/60 dark:text-purple-300">POST</span>
-                    <code className="text-xs font-mono font-semibold text-slate-900 dark:text-white">/api/v1/leads/ai-score</code>
+                    <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-purple-100 text-purple-700  ">POST</span>
+                    <code className="text-xs font-mono font-semibold text-slate-900 ">/api/v1/leads/ai-score</code>
                     <span className="text-xs text-slate-500 ml-auto">Motor de Scoring IA</span>
                   </div>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-2">
+                  <p className="text-xs text-slate-600  mt-2">
                     Recibe el texto de la consulta del prospecto, analiza intención de compra/alquiler y devuelve score 0-100 y respuesta sugerida.
                   </p>
                 </div>
 
                 {/* Endpoint 4 */}
-                <div className="border border-slate-200 dark:border-slate-800 rounded-xl p-4 bg-white dark:bg-slate-900">
+                <div className="border border-slate-200  rounded-xl p-4 bg-white ">
                   <div className="flex items-center gap-3">
-                    <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-amber-100 text-amber-700 dark:bg-amber-900/60 dark:text-amber-300">POST</span>
-                    <code className="text-xs font-mono font-semibold text-slate-900 dark:text-white">/api/v1/contracts/{`{id}`}/calculate-index</code>
+                    <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-amber-100 text-amber-700  ">POST</span>
+                    <code className="text-xs font-mono font-semibold text-slate-900 ">/api/v1/contracts/{`{id}`}/calculate-index</code>
                     <span className="text-xs text-slate-500 ml-auto">Calculadora ICL / IPC</span>
                   </div>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-2">
+                  <p className="text-xs text-slate-600  mt-2">
                     Consulta el índice ICL oficial del BCRA o IPC del INDEC y calcula el nuevo canon locativo a aplicar.
                   </p>
                 </div>
 
                 {/* Endpoint 5 */}
-                <div className="border border-slate-200 dark:border-slate-800 rounded-xl p-4 bg-white dark:bg-slate-900">
+                <div className="border border-slate-200  rounded-xl p-4 bg-white ">
                   <div className="flex items-center gap-3">
-                    <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/60 dark:text-emerald-300">GET</span>
-                    <code className="text-xs font-mono font-semibold text-slate-900 dark:text-white">/api/v1/tenant-portal/overview</code>
+                    <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-100 text-emerald-700  ">GET</span>
+                    <code className="text-xs font-mono font-semibold text-slate-900 ">/api/v1/tenant-portal/overview</code>
                     <span className="text-xs text-slate-500 ml-auto">Portal del Inquilino</span>
                   </div>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-2">
+                  <p className="text-xs text-slate-600  mt-2">
                     Devuelve el próximo vencimiento de pago, meses restantes para el aumento de alquiler y últimos recibos descargables.
                   </p>
                 </div>
 
                 {/* Endpoint 6 */}
-                <div className="border border-slate-200 dark:border-slate-800 rounded-xl p-4 bg-white dark:bg-slate-900">
+                <div className="border border-slate-200  rounded-xl p-4 bg-white ">
                   <div className="flex items-center gap-3">
-                    <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-[#E6E8EA] text-[#091426] dark:bg-[#1E293B]/60 dark:text-[#091426]">POST</span>
-                    <code className="text-xs font-mono font-semibold text-slate-900 dark:text-white">/api/v1/webhooks/social-leads</code>
+                    <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-[#E6E8EA] text-[#091426]  ">POST</span>
+                    <code className="text-xs font-mono font-semibold text-slate-900 ">/api/v1/webhooks/social-leads</code>
                     <span className="text-xs text-slate-500 ml-auto">Webhook Ingesta Omnicanal</span>
                   </div>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-2">
+                  <p className="text-xs text-slate-600  mt-2">
                     Recepción de mensajes desde Instagram DM, WhatsApp y Facebook Messenger para su procesamiento e inserción inmediata en el CRM.
                   </p>
                 </div>
@@ -383,9 +383,9 @@ CREATE POLICY tenant_isolation_leads ON leads
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="w-6 h-6 rounded-full bg-emerald-500 text-white font-bold text-xs flex items-center justify-center">1</span>
-                    <h4 className="font-bold text-sm text-slate-900 dark:text-white">Sprint 1 (Semana 1): Fundaciones Multi-Tenant y Autenticación</h4>
+                    <h4 className="font-bold text-sm text-slate-900 ">Sprint 1 (Semana 1): Fundaciones Multi-Tenant y Autenticación</h4>
                   </div>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 pl-8">
+                  <p className="text-xs text-slate-600  mt-1 pl-8">
                     Modelado de PostgreSQL con RLS, Wizard de Onboarding de Inmobiliarias, Login con JWT y selector de sucursales.
                   </p>
                 </div>
@@ -393,9 +393,9 @@ CREATE POLICY tenant_isolation_leads ON leads
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="w-6 h-6 rounded-full bg-emerald-500 text-white font-bold text-xs flex items-center justify-center">2</span>
-                    <h4 className="font-bold text-sm text-slate-900 dark:text-white">Sprint 2 (Semana 2): CRM Inmobiliario & Alertas Anti-Pérdida de Leads</h4>
+                    <h4 className="font-bold text-sm text-slate-900 ">Sprint 2 (Semana 2): CRM Inmobiliario & Alertas Anti-Pérdida de Leads</h4>
                   </div>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 pl-8">
+                  <p className="text-xs text-slate-600  mt-1 pl-8">
                     Tablero Kanban drag-and-drop, indicador rojo para leads &gt;48h, integración con WhatsApp Cloud API y motor IA de scoring.
                   </p>
                 </div>
@@ -403,9 +403,9 @@ CREATE POLICY tenant_isolation_leads ON leads
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="w-6 h-6 rounded-full bg-emerald-500 text-white font-bold text-xs flex items-center justify-center">3</span>
-                    <h4 className="font-bold text-sm text-slate-900 dark:text-white">Sprint 3 (Semana 3): Motor de Indexación ICL/IPC & Portal Inquilinos</h4>
+                    <h4 className="font-bold text-sm text-slate-900 ">Sprint 3 (Semana 3): Motor de Indexación ICL/IPC & Portal Inquilinos</h4>
                   </div>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 pl-8">
+                  <p className="text-xs text-slate-600  mt-1 pl-8">
                     Calculadora de aumento de alquiler con índices del BCRA, generación de recibos PDF, portal móvil para inquilinos y notificador de pagos.
                   </p>
                 </div>
@@ -413,9 +413,9 @@ CREATE POLICY tenant_isolation_leads ON leads
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="w-6 h-6 rounded-full bg-emerald-500 text-white font-bold text-xs flex items-center justify-center">4</span>
-                    <h4 className="font-bold text-sm text-slate-900 dark:text-white">Sprint 4 (Semana 4): Pruebas Piloto en Junín & Lanzamiento Comercial</h4>
+                    <h4 className="font-bold text-sm text-slate-900 ">Sprint 4 (Semana 4): Pruebas Piloto en Junín & Lanzamiento Comercial</h4>
                   </div>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 pl-8">
+                  <p className="text-xs text-slate-600  mt-1 pl-8">
                     Onboarding con 3 inmobiliarias de prueba en Junín/PBA, ajuste de métricas de conversión, landing page de captación y pagos con Stripe/MercadoPago.
                   </p>
                 </div>
@@ -425,7 +425,7 @@ CREATE POLICY tenant_isolation_leads ON leads
         </div>
 
         {/* Footer */}
-        <div className="bg-slate-100 dark:bg-slate-900 px-6 py-3 border-t border-slate-200 dark:border-slate-800 flex justify-between items-center">
+        <div className="bg-slate-100  px-6 py-3 border-t border-slate-200  flex justify-between items-center">
           <span className="text-xs text-slate-500">Diseñado con estándares enterprise B2B SaaS</span>
           <button
             onClick={onClose}

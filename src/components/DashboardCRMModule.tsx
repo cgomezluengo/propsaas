@@ -308,23 +308,23 @@ export const DashboardCRMModule: React.FC<Props> = ({
 
       {/* 2. Collapsible Friendly Guide Banner */}
       {showGuideBanner && (
-        <div className="bg-[#F2F4F6] dark:bg-[#F2F4F6] border border-[#E6E8EA] dark:border-[#E6E8EA] rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="bg-[#F2F4F6]  border border-[#E6E8EA]  rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex items-start gap-3">
             <div className="w-8 h-8 rounded-lg bg-[#091426] text-white flex items-center justify-center shrink-0 mt-0.5">
               <HelpCircle className="w-4 h-4" />
             </div>
             <div>
-              <h4 className="text-xs font-bold text-[#091426] dark:text-[#091426]">
+              <h4 className="text-xs font-bold text-[#091426] ">
                 ¿Cómo usar esta sección? (Super fácil en 3 pasos)
               </h4>
-              <p className="text-xs text-slate-600 dark:text-slate-500 mt-0.5 leading-relaxed">
-                <span className="font-bold">1. Responder:</span> Tocá <span className="font-semibold text-emerald-700 dark:text-emerald-300">"WhatsApp"</span> para enviar un mensaje ya preparado → <span className="font-bold">2. Agendar:</span> Tocá <span className="font-semibold">"Agendar Visita"</span> cuando coordinen el día → <span className="font-bold">3. Contrato:</span> Marcá la seña y generá el contrato con 1 clic.
+              <p className="text-xs text-slate-600  mt-0.5 leading-relaxed">
+                <span className="font-bold">1. Responder:</span> Tocá <span className="font-semibold text-emerald-700 ">"WhatsApp"</span> para enviar un mensaje ya preparado → <span className="font-bold">2. Agendar:</span> Tocá <span className="font-semibold">"Agendar Visita"</span> cuando coordinen el día → <span className="font-bold">3. Contrato:</span> Marcá la seña y generá el contrato con 1 clic.
               </p>
             </div>
           </div>
           <button
             onClick={() => setShowGuideBanner(false)}
-            className="text-xs text-[#091426] dark:text-[#091426] hover:underline font-semibold shrink-0"
+            className="text-xs text-[#091426]  hover:underline font-semibold shrink-0"
           >
             Entendido ✕
           </button>
@@ -332,7 +332,7 @@ export const DashboardCRMModule: React.FC<Props> = ({
       )}
 
       {/* 3. Search & Channel Filter Bar */}
-      <div className="bg-white dark:bg-slate-900 p-3 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row gap-3 justify-between items-center shadow-sm">
+      <div className="bg-white  p-3 rounded-xl border border-slate-200  flex flex-col sm:flex-row gap-3 justify-between items-center shadow-sm">
         <div className="relative w-full sm:w-80">
           <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
@@ -340,12 +340,12 @@ export const DashboardCRMModule: React.FC<Props> = ({
             placeholder="Buscar por nombre, teléfono o inmueble..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-9 pr-3 py-1.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#091426]"
+            className="w-full pl-9 pr-3 py-1.5 bg-slate-50  border border-slate-200  rounded-lg text-xs text-slate-900  focus:outline-none focus:ring-2 focus:ring-[#091426]"
           />
         </div>
 
         <div className="flex items-center gap-1.5 w-full sm:w-auto overflow-x-auto">
-          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 flex items-center gap-1 mr-1">
+          <span className="text-xs font-semibold text-slate-500  flex items-center gap-1 mr-1">
             <Filter className="w-3.5 h-3.5 text-slate-400" /> Canal:
           </span>
           {['all', 'whatsapp', 'instagram', 'facebook', 'web'].map((chn) => (
@@ -354,8 +354,8 @@ export const DashboardCRMModule: React.FC<Props> = ({
               onClick={() => setChannelFilter(chn)}
               className={`px-2.5 py-1 rounded-md text-xs font-semibold transition-all capitalize whitespace-nowrap ${
                 channelFilter === chn
-                  ? 'bg-slate-900 text-white dark:bg-[#091426] shadow-sm'
-                  : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
+                  ? 'bg-slate-900 text-white  shadow-sm'
+                  : 'bg-slate-100  text-slate-600  hover:bg-slate-200 :bg-slate-700'
               }`}
             >
               {chn === 'all' ? 'Todos los canales' : chn}
@@ -369,30 +369,30 @@ export const DashboardCRMModule: React.FC<Props> = ({
         <div className="space-y-6">
           
           {/* STEP 1: CONSULTAS URGENTES POR RESPONDER */}
-          <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-4 pb-3 border-b border-slate-100 dark:border-slate-800">
+          <div className="bg-white  rounded-xl border border-slate-200  p-5 shadow-sm">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-4 pb-3 border-b border-slate-100 ">
               <div className="flex items-center gap-2.5">
-                <div className="w-7 h-7 rounded-lg bg-red-50 dark:bg-red-950/50 text-red-600 flex items-center justify-center font-bold text-xs border border-red-200 dark:border-red-800">
+                <div className="w-7 h-7 rounded-lg bg-red-50  text-red-600 flex items-center justify-center font-bold text-xs border border-red-200 ">
                   1
                 </div>
                 <div>
-                  <h3 className="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
+                  <h3 className="font-bold text-sm text-slate-900  flex items-center gap-2">
                     🚨 Paso 1: Responder Consultas Nuevas ({columnNew.length})
                   </h3>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                  <p className="text-xs text-slate-500 ">
                     Respondé rápido para evitar que el interesado busque en otra inmobiliaria.
                   </p>
                 </div>
               </div>
-              <span className="text-xs font-bold text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/40 px-2.5 py-1 rounded-md border border-red-200 dark:border-red-800">
+              <span className="text-xs font-bold text-red-600  bg-red-50  px-2.5 py-1 rounded-md border border-red-200 ">
                 {urgent48Count} con más de 48h sin respuesta
               </span>
             </div>
 
             {columnNew.length === 0 ? (
-              <div className="py-8 text-center bg-slate-50 dark:bg-slate-800/40 rounded-lg border border-dashed border-slate-200 dark:border-slate-700">
+              <div className="py-8 text-center bg-slate-50  rounded-lg border border-dashed border-slate-200 ">
                 <CheckCircle2 className="w-8 h-8 text-emerald-500 mx-auto mb-2" />
-                <p className="text-sm font-bold text-slate-800 dark:text-slate-200">¡Bandeja al día!</p>
+                <p className="text-sm font-bold text-slate-800 ">¡Bandeja al día!</p>
                 <p className="text-xs text-slate-500">No hay consultas nuevas pendientes de respuesta.</p>
               </div>
             ) : (
@@ -402,45 +402,45 @@ export const DashboardCRMModule: React.FC<Props> = ({
                     key={lead.id}
                     className={`p-4 rounded-xl border transition-all flex flex-col justify-between ${
                       lead.hoursUnanswered >= 48
-                        ? 'bg-red-50/30 dark:bg-red-950/20 border-red-300 dark:border-red-800/80 shadow-sm'
-                        : 'bg-slate-50/60 dark:bg-slate-800/40 border-slate-200 dark:border-slate-700'
+                        ? 'bg-red-50/30  border-red-300  shadow-sm'
+                        : 'bg-slate-50/60  border-slate-200 '
                     }`}
                   >
                     <div>
                       {/* Top Badges */}
                       <div className="flex justify-between items-center mb-2">
                         <div className="flex items-center gap-2">
-                          <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-[#E6E8EA] dark:bg-[#F2F4F6] text-[#091426] dark:text-[#091426]">
+                          <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-[#E6E8EA]  text-[#091426] ">
                             {lead.channel}
                           </span>
-                          <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
+                          <span className="text-xs font-mono text-slate-500 ">
                             {lead.createdAt}
                           </span>
                         </div>
                         {lead.hoursUnanswered >= 24 && (
-                          <span className="text-[10px] font-bold text-red-600 bg-red-100 dark:bg-red-900/50 px-2 py-0.5 rounded flex items-center gap-1">
+                          <span className="text-[10px] font-bold text-red-600 bg-red-100  px-2 py-0.5 rounded flex items-center gap-1">
                             <Clock className="w-3 h-3" /> {lead.hoursUnanswered}h sin responder
                           </span>
                         )}
                       </div>
 
                       {/* Lead Info */}
-                      <h4 className="font-bold text-base text-slate-900 dark:text-white">
+                      <h4 className="font-bold text-base text-slate-900 ">
                         {lead.name}
                       </h4>
-                      <p className="text-xs font-semibold text-[#091426] dark:text-[#091426] mt-0.5">
+                      <p className="text-xs font-semibold text-[#091426]  mt-0.5">
                         Interesado en: {lead.propertyInterest}
                       </p>
-                      <p className="text-xs text-slate-600 dark:text-slate-300 mt-1 line-clamp-2 bg-white dark:bg-slate-900 p-2 rounded-lg border border-slate-200 dark:border-slate-800">
+                      <p className="text-xs text-slate-600  mt-1 line-clamp-2 bg-white  p-2 rounded-lg border border-slate-200 ">
                         "{lead.notes}"
                       </p>
 
                       {/* AI Score Badge */}
                       {lead.aiScore && (
-                        <div className="mt-2.5 flex items-center justify-between text-xs bg-slate-100 dark:bg-slate-800/80 p-2 rounded-lg">
+                        <div className="mt-2.5 flex items-center justify-between text-xs bg-slate-100  p-2 rounded-lg">
                           <div className="flex items-center gap-1.5">
-                            <Sparkles className="w-3.5 h-3.5 text-[#091426] dark:text-[#091426]" />
-                            <span className="font-bold text-slate-800 dark:text-slate-200">
+                            <Sparkles className="w-3.5 h-3.5 text-[#091426] " />
+                            <span className="font-bold text-slate-800 ">
                               Intención IA: {lead.aiScore.score}/100
                             </span>
                           </div>
@@ -452,10 +452,10 @@ export const DashboardCRMModule: React.FC<Props> = ({
                     </div>
 
                     {/* Quick Direct Actions */}
-                    <div className="mt-4 pt-3 border-t border-slate-200 dark:border-slate-700 flex flex-wrap items-center justify-between gap-2">
+                    <div className="mt-4 pt-3 border-t border-slate-200  flex flex-wrap items-center justify-between gap-2">
                       <button
                         onClick={() => setSelectedLeadForDetail(lead)}
-                        className="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 flex items-center gap-1"
+                        className="text-xs font-semibold text-slate-600  hover:text-slate-900 flex items-center gap-1"
                       >
                         <Eye className="w-3.5 h-3.5 text-slate-400" /> Ver Ficha
                       </button>
@@ -463,7 +463,7 @@ export const DashboardCRMModule: React.FC<Props> = ({
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => handleMoveLead(lead.id, 'contacted')}
-                          className="px-3 py-1.5 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-200 text-xs font-semibold rounded-lg transition-colors"
+                          className="px-3 py-1.5 bg-slate-200  hover:bg-slate-300 :bg-slate-600 text-slate-800  text-xs font-semibold rounded-lg transition-colors"
                         >
                           ✓ Marcar Respondido
                         </button>
@@ -487,17 +487,17 @@ export const DashboardCRMModule: React.FC<Props> = ({
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             
             {/* STEP 2: EN CONVERSACIÓN / COORDINAR VISITA */}
-            <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm flex flex-col justify-between">
+            <div className="bg-white  rounded-xl border border-slate-200  p-5 shadow-sm flex flex-col justify-between">
               <div>
-                <div className="flex items-center gap-2.5 mb-4 pb-3 border-b border-slate-100 dark:border-slate-800">
-                  <div className="w-7 h-7 rounded-lg bg-amber-50 dark:bg-amber-950/50 text-amber-600 flex items-center justify-center font-bold text-xs border border-amber-200 dark:border-amber-800">
+                <div className="flex items-center gap-2.5 mb-4 pb-3 border-b border-slate-100 ">
+                  <div className="w-7 h-7 rounded-lg bg-amber-50  text-amber-600 flex items-center justify-center font-bold text-xs border border-amber-200 ">
                     2
                   </div>
                   <div>
-                    <h3 className="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
+                    <h3 className="font-bold text-sm text-slate-900  flex items-center gap-2">
                       💬 Paso 2: En Conversación ({columnContacted.length})
                     </h3>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                    <p className="text-xs text-slate-500 ">
                       Prospectos que ya respondieron. El objetivo es coordinar una visita.
                     </p>
                   </div>
@@ -507,23 +507,23 @@ export const DashboardCRMModule: React.FC<Props> = ({
                   {columnContacted.map((lead) => (
                     <div
                       key={lead.id}
-                      className="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/40 hover:border-slate-300 transition-all"
+                      className="p-3.5 rounded-xl border border-slate-200  bg-slate-50/50  hover:border-slate-300 transition-all"
                     >
                       <div className="flex justify-between items-start">
                         <div>
-                          <h4 className="font-bold text-sm text-slate-900 dark:text-white">
+                          <h4 className="font-bold text-sm text-slate-900 ">
                             {lead.name}
                           </h4>
-                          <p className="text-xs text-[#091426] dark:text-[#091426] font-medium">
+                          <p className="text-xs text-[#091426]  font-medium">
                             {lead.propertyInterest} • Presupuesto: {lead.budget}
                           </p>
                         </div>
-                        <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-amber-100 text-amber-800 dark:bg-amber-950/50 dark:text-amber-300">
+                        <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-amber-100 text-amber-800  ">
                           En Charla
                         </span>
                       </div>
 
-                      <div className="mt-3 pt-2.5 border-t border-slate-200/60 dark:border-slate-700/60 flex justify-between items-center">
+                      <div className="mt-3 pt-2.5 border-t border-slate-200/60  flex justify-between items-center">
                         <button
                           onClick={() => handleMoveLead(lead.id, 'lost')}
                           className="text-xs text-slate-400 hover:text-red-500 font-medium"
@@ -533,7 +533,7 @@ export const DashboardCRMModule: React.FC<Props> = ({
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => handleOpenWhatsAppModal(lead)}
-                            className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:underline flex items-center gap-1"
+                            className="text-xs font-semibold text-emerald-600  hover:underline flex items-center gap-1"
                           >
                             <Phone className="w-3 h-3" /> Escribir
                           </button>
@@ -557,17 +557,17 @@ export const DashboardCRMModule: React.FC<Props> = ({
             </div>
 
             {/* STEP 3: VISITAS PROGRAMADAS & CIERRES */}
-            <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm flex flex-col justify-between">
+            <div className="bg-white  rounded-xl border border-slate-200  p-5 shadow-sm flex flex-col justify-between">
               <div>
-                <div className="flex items-center gap-2.5 mb-4 pb-3 border-b border-slate-100 dark:border-slate-800">
-                  <div className="w-7 h-7 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 flex items-center justify-center font-bold text-xs border border-emerald-200 dark:border-emerald-800">
+                <div className="flex items-center gap-2.5 mb-4 pb-3 border-b border-slate-100 ">
+                  <div className="w-7 h-7 rounded-lg bg-emerald-50  text-emerald-600 flex items-center justify-center font-bold text-xs border border-emerald-200 ">
                     3
                   </div>
                   <div>
-                    <h3 className="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
+                    <h3 className="font-bold text-sm text-slate-900  flex items-center gap-2">
                       📍 Paso 3: Visitas Programadas ({columnVisit.length})
                     </h3>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                    <p className="text-xs text-slate-500 ">
                       Citas pactadas. Posterior a la visita, reservan y pasan a contrato.
                     </p>
                   </div>
@@ -577,26 +577,26 @@ export const DashboardCRMModule: React.FC<Props> = ({
                   {columnVisit.map((lead) => (
                     <div
                       key={lead.id}
-                      className="p-3.5 rounded-xl border border-emerald-300 dark:border-emerald-800 bg-emerald-50/20 dark:bg-emerald-950/10"
+                      className="p-3.5 rounded-xl border border-emerald-300  bg-emerald-50/20 "
                     >
                       <div className="flex justify-between items-start">
                         <div>
                           <div className="flex items-center gap-2">
-                            <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">
+                            <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-emerald-100 text-emerald-800  ">
                               Visita Confirmada
                             </span>
-                            <span className="text-xs font-bold text-emerald-700 dark:text-emerald-300">HOY</span>
+                            <span className="text-xs font-bold text-emerald-700 ">HOY</span>
                           </div>
-                          <h4 className="font-bold text-sm text-slate-900 dark:text-white mt-1">
+                          <h4 className="font-bold text-sm text-slate-900  mt-1">
                             {lead.name}
                           </h4>
-                          <p className="text-xs text-slate-600 dark:text-slate-300 font-medium">
+                          <p className="text-xs text-slate-600  font-medium">
                             📍 {lead.propertyAddress}
                           </p>
                         </div>
                       </div>
 
-                      <div className="mt-3 p-2 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 text-xs text-slate-700 dark:text-slate-300 flex justify-between items-center">
+                      <div className="mt-3 p-2 bg-white  rounded-lg border border-slate-200  text-xs text-slate-700  flex justify-between items-center">
                         <span>Martillero: Carlos Gómez</span>
                         <a
                           href={`https://wa.me/${lead.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent('Hola! Te comparto la ubicación exacta de la propiedad para la visita de hoy.')}`}
@@ -608,7 +608,7 @@ export const DashboardCRMModule: React.FC<Props> = ({
                         </a>
                       </div>
 
-                      <div className="mt-3 pt-2 border-t border-emerald-200 dark:border-emerald-900 flex justify-between items-center">
+                      <div className="mt-3 pt-2 border-t border-emerald-200  flex justify-between items-center">
                         <button
                           onClick={() => handleMoveLead(lead.id, 'contacted')}
                           className="text-xs text-slate-500 hover:underline"
@@ -643,11 +643,11 @@ export const DashboardCRMModule: React.FC<Props> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           
           {/* COLUMN 1: NUEVOS */}
-          <div className="bg-slate-100/80 dark:bg-slate-900/60 rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 flex flex-col">
+          <div className="bg-slate-100/80  rounded-xl p-3.5 border border-slate-200  flex flex-col">
             <div className="flex justify-between items-center mb-3">
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#091426]"></span>
-                <h3 className="font-bold text-xs uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                <h3 className="font-bold text-xs uppercase tracking-wider text-slate-700 ">
                   Nuevos ({columnNew.length})
                 </h3>
               </div>
@@ -658,10 +658,10 @@ export const DashboardCRMModule: React.FC<Props> = ({
               {columnNew.map((lead) => (
                 <div
                   key={lead.id}
-                  className={`bg-white dark:bg-slate-800/90 p-3.5 rounded-lg border shadow-sm hover:border-slate-300 dark:hover:border-slate-600 transition-all ${
+                  className={`bg-white  p-3.5 rounded-lg border shadow-sm hover:border-slate-300 :border-slate-600 transition-all ${
                     lead.hoursUnanswered >= 48
-                      ? 'border-l-4 border-l-red-500 border-t-slate-200 border-r-slate-200 border-b-slate-200 dark:border-t-slate-700 dark:border-r-slate-700 dark:border-b-slate-700'
-                      : 'border-slate-200 dark:border-slate-700'
+                      ? 'border-l-4 border-l-red-500 border-t-slate-200 border-r-slate-200 border-b-slate-200   '
+                      : 'border-slate-200 '
                   }`}
                 >
                   {lead.hoursUnanswered >= 48 && (
@@ -672,29 +672,29 @@ export const DashboardCRMModule: React.FC<Props> = ({
                   )}
 
                   <div className="flex justify-between items-start">
-                    <span className="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-[#E6E8EA] dark:bg-[#F2F4F6] text-[#091426] dark:text-[#091426]">
+                    <span className="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-[#E6E8EA]  text-[#091426] ">
                       {lead.channel}
                     </span>
                     <span className="text-[10px] text-slate-400 font-mono">{lead.createdAt}</span>
                   </div>
 
-                  <h4 className="font-bold text-sm text-slate-900 dark:text-white mt-2">
+                  <h4 className="font-bold text-sm text-slate-900  mt-2">
                     {lead.name}
                   </h4>
-                  <p className="text-xs font-semibold text-[#091426] dark:text-[#091426] mt-0.5">
+                  <p className="text-xs font-semibold text-[#091426]  mt-0.5">
                     {lead.propertyInterest}
                   </p>
 
-                  <div className="mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-700/60 flex justify-between items-center">
+                  <div className="mt-3 pt-2.5 border-t border-slate-100  flex justify-between items-center">
                     <button
                       onClick={() => handleOpenWhatsAppModal(lead)}
-                      className="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline flex items-center gap-1"
+                      className="text-xs font-bold text-emerald-600  hover:underline flex items-center gap-1"
                     >
                       <Phone className="w-3 h-3" /> WhatsApp
                     </button>
                     <button
                       onClick={() => handleMoveLead(lead.id, 'contacted')}
-                      className="text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-slate-900 flex items-center gap-1 bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded"
+                      className="text-xs font-semibold text-slate-700  hover:text-slate-900 flex items-center gap-1 bg-slate-100  px-2 py-1 rounded"
                     >
                       Avanzar <ArrowRight className="w-3 h-3 text-slate-400" />
                     </button>
@@ -705,11 +705,11 @@ export const DashboardCRMModule: React.FC<Props> = ({
           </div>
 
           {/* COLUMN 2: CONTACTADOS */}
-          <div className="bg-slate-100/80 dark:bg-slate-900/60 rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 flex flex-col">
+          <div className="bg-slate-100/80  rounded-xl p-3.5 border border-slate-200  flex flex-col">
             <div className="flex justify-between items-center mb-3">
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-                <h3 className="font-bold text-xs uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                <h3 className="font-bold text-xs uppercase tracking-wider text-slate-700 ">
                   Contactados ({columnContacted.length})
                 </h3>
               </div>
@@ -720,19 +720,19 @@ export const DashboardCRMModule: React.FC<Props> = ({
               {columnContacted.map((lead) => (
                 <div
                   key={lead.id}
-                  className="bg-white dark:bg-slate-800/90 p-3.5 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm hover:border-slate-300 transition-all"
+                  className="bg-white  p-3.5 rounded-lg border border-slate-200  shadow-sm hover:border-slate-300 transition-all"
                 >
-                  <h4 className="font-bold text-sm text-slate-900 dark:text-white">
+                  <h4 className="font-bold text-sm text-slate-900 ">
                     {lead.name}
                   </h4>
-                  <p className="text-xs font-semibold text-slate-600 dark:text-slate-300 mt-0.5">
+                  <p className="text-xs font-semibold text-slate-600  mt-0.5">
                     {lead.propertyInterest}
                   </p>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
+                  <p className="text-[11px] text-slate-500  mt-1">
                     Presupuesto: {lead.budget}
                   </p>
 
-                  <div className="mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-700/60 flex justify-between items-center">
+                  <div className="mt-3 pt-2.5 border-t border-slate-100  flex justify-between items-center">
                     <button
                       onClick={() => handleMoveLead(lead.id, 'lost')}
                       className="text-[11px] text-red-500 hover:underline font-medium"
@@ -752,11 +752,11 @@ export const DashboardCRMModule: React.FC<Props> = ({
           </div>
 
           {/* COLUMN 3: VISITA COORDINADA */}
-          <div className="bg-slate-100/80 dark:bg-slate-900/60 rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 flex flex-col">
+          <div className="bg-slate-100/80  rounded-xl p-3.5 border border-slate-200  flex flex-col">
             <div className="flex justify-between items-center mb-3">
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-                <h3 className="font-bold text-xs uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                <h3 className="font-bold text-xs uppercase tracking-wider text-slate-700 ">
                   Visita Coordinada ({columnVisit.length})
                 </h3>
               </div>
@@ -767,15 +767,15 @@ export const DashboardCRMModule: React.FC<Props> = ({
               {columnVisit.map((lead) => (
                 <div
                   key={lead.id}
-                  className="bg-white dark:bg-slate-800/90 p-3.5 rounded-lg border border-emerald-500/40 shadow-sm"
+                  className="bg-white  p-3.5 rounded-lg border border-emerald-500/40 shadow-sm"
                 >
-                  <h4 className="font-bold text-sm text-slate-900 dark:text-white">
+                  <h4 className="font-bold text-sm text-slate-900 ">
                     {lead.name}
                   </h4>
-                  <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 mt-0.5">
+                  <p className="text-xs font-semibold text-emerald-600  mt-0.5">
                     {lead.propertyInterest}
                   </p>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
+                  <p className="text-[11px] text-slate-500  mt-1">
                     📍 {lead.propertyAddress}
                   </p>
                 </div>
@@ -784,11 +784,11 @@ export const DashboardCRMModule: React.FC<Props> = ({
           </div>
 
           {/* COLUMN 4: DESCARTADOS */}
-          <div className="bg-slate-100/80 dark:bg-slate-900/60 rounded-xl p-3.5 border border-slate-200 dark:border-slate-800 flex flex-col opacity-80">
+          <div className="bg-slate-100/80  rounded-xl p-3.5 border border-slate-200  flex flex-col opacity-80">
             <div className="flex justify-between items-center mb-3">
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
-                <h3 className="font-bold text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">
+                <h3 className="font-bold text-xs uppercase tracking-wider text-slate-600 ">
                   Descartados ({columnLost.length})
                 </h3>
               </div>
@@ -799,9 +799,9 @@ export const DashboardCRMModule: React.FC<Props> = ({
               {columnLost.map((lead) => (
                 <div
                   key={lead.id}
-                  className="bg-white dark:bg-slate-800/90 p-3.5 rounded-lg border border-slate-200 dark:border-slate-700"
+                  className="bg-white  p-3.5 rounded-lg border border-slate-200 "
                 >
-                  <h4 className="font-bold text-sm text-slate-700 dark:text-slate-300">
+                  <h4 className="font-bold text-sm text-slate-700 ">
                     {lead.name}
                   </h4>
                   <button
@@ -820,10 +820,10 @@ export const DashboardCRMModule: React.FC<Props> = ({
 
       {/* 6. VIEW MODE 3: LISTA COMPACTA */}
       {viewMode === 'list' && (
-        <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+        <div className="bg-white  rounded-xl border border-slate-200  overflow-hidden shadow-sm">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 uppercase font-bold text-[10px] tracking-wider">
+              <thead className="bg-slate-50  border-b border-slate-200  text-slate-500  uppercase font-bold text-[10px] tracking-wider">
                 <tr>
                   <th className="p-3.5">Prospecto</th>
                   <th className="p-3.5">Canal</th>
@@ -833,20 +833,20 @@ export const DashboardCRMModule: React.FC<Props> = ({
                   <th className="p-3.5 text-right">Acciones Rápidas</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-200 font-medium">
+              <tbody className="divide-y divide-slate-100  text-slate-700  font-medium">
                 {filteredLeads.map((lead) => (
-                  <tr key={lead.id} className="hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors">
+                  <tr key={lead.id} className="hover:bg-slate-50/80 :bg-slate-800/50 transition-colors">
                     <td className="p-3.5">
-                      <div className="font-bold text-slate-900 dark:text-white text-sm">{lead.name}</div>
+                      <div className="font-bold text-slate-900  text-sm">{lead.name}</div>
                       <div className="text-slate-400 text-[11px]">{lead.phone}</div>
                     </td>
                     <td className="p-3.5">
-                      <span className="capitalize font-semibold text-[11px] px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">
+                      <span className="capitalize font-semibold text-[11px] px-2 py-0.5 rounded bg-slate-100 ">
                         {lead.channel}
                       </span>
                     </td>
                     <td className="p-3.5">
-                      <div className="font-semibold text-[#091426] dark:text-[#091426]">{lead.propertyInterest}</div>
+                      <div className="font-semibold text-[#091426] ">{lead.propertyInterest}</div>
                       <div className="text-slate-400 text-[11px]">{lead.budget}</div>
                     </td>
                     <td className="p-3.5">
@@ -855,12 +855,12 @@ export const DashboardCRMModule: React.FC<Props> = ({
                         onChange={(e) => handleMoveLead(lead.id, e.target.value as Lead['status'])}
                         className={`text-xs font-bold rounded px-2.5 py-1 border focus:outline-none ${
                           lead.status === 'new'
-                            ? 'bg-[#F2F4F6] text-[#091426] border-[#E6E8EA] dark:bg-[#F2F4F6] dark:text-[#091426]'
+                            ? 'bg-[#F2F4F6] text-[#091426] border-[#E6E8EA]  '
                             : lead.status === 'contacted'
-                            ? 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950 dark:text-amber-300'
+                            ? 'bg-amber-50 text-amber-700 border-amber-200  '
                             : lead.status === 'visit_scheduled'
-                            ? 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950 dark:text-emerald-300'
-                            : 'bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-400'
+                            ? 'bg-emerald-50 text-emerald-700 border-emerald-200  '
+                            : 'bg-slate-100 text-slate-600 border-slate-200  '
                         }`}
                       >
                         <option value="new">Nuevo (Sin responder)</option>
@@ -871,7 +871,7 @@ export const DashboardCRMModule: React.FC<Props> = ({
                     </td>
                     <td className="p-3.5">
                       {lead.aiScore ? (
-                        <span className="font-bold text-slate-800 dark:text-slate-200">
+                        <span className="font-bold text-slate-800 ">
                           {lead.aiScore.score}/100
                         </span>
                       ) : '-'}
@@ -880,14 +880,14 @@ export const DashboardCRMModule: React.FC<Props> = ({
                       <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => handleOpenWhatsAppModal(lead)}
-                          className="p-1.5 rounded bg-emerald-50 dark:bg-emerald-950 text-emerald-600 hover:bg-emerald-100 transition-colors"
+                          className="p-1.5 rounded bg-emerald-50  text-emerald-600 hover:bg-emerald-100 transition-colors"
                           title="Enviar WhatsApp"
                         >
                           <Phone className="w-3.5 h-3.5" />
                         </button>
                         <button
                           onClick={() => setSelectedLeadForDetail(lead)}
-                          className="p-1.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 hover:bg-slate-200 transition-colors"
+                          className="p-1.5 rounded bg-slate-100  text-slate-600 hover:bg-slate-200 transition-colors"
                           title="Ver Ficha Completa"
                         >
                           <Eye className="w-3.5 h-3.5" />
@@ -905,14 +905,14 @@ export const DashboardCRMModule: React.FC<Props> = ({
       {/* 7. WHATSAPP SMART RESPONDER MODAL */}
       {whatsappModalLead && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm animate-fadeIn">
-          <div className="bg-white dark:bg-slate-900 w-full max-w-lg rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-2xl">
-            <div className="flex justify-between items-center pb-3 border-b border-slate-100 dark:border-slate-800">
+          <div className="bg-white  w-full max-w-lg rounded-xl p-6 border border-slate-200  shadow-2xl">
+            <div className="flex justify-between items-center pb-3 border-b border-slate-100 ">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-lg bg-emerald-500 text-white flex items-center justify-center">
                   <Phone className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                  <h3 className="text-sm font-bold text-slate-900 ">
                     Responder a {whatsappModalLead.name}
                   </h3>
                   <p className="text-xs text-slate-500 font-mono">{whatsappModalLead.phone}</p>
@@ -936,21 +936,21 @@ export const DashboardCRMModule: React.FC<Props> = ({
                   <button
                     type="button"
                     onClick={() => setCustomWhatsAppMessage(`¡Hola ${whatsappModalLead.name.split(' ')[0]}! Sigue disponible "${whatsappModalLead.propertyInterest}". ¿Querés coordinar una visita mañana a las 17:30 hs?`)}
-                    className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs rounded-md font-medium"
+                    className="px-2.5 py-1 bg-slate-100  hover:bg-slate-200 :bg-slate-700 text-slate-700  text-xs rounded-md font-medium"
                   >
                     📅 Coordinar Visita
                   </button>
                   <button
                     type="button"
                     onClick={() => setCustomWhatsAppMessage(`¡Hola ${whatsappModalLead.name.split(' ')[0]}! Para "${whatsappModalLead.propertyInterest}" solicitamos garantía propietaria o recibos de sueldo. ¿Querés que te envíe los requisitos completos?`)}
-                    className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs rounded-md font-medium"
+                    className="px-2.5 py-1 bg-slate-100  hover:bg-slate-200 :bg-slate-700 text-slate-700  text-xs rounded-md font-medium"
                   >
                     📋 Requisitos & Garantías
                   </button>
                   <button
                     type="button"
                     onClick={() => setCustomWhatsAppMessage(`¡Hola ${whatsappModalLead.name.split(' ')[0]}! Te comparto la ficha con fotos y precio del inmueble: ${whatsappModalLead.propertyAddress}. Avisame si querés conocerlo.`)}
-                    className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs rounded-md font-medium"
+                    className="px-2.5 py-1 bg-slate-100  hover:bg-slate-200 :bg-slate-700 text-slate-700  text-xs rounded-md font-medium"
                   >
                     🏠 Enviar Fotos & Ubicación
                   </button>
@@ -966,17 +966,17 @@ export const DashboardCRMModule: React.FC<Props> = ({
                   rows={4}
                   value={customWhatsAppMessage}
                   onChange={(e) => setCustomWhatsAppMessage(e.target.value)}
-                  className="w-full p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                  className="w-full p-3 bg-slate-50  border border-slate-200  rounded-xl text-xs text-slate-900  focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 />
               </div>
 
-              <div className="p-2.5 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg border border-emerald-200 dark:border-emerald-800 text-[11px] text-emerald-800 dark:text-emerald-300 flex items-center gap-1.5">
+              <div className="p-2.5 bg-emerald-50  rounded-lg border border-emerald-200  text-[11px] text-emerald-800  flex items-center gap-1.5">
                 <Check className="w-3.5 h-3.5 text-emerald-600" />
                 <span>Al enviar, el prospecto pasará automáticamente a <strong>"Contactado"</strong> y se reseteará la alerta de tiempo.</span>
               </div>
             </div>
 
-            <div className="mt-5 pt-3 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-2.5">
+            <div className="mt-5 pt-3 border-t border-slate-100  flex justify-end gap-2.5">
               <button
                 type="button"
                 onClick={() => setWhatsappModalLead(null)}
@@ -1000,17 +1000,17 @@ export const DashboardCRMModule: React.FC<Props> = ({
       {/* 8. SCHEDULE VISIT MODAL */}
       {scheduleVisitLead && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm animate-fadeIn">
-          <div className="bg-white dark:bg-slate-900 w-full max-w-md rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-2xl">
-            <div className="flex justify-between items-center pb-3 border-b border-slate-100 dark:border-slate-800">
+          <div className="bg-white  w-full max-w-md rounded-xl p-6 border border-slate-200  shadow-2xl">
+            <div className="flex justify-between items-center pb-3 border-b border-slate-100 ">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-lg bg-[#091426] text-white flex items-center justify-center">
                   <Calendar className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                  <h3 className="text-sm font-bold text-slate-900 ">
                     Agendar Visita para {scheduleVisitLead.name}
                   </h3>
-                  <p className="text-xs text-[#091426] dark:text-[#091426] font-semibold">{scheduleVisitLead.propertyInterest}</p>
+                  <p className="text-xs text-[#091426]  font-semibold">{scheduleVisitLead.propertyInterest}</p>
                 </div>
               </div>
               <button
@@ -1032,7 +1032,7 @@ export const DashboardCRMModule: React.FC<Props> = ({
                   value={visitDate}
                   onChange={(e) => setVisitDate(e.target.value)}
                   placeholder="Ej: Mañana a las 18:00 hs"
-                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#091426]"
+                  className="w-full px-3 py-2 bg-slate-50  border border-slate-200  rounded-lg text-xs text-slate-900  focus:outline-none focus:ring-2 focus:ring-[#091426]"
                 />
               </div>
 
@@ -1044,11 +1044,11 @@ export const DashboardCRMModule: React.FC<Props> = ({
                   type="text"
                   value={visitNotes}
                   onChange={(e) => setVisitNotes(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#091426]"
+                  className="w-full px-3 py-2 bg-slate-50  border border-slate-200  rounded-lg text-xs text-slate-900  focus:outline-none focus:ring-2 focus:ring-[#091426]"
                 />
               </div>
 
-              <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-2">
+              <div className="pt-3 border-t border-slate-100  flex justify-end gap-2">
                 <button
                   type="button"
                   onClick={() => setScheduleVisitLead(null)}
@@ -1071,14 +1071,14 @@ export const DashboardCRMModule: React.FC<Props> = ({
       {/* 9. LEAD DETAIL DRAWER / FICHA RÁPIDA */}
       {selectedLeadForDetail && (
         <div className="fixed inset-0 z-50 flex justify-end bg-slate-900/60 backdrop-blur-sm animate-fadeIn">
-          <div className="bg-white dark:bg-slate-900 w-full max-w-md h-full shadow-2xl border-l border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between overflow-y-auto animate-slideLeft">
+          <div className="bg-white  w-full max-w-md h-full shadow-2xl border-l border-slate-200  p-6 flex flex-col justify-between overflow-y-auto animate-slideLeft">
             <div>
-              <div className="flex justify-between items-start pb-4 border-b border-slate-100 dark:border-slate-800">
+              <div className="flex justify-between items-start pb-4 border-b border-slate-100 ">
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#E6E8EA] dark:bg-[#F2F4F6] text-[#091426] dark:text-[#091426]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#E6E8EA]  text-[#091426] ">
                     {selectedLeadForDetail.channel}
                   </span>
-                  <h2 className="text-lg font-bold text-slate-900 dark:text-white mt-1">
+                  <h2 className="text-lg font-bold text-slate-900  mt-1">
                     {selectedLeadForDetail.name}
                   </h2>
                   <p className="text-xs text-slate-500 font-mono">{selectedLeadForDetail.phone}</p>
@@ -1092,24 +1092,24 @@ export const DashboardCRMModule: React.FC<Props> = ({
               </div>
 
               {/* Status Stepper */}
-              <div className="mt-4 p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl">
+              <div className="mt-4 p-3 bg-slate-50  rounded-xl">
                 <span className="text-[10px] font-bold uppercase text-slate-500 block mb-2">Estado del Prospecto:</span>
                 <div className="grid grid-cols-3 gap-1.5">
                   <button
                     onClick={() => handleMoveLead(selectedLeadForDetail.id, 'new')}
-                    className={`py-1.5 text-xs font-bold rounded ${selectedLeadForDetail.status === 'new' ? 'bg-[#091426] text-white' : 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300'}`}
+                    className={`py-1.5 text-xs font-bold rounded ${selectedLeadForDetail.status === 'new' ? 'bg-[#091426] text-white' : 'bg-slate-200  text-slate-700 '}`}
                   >
                     1. Nuevo
                   </button>
                   <button
                     onClick={() => handleMoveLead(selectedLeadForDetail.id, 'contacted')}
-                    className={`py-1.5 text-xs font-bold rounded ${selectedLeadForDetail.status === 'contacted' ? 'bg-amber-500 text-white' : 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300'}`}
+                    className={`py-1.5 text-xs font-bold rounded ${selectedLeadForDetail.status === 'contacted' ? 'bg-amber-500 text-white' : 'bg-slate-200  text-slate-700 '}`}
                   >
                     2. En Charla
                   </button>
                   <button
                     onClick={() => handleMoveLead(selectedLeadForDetail.id, 'visit_scheduled')}
-                    className={`py-1.5 text-xs font-bold rounded ${selectedLeadForDetail.status === 'visit_scheduled' ? 'bg-emerald-600 text-white' : 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300'}`}
+                    className={`py-1.5 text-xs font-bold rounded ${selectedLeadForDetail.status === 'visit_scheduled' ? 'bg-emerald-600 text-white' : 'bg-slate-200  text-slate-700 '}`}
                   >
                     3. Visita
                   </button>
@@ -1120,31 +1120,31 @@ export const DashboardCRMModule: React.FC<Props> = ({
               <div className="mt-4 space-y-3 text-xs">
                 <div>
                   <span className="font-semibold text-slate-400">Propiedad de Interés:</span>
-                  <p className="font-bold text-slate-900 dark:text-white mt-0.5">{selectedLeadForDetail.propertyInterest}</p>
+                  <p className="font-bold text-slate-900  mt-0.5">{selectedLeadForDetail.propertyInterest}</p>
                 </div>
                 <div>
                   <span className="font-semibold text-slate-400">Ubicación / Dirección:</span>
-                  <p className="text-slate-700 dark:text-slate-300 mt-0.5">{selectedLeadForDetail.propertyAddress}</p>
+                  <p className="text-slate-700  mt-0.5">{selectedLeadForDetail.propertyAddress}</p>
                 </div>
                 <div>
                   <span className="font-semibold text-slate-400">Presupuesto Estimado:</span>
-                  <p className="text-slate-700 dark:text-slate-300 mt-0.5">{selectedLeadForDetail.budget}</p>
+                  <p className="text-slate-700  mt-0.5">{selectedLeadForDetail.budget}</p>
                 </div>
                 <div>
                   <span className="font-semibold text-slate-400">Notas / Requisitos:</span>
-                  <p className="text-slate-700 dark:text-slate-300 mt-0.5 bg-slate-50 dark:bg-slate-800 p-2.5 rounded-lg border border-slate-200 dark:border-slate-700">
+                  <p className="text-slate-700  mt-0.5 bg-slate-50  p-2.5 rounded-lg border border-slate-200 ">
                     {selectedLeadForDetail.notes}
                   </p>
                 </div>
 
                 {/* AI Score */}
                 {selectedLeadForDetail.aiScore && (
-                  <div className="p-3 bg-[#F2F4F6] dark:bg-[#F2F4F6] rounded-xl border border-[#E6E8EA] dark:border-[#E6E8EA] text-[#091426] dark:text-[#091426]">
+                  <div className="p-3 bg-[#F2F4F6]  rounded-xl border border-[#E6E8EA]  text-[#091426] ">
                     <div className="flex items-center gap-1.5 font-bold mb-1">
                       <Sparkles className="w-4 h-4 text-[#091426]" />
                       <span>Análisis IA de Calificación: {selectedLeadForDetail.aiScore.score}/100</span>
                     </div>
-                    <p className="text-[11px] leading-relaxed text-[#091426] dark:text-[#091426]">
+                    <p className="text-[11px] leading-relaxed text-[#091426] ">
                       {selectedLeadForDetail.aiScore.reason}
                     </p>
                   </div>
@@ -1152,7 +1152,7 @@ export const DashboardCRMModule: React.FC<Props> = ({
               </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex gap-2">
+            <div className="mt-6 pt-4 border-t border-slate-100  flex gap-2">
               <button
                 onClick={() => {
                   setSelectedLeadForDetail(null);
@@ -1164,7 +1164,7 @@ export const DashboardCRMModule: React.FC<Props> = ({
               </button>
               <button
                 onClick={() => setSelectedLeadForDetail(null)}
-                className="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-xs rounded-xl"
+                className="px-4 py-2.5 bg-slate-100  text-slate-700  font-semibold text-xs rounded-xl"
               >
                 Cerrar
               </button>
@@ -1176,9 +1176,9 @@ export const DashboardCRMModule: React.FC<Props> = ({
       {/* 10. FAST LEAD CAPTURE MODAL (15 SECONDS) */}
       {isNewLeadModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm animate-fadeIn">
-          <div className="bg-white dark:bg-slate-900 w-full max-w-md rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-2xl">
-            <div className="flex justify-between items-center pb-3 border-b border-slate-100 dark:border-slate-800">
-              <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <div className="bg-white  w-full max-w-md rounded-xl p-6 border border-slate-200  shadow-2xl">
+            <div className="flex justify-between items-center pb-3 border-b border-slate-100 ">
+              <h3 className="text-sm font-bold text-slate-900  flex items-center gap-2">
                 <Zap className="w-4 h-4 text-amber-500" />
                 Carga Rápida de Prospecto (15 seg)
               </h3>
@@ -1191,12 +1191,12 @@ export const DashboardCRMModule: React.FC<Props> = ({
             </div>
 
             {/* Mode Switcher inside modal: Simple Form vs Paste from WhatsApp */}
-            <div className="flex gap-2 my-3 p-1 bg-slate-100 dark:bg-slate-800 rounded-lg">
+            <div className="flex gap-2 my-3 p-1 bg-slate-100  rounded-lg">
               <button
                 type="button"
                 onClick={() => setNewLeadMode('simple')}
                 className={`flex-1 py-1 text-xs font-bold rounded-md transition-all ${
-                  newLeadMode === 'simple' ? 'bg-white dark:bg-slate-900 text-[#091426] shadow-sm' : 'text-slate-500'
+                  newLeadMode === 'simple' ? 'bg-white  text-[#091426] shadow-sm' : 'text-slate-500'
                 }`}
               >
                 Formulario 3 Campos
@@ -1205,7 +1205,7 @@ export const DashboardCRMModule: React.FC<Props> = ({
                 type="button"
                 onClick={() => setNewLeadMode('paste')}
                 className={`flex-1 py-1 text-xs font-bold rounded-md transition-all ${
-                  newLeadMode === 'paste' ? 'bg-white dark:bg-slate-900 text-emerald-600 shadow-sm' : 'text-slate-500'
+                  newLeadMode === 'paste' ? 'bg-white  text-emerald-600 shadow-sm' : 'text-slate-500'
                 }`}
               >
                 📋 Pegar de WhatsApp
@@ -1214,7 +1214,7 @@ export const DashboardCRMModule: React.FC<Props> = ({
 
             {newLeadMode === 'paste' ? (
               <div className="space-y-3">
-                <label className="block text-xs text-slate-600 dark:text-slate-300">
+                <label className="block text-xs text-slate-600 ">
                   Pegá el texto recibido en WhatsApp (ej: <em>"Hola soy Mariano 2364551122 consulto por el depto de calle Arias"</em>):
                 </label>
                 <textarea
@@ -1222,7 +1222,7 @@ export const DashboardCRMModule: React.FC<Props> = ({
                   value={pastedText}
                   onChange={(e) => setPastedText(e.target.value)}
                   placeholder="Pegar mensaje aquí..."
-                  className="w-full p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                  className="w-full p-3 bg-slate-50  border border-slate-200  rounded-xl text-xs text-slate-900  focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 />
                 <button
                   type="button"
@@ -1244,7 +1244,7 @@ export const DashboardCRMModule: React.FC<Props> = ({
                     value={newName}
                     onChange={(e) => setNewName(e.target.value)}
                     placeholder="Ej: Marcelo Gómez"
-                    className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#091426]"
+                    className="w-full px-3 py-2 bg-slate-50  border border-slate-200  rounded-lg text-xs text-slate-900  focus:outline-none focus:ring-2 focus:ring-[#091426]"
                   />
                 </div>
 
@@ -1258,7 +1258,7 @@ export const DashboardCRMModule: React.FC<Props> = ({
                       required
                       value={newPhone}
                       onChange={(e) => setNewPhone(e.target.value)}
-                      className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#091426]"
+                      className="w-full px-3 py-2 bg-slate-50  border border-slate-200  rounded-lg text-xs text-slate-900  focus:outline-none focus:ring-2 focus:ring-[#091426]"
                     />
                   </div>
                   <div>
@@ -1268,7 +1268,7 @@ export const DashboardCRMModule: React.FC<Props> = ({
                     <select
                       value={newChannel}
                       onChange={(e: any) => setNewChannel(e.target.value)}
-                      className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#091426]"
+                      className="w-full px-3 py-2 bg-slate-50  border border-slate-200  rounded-lg text-xs text-slate-900  focus:outline-none focus:ring-2 focus:ring-[#091426]"
                     >
                       <option value="whatsapp">WhatsApp</option>
                       <option value="instagram">Instagram</option>
@@ -1288,7 +1288,7 @@ export const DashboardCRMModule: React.FC<Props> = ({
                     value={newProperty}
                     onChange={(e) => setNewProperty(e.target.value)}
                     placeholder="Ej: Depto 2 ambientes o Casa c/ cochera"
-                    className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#091426]"
+                    className="w-full px-3 py-2 bg-slate-50  border border-slate-200  rounded-lg text-xs text-slate-900  focus:outline-none focus:ring-2 focus:ring-[#091426]"
                   />
                 </div>
 

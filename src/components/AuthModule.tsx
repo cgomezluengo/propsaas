@@ -80,11 +80,11 @@ export const AuthModule: React.FC<Props> = ({
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 dark:bg-[#070D18] flex items-center justify-center p-4 sm:p-6 transition-colors">
+    <div className="min-h-screen bg-slate-100  flex items-center justify-center p-4 sm:p-6 transition-colors">
       
       {/* 1. LOGIN SCREEN (Matches user's exact mockup) */}
       {view === 'login' && (
-        <div className="w-full max-w-5xl bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col md:flex-row min-h-[600px] animate-fadeIn">
+        <div className="w-full max-w-5xl bg-white  rounded-xl shadow-xl border border-slate-200  overflow-hidden flex flex-col md:flex-row min-h-[600px] animate-fadeIn">
           {/* Left Hero Image Box */}
           <div className="hidden md:flex md:w-1/2 relative flex-col justify-end p-10 lg:p-12 overflow-hidden">
             <div 
@@ -123,7 +123,7 @@ export const AuthModule: React.FC<Props> = ({
           <div className="w-full md:w-1/2 flex flex-col justify-center p-8 sm:p-12 relative">
             {/* Brand Logo */}
             <div className="flex justify-between items-center mb-8">
-              <div className="text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2.5">
+              <div className="text-xl font-bold tracking-tight text-slate-900  flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-lg bg-[#091426] text-white flex items-center justify-center font-bold text-sm">
                   P
                 </div>
@@ -136,8 +136,8 @@ export const AuthModule: React.FC<Props> = ({
                 onClick={() => setIs2FAEnabled(!is2FAEnabled)}
                 className={`text-[11px] px-2.5 py-1 rounded-md border transition-colors flex items-center gap-1.5 font-medium ${
                   is2FAEnabled 
-                    ? 'bg-[#F2F4F6] text-[#091426] border-[#CBD5E1] dark:bg-[#F2F4F6] dark:text-[#091426] dark:border-[#E6E8EA]'
-                    : 'bg-slate-50 text-slate-500 border-slate-200 dark:bg-slate-800 dark:text-slate-400'
+                    ? 'bg-[#F2F4F6] text-[#091426] border-[#CBD5E1]   '
+                    : 'bg-slate-50 text-slate-500 border-slate-200  '
                 }`}
                 title="Activar simulación de autenticación de doble factor"
               >
@@ -148,8 +148,8 @@ export const AuthModule: React.FC<Props> = ({
 
             <div className="max-w-md w-full mx-auto">
               <div className="mb-6">
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Bienvenido de nuevo</h2>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                <h2 className="text-2xl font-bold text-slate-900 ">Bienvenido de nuevo</h2>
+                <p className="text-xs text-slate-500  mt-1">
                   Ingresa tus credenciales para acceder a tu panel de control.
                 </p>
               </div>
@@ -157,7 +157,7 @@ export const AuthModule: React.FC<Props> = ({
               {/* Login Form */}
               <form onSubmit={handleLoginSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5">
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600  mb-1.5">
                     Email Profesional
                   </label>
                   <div className="relative">
@@ -168,20 +168,20 @@ export const AuthModule: React.FC<Props> = ({
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="ejemplo@inmobiliaria.com"
-                      className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#091426] focus:border-transparent transition-all"
+                      className="w-full pl-10 pr-4 py-2.5 bg-white  border border-slate-200  rounded-lg text-sm text-slate-900  placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#091426] focus:border-transparent transition-all"
                     />
                   </div>
                 </div>
 
                 <div>
                   <div className="flex justify-between items-center mb-1.5">
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
+                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 ">
                       Contraseña
                     </label>
                     <button
                       type="button"
                       onClick={() => setView('forgot_password')}
-                      className="text-xs text-[#091426] dark:text-[#091426] hover:underline font-semibold"
+                      className="text-xs text-[#091426]  hover:underline font-semibold"
                     >
                       ¿Olvidé mi contraseña?
                     </button>
@@ -194,12 +194,12 @@ export const AuthModule: React.FC<Props> = ({
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="••••••••"
-                      className="w-full pl-10 pr-10 py-2.5 bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#091426] focus:border-transparent transition-all"
+                      className="w-full pl-10 pr-10 py-2.5 bg-white  border border-slate-200  rounded-lg text-sm text-slate-900  placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#091426] focus:border-transparent transition-all"
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                      className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 :text-slate-200"
                     >
                       {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
@@ -217,16 +217,16 @@ export const AuthModule: React.FC<Props> = ({
 
                 {/* Divider */}
                 <div className="relative flex items-center py-2">
-                  <div className="flex-grow border-t border-slate-200 dark:border-slate-700"></div>
+                  <div className="flex-grow border-t border-slate-200 "></div>
                   <span className="flex-shrink mx-4 text-xs font-semibold text-slate-400 uppercase">O</span>
-                  <div className="flex-grow border-t border-slate-200 dark:border-slate-700"></div>
+                  <div className="flex-grow border-t border-slate-200 "></div>
                 </div>
 
                 {/* Google Login */}
                 <button
                   type="button"
                   onClick={() => setView('tenant_selector')}
-                  className="w-full py-2.5 bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-xs rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-all flex items-center justify-center gap-3 shadow-sm"
+                  className="w-full py-2.5 bg-white  border border-slate-200  text-slate-700  font-semibold text-xs rounded-lg hover:bg-slate-50 :bg-slate-800 transition-all flex items-center justify-center gap-3 shadow-sm"
                 >
                   <svg className="w-4 h-4" viewBox="0 0 24 24">
                     <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -239,11 +239,11 @@ export const AuthModule: React.FC<Props> = ({
               </form>
 
               {/* Footer text */}
-              <div className="mt-6 text-center text-xs text-slate-500 dark:text-slate-400">
+              <div className="mt-6 text-center text-xs text-slate-500 ">
                 ¿Tu inmobiliaria aún no está en la red?{' '}
                 <button
                   onClick={() => setView('onboarding')}
-                  className="font-semibold text-[#091426] dark:text-[#091426] hover:underline ml-1"
+                  className="font-semibold text-[#091426]  hover:underline ml-1"
                 >
                   Registrar Inmobiliaria
                 </button>
@@ -255,24 +255,24 @@ export const AuthModule: React.FC<Props> = ({
 
       {/* 2. ONBOARDING WIZARD (Dar de alta la agencia) */}
       {view === 'onboarding' && (
-        <div className="w-full max-w-2xl bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-200 dark:border-slate-800 p-8 animate-fadeIn">
+        <div className="w-full max-w-2xl bg-white  rounded-xl shadow-xl border border-slate-200  p-8 animate-fadeIn">
           {/* Header */}
-          <div className="flex justify-between items-center pb-6 border-b border-slate-200 dark:border-slate-800">
+          <div className="flex justify-between items-center pb-6 border-b border-slate-200 ">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#091426] dark:text-[#091426]">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#091426] ">
                 Alta de Inmobiliaria Multi-Tenant
               </span>
-              <h2 className="text-xl font-bold text-slate-900 dark:text-white mt-1">
+              <h2 className="text-xl font-bold text-slate-900  mt-1">
                 Configuración del Espacio de Trabajo
               </h2>
             </div>
-            <span className="text-xs font-semibold px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded-md text-slate-600 dark:text-slate-300">
+            <span className="text-xs font-semibold px-3 py-1 bg-slate-100  rounded-md text-slate-600 ">
               Paso {wizardStep} de 3
             </span>
           </div>
 
           {/* Progress bar */}
-          <div className="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full my-6 overflow-hidden">
+          <div className="w-full bg-slate-100  h-1.5 rounded-full my-6 overflow-hidden">
             <div 
               className="bg-[#091426] h-full transition-all duration-300"
               style={{ width: `${(wizardStep / 3) * 100}%` }}
@@ -283,7 +283,7 @@ export const AuthModule: React.FC<Props> = ({
           {wizardStep === 1 && (
             <div className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold uppercase text-slate-700 dark:text-slate-300 mb-1">
+                <label className="block text-xs font-semibold uppercase text-slate-700  mb-1">
                   Nombre de la Inmobiliaria
                 </label>
                 <input
@@ -293,27 +293,27 @@ export const AuthModule: React.FC<Props> = ({
                     setAgencyName(e.target.value);
                     setWorkspaceUrl(e.target.value.toLowerCase().replace(/[^a-z0-9]/g, ''));
                   }}
-                  className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-semibold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#091426]"
+                  className="w-full px-4 py-2.5 bg-slate-50  border border-slate-200  rounded-lg text-sm font-semibold text-slate-900  focus:outline-none focus:ring-2 focus:ring-[#091426]"
                   placeholder="Ej: Inmobiliaria Junín Propiedades"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase text-slate-700 dark:text-slate-300 mb-1">
+                <label className="block text-xs font-semibold uppercase text-slate-700  mb-1">
                   Subdominio / URL del espacio de trabajo
                 </label>
                 <div className="flex items-center">
-                  <span className="px-3 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-mono rounded-l-lg border border-r-0 border-slate-200 dark:border-slate-700">
+                  <span className="px-3 py-2.5 bg-slate-100  text-slate-600  text-xs font-mono rounded-l-lg border border-r-0 border-slate-200 ">
                     https://
                   </span>
                   <input
                     type="text"
                     value={workspaceUrl}
                     onChange={(e) => setWorkspaceUrl(e.target.value)}
-                    className="flex-1 px-4 py-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-sm font-mono text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#091426]"
+                    className="flex-1 px-4 py-2.5 bg-slate-50  border border-slate-200  text-sm font-mono text-slate-900  focus:outline-none focus:ring-2 focus:ring-[#091426]"
                     placeholder="miinmobiliaria"
                   />
-                  <span className="px-3 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-mono rounded-r-lg border border-l-0 border-slate-200 dark:border-slate-700">
+                  <span className="px-3 py-2.5 bg-slate-100  text-slate-600  text-xs font-mono rounded-r-lg border border-l-0 border-slate-200 ">
                     .proptechpro.com
                   </span>
                 </div>
@@ -321,25 +321,25 @@ export const AuthModule: React.FC<Props> = ({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase text-slate-700 dark:text-slate-300 mb-1">
+                  <label className="block text-xs font-semibold uppercase text-slate-700  mb-1">
                     Email Administrador
                   </label>
                   <input
                     type="email"
                     value={adminEmail}
                     onChange={(e) => setAdminEmail(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#091426]"
+                    className="w-full px-4 py-2.5 bg-slate-50  border border-slate-200  rounded-lg text-sm text-slate-900  focus:outline-none focus:ring-2 focus:ring-[#091426]"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold uppercase text-slate-700 dark:text-slate-300 mb-1">
+                  <label className="block text-xs font-semibold uppercase text-slate-700  mb-1">
                     Teléfono / WhatsApp
                   </label>
                   <input
                     type="tel"
                     value={adminPhone}
                     onChange={(e) => setAdminPhone(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#091426]"
+                    className="w-full px-4 py-2.5 bg-slate-50  border border-slate-200  rounded-lg text-sm text-slate-900  focus:outline-none focus:ring-2 focus:ring-[#091426]"
                   />
                 </div>
               </div>
@@ -351,24 +351,24 @@ export const AuthModule: React.FC<Props> = ({
             <div className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase text-slate-700 dark:text-slate-300 mb-1">
+                  <label className="block text-xs font-semibold uppercase text-slate-700  mb-1">
                     CUIT Inmobiliaria / Martillero
                   </label>
                   <input
                     type="text"
                     value={cuit}
                     onChange={(e) => setCuit(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#091426]"
+                    className="w-full px-4 py-2.5 bg-slate-50  border border-slate-200  rounded-lg text-sm text-slate-900  focus:outline-none focus:ring-2 focus:ring-[#091426]"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold uppercase text-slate-700 dark:text-slate-300 mb-1">
+                  <label className="block text-xs font-semibold uppercase text-slate-700  mb-1">
                     Ciudad Sede
                   </label>
                   <select
                     value={agencyCity}
                     onChange={(e) => setAgencyCity(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#091426]"
+                    className="w-full px-4 py-2.5 bg-slate-50  border border-slate-200  rounded-lg text-sm text-slate-900  focus:outline-none focus:ring-2 focus:ring-[#091426]"
                   >
                     <option value="Junín">Junín (Provincia de Buenos Aires)</option>
                     <option value="Pergamino">Pergamino</option>
@@ -381,18 +381,18 @@ export const AuthModule: React.FC<Props> = ({
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase text-slate-700 dark:text-slate-300 mb-1">
+                <label className="block text-xs font-semibold uppercase text-slate-700  mb-1">
                   Matrícula Profesional Martillero Colegiado
                 </label>
                 <input
                   type="text"
                   value={matricula}
                   onChange={(e) => setMatricula(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#091426]"
+                  className="w-full px-4 py-2.5 bg-slate-50  border border-slate-200  rounded-lg text-sm text-slate-900  focus:outline-none focus:ring-2 focus:ring-[#091426]"
                 />
               </div>
 
-              <div className="bg-[#F2F4F6] dark:bg-[#F2F4F6] p-4 rounded-xl border border-[#E6E8EA] dark:border-[#E6E8EA] text-xs text-[#091426] dark:text-[#091426]">
+              <div className="bg-[#F2F4F6]  p-4 rounded-xl border border-[#E6E8EA]  text-xs text-[#091426] ">
                 <span className="font-bold">✓ Verificación Regional:</span> Tu espacio de trabajo quedará habilitado para operar con indexaciones oficiales del Banco Central (ICL) y Cámara Inmobiliaria de la Prov. de Buenos Aires.
               </div>
             </div>
@@ -401,7 +401,7 @@ export const AuthModule: React.FC<Props> = ({
           {/* Step 3: Plan Selection */}
           {wizardStep === 3 && (
             <div className="space-y-4">
-              <label className="block text-xs font-semibold uppercase text-slate-700 dark:text-slate-300 mb-2">
+              <label className="block text-xs font-semibold uppercase text-slate-700  mb-2">
                 Selecciona el Plan de Arranque
               </label>
 
@@ -410,12 +410,12 @@ export const AuthModule: React.FC<Props> = ({
                   onClick={() => setSelectedPlan('freemium')}
                   className={`cursor-pointer p-4 rounded-xl border transition-all ${
                     selectedPlan === 'freemium' 
-                      ? 'border-[#091426] bg-[#F2F4F6] dark:bg-[#F2F4F6] ring-2 ring-blue-500/20' 
-                      : 'border-slate-200 dark:border-slate-700'
+                      ? 'border-[#091426] bg-[#F2F4F6]  ring-2 ring-blue-500/20' 
+                      : 'border-slate-200 '
                   }`}
                 >
-                  <span className="font-bold text-xs text-slate-900 dark:text-white">Freemium</span>
-                  <p className="text-lg font-bold text-slate-900 dark:text-white mt-1">$0</p>
+                  <span className="font-bold text-xs text-slate-900 ">Freemium</span>
+                  <p className="text-lg font-bold text-slate-900  mt-1">$0</p>
                   <p className="text-[11px] text-slate-500 mt-2">1 usuario, 50 inmuebles</p>
                 </div>
 
@@ -423,15 +423,15 @@ export const AuthModule: React.FC<Props> = ({
                   onClick={() => setSelectedPlan('agencia')}
                   className={`cursor-pointer p-4 rounded-xl border transition-all ${
                     selectedPlan === 'agencia' 
-                      ? 'border-[#091426] bg-[#F2F4F6] dark:bg-[#F2F4F6] ring-2 ring-blue-500/20' 
-                      : 'border-slate-200 dark:border-slate-700'
+                      ? 'border-[#091426] bg-[#F2F4F6]  ring-2 ring-blue-500/20' 
+                      : 'border-slate-200 '
                   }`}
                 >
                   <div className="flex justify-between items-center">
-                    <span className="font-bold text-xs text-slate-900 dark:text-white">Agencia</span>
+                    <span className="font-bold text-xs text-slate-900 ">Agencia</span>
                     <span className="text-[9px] font-bold bg-[#091426] text-white px-1.5 py-0.5 rounded">Recomendado</span>
                   </div>
-                  <p className="text-lg font-bold text-slate-900 dark:text-white mt-1">$49/mes</p>
+                  <p className="text-lg font-bold text-slate-900  mt-1">$49/mes</p>
                   <p className="text-[11px] text-slate-500 mt-2">Hasta 5 usuarios + IA CRM</p>
                 </div>
 
@@ -439,12 +439,12 @@ export const AuthModule: React.FC<Props> = ({
                   onClick={() => setSelectedPlan('multi_sucursal')}
                   className={`cursor-pointer p-4 rounded-xl border transition-all ${
                     selectedPlan === 'multi_sucursal' 
-                      ? 'border-[#091426] bg-[#F2F4F6] dark:bg-[#F2F4F6] ring-2 ring-blue-500/20' 
-                      : 'border-slate-200 dark:border-slate-700'
+                      ? 'border-[#091426] bg-[#F2F4F6]  ring-2 ring-blue-500/20' 
+                      : 'border-slate-200 '
                   }`}
                 >
-                  <span className="font-bold text-xs text-slate-900 dark:text-white">Multi-Sucursal</span>
-                  <p className="text-lg font-bold text-slate-900 dark:text-white mt-1">$99/mes</p>
+                  <span className="font-bold text-xs text-slate-900 ">Multi-Sucursal</span>
+                  <p className="text-lg font-bold text-slate-900  mt-1">$99/mes</p>
                   <p className="text-[11px] text-slate-500 mt-2">Usuarios ilimitados + API</p>
                 </div>
               </div>
@@ -452,12 +452,12 @@ export const AuthModule: React.FC<Props> = ({
           )}
 
           {/* Navigation Buttons */}
-          <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 flex justify-between items-center">
+          <div className="mt-8 pt-6 border-t border-slate-200  flex justify-between items-center">
             {wizardStep > 1 ? (
               <button
                 type="button"
                 onClick={() => setWizardStep(wizardStep - 1)}
-                className="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-xs rounded-lg flex items-center gap-2 hover:bg-slate-200 transition-colors"
+                className="px-4 py-2 bg-slate-100  text-slate-700  font-semibold text-xs rounded-lg flex items-center gap-2 hover:bg-slate-200 transition-colors"
               >
                 <ArrowLeft className="w-4 h-4" /> Atrás
               </button>
@@ -465,7 +465,7 @@ export const AuthModule: React.FC<Props> = ({
               <button
                 type="button"
                 onClick={() => setView('login')}
-                className="text-xs text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 font-medium"
+                className="text-xs text-slate-500 hover:text-slate-700 :text-slate-300 font-medium"
               >
                 Cancelar y volver al login
               </button>
@@ -494,13 +494,13 @@ export const AuthModule: React.FC<Props> = ({
 
       {/* 3. TENANT SELECTOR (Multi-Sucursal Transition) */}
       {view === 'tenant_selector' && (
-        <div className="w-full max-w-xl bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-200 dark:border-slate-800 p-8 animate-fadeIn">
+        <div className="w-full max-w-xl bg-white  rounded-xl shadow-xl border border-slate-200  p-8 animate-fadeIn">
           <div className="text-center mb-6">
-            <div className="w-12 h-12 rounded-xl bg-[#F2F4F6] dark:bg-[#F2F4F6] text-[#091426] dark:text-[#091426] border border-[#E6E8EA] dark:border-[#E6E8EA] flex items-center justify-center mx-auto mb-3">
+            <div className="w-12 h-12 rounded-xl bg-[#F2F4F6]  text-[#091426]  border border-[#E6E8EA]  flex items-center justify-center mx-auto mb-3">
               <Building2 className="w-6 h-6" />
             </div>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Selecciona tu Inmobiliaria</h2>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            <h2 className="text-2xl font-bold text-slate-900 ">Selecciona tu Inmobiliaria</h2>
+            <p className="text-xs text-slate-500  mt-1">
               Tu usuario tiene acceso a los siguientes espacios de trabajo multi-tenant:
             </p>
           </div>
@@ -510,23 +510,23 @@ export const AuthModule: React.FC<Props> = ({
               <div
                 key={tenant.id}
                 onClick={() => handleSelectTenantAndEnter(tenant)}
-                className="cursor-pointer p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-[#091426] dark:hover:border-[#091426] hover:bg-[#F2F4F6]/20 dark:hover:bg-[#F2F4F6]/20 transition-all flex items-center justify-between group"
+                className="cursor-pointer p-3.5 rounded-xl border border-slate-200  hover:border-[#091426] :border-[#091426] hover:bg-[#F2F4F6]/20 :bg-[#F2F4F6]/20 transition-all flex items-center justify-between group"
               >
                 <div className="flex items-center gap-3.5">
-                  <div className="w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center font-bold text-slate-700 dark:text-slate-200 overflow-hidden border border-slate-200 dark:border-slate-700">
+                  <div className="w-10 h-10 rounded-lg bg-slate-100  flex items-center justify-center font-bold text-slate-700  overflow-hidden border border-slate-200 ">
                     <img src={tenant.logo} alt={tenant.name} className="w-full h-full object-cover" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-sm text-slate-900 dark:text-white group-hover:text-[#091426] transition-colors">
+                    <h4 className="font-semibold text-sm text-slate-900  group-hover:text-[#091426] transition-colors">
                       {tenant.name}
                     </h4>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                    <p className="text-xs text-slate-500 ">
                       📍 {tenant.city}, {tenant.province} • {tenant.totalContracts} Contratos activos
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100  text-slate-600 ">
                     {tenant.plan}
                   </span>
                   <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#091426] group-hover:translate-x-0.5 transition-all" />
@@ -535,16 +535,16 @@ export const AuthModule: React.FC<Props> = ({
             ))}
           </div>
 
-          <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800 flex justify-between items-center text-xs">
+          <div className="mt-6 pt-4 border-t border-slate-200  flex justify-between items-center text-xs">
             <button
               onClick={() => setView('login')}
-              className="text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 font-medium"
+              className="text-slate-500 hover:text-slate-700 :text-slate-300 font-medium"
             >
               Cerrar sesión
             </button>
             <button
               onClick={() => setView('onboarding')}
-              className="font-semibold text-[#091426] dark:text-[#091426] hover:underline"
+              className="font-semibold text-[#091426]  hover:underline"
             >
               + Registrar otra sucursal
             </button>
@@ -554,33 +554,33 @@ export const AuthModule: React.FC<Props> = ({
 
       {/* 4. FORGOT PASSWORD SCREEN */}
       {view === 'forgot_password' && (
-        <div className="w-full max-w-md bg-white dark:bg-[#0F172A] rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 p-8 animate-fadeIn text-center">
-          <div className="w-14 h-14 rounded-xl bg-amber-50 dark:bg-amber-950/40 text-amber-600 flex items-center justify-center mx-auto mb-4 border border-amber-200 dark:border-amber-800">
+        <div className="w-full max-w-md bg-white  rounded-3xl shadow-2xl border border-slate-200  p-8 animate-fadeIn text-center">
+          <div className="w-14 h-14 rounded-xl bg-amber-50  text-amber-600 flex items-center justify-center mx-auto mb-4 border border-amber-200 ">
             <KeyRound className="w-7 h-7" />
           </div>
 
-          <h2 className="text-xl font-bold text-slate-900 dark:text-white">Recuperar Contraseña</h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 mb-6">
+          <h2 className="text-xl font-bold text-slate-900 ">Recuperar Contraseña</h2>
+          <p className="text-xs text-slate-500  mt-2 mb-6">
             Ingresa tu email corporativo y te enviaremos un enlace seguro para restablecer tu acceso.
           </p>
 
           <form onSubmit={(e) => { e.preventDefault(); alert('Enlace de recuperación enviado con éxito a tu casilla.'); setView('login'); }} className="space-y-4">
             <div className="text-left">
-              <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5">
+              <label className="block text-xs font-bold uppercase tracking-wider text-slate-600  mb-1.5">
                 Email Registrado
               </label>
               <input
                 type="email"
                 required
                 defaultValue="cgomezluengo@gmail.com"
-                className="w-full px-4 py-3 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-sm text-slate-900 dark:text-white"
+                className="w-full px-4 py-3 bg-white  border border-slate-300  rounded-xl text-sm text-slate-900 "
                 placeholder="ejemplo@inmobiliaria.com"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full py-3.5 bg-[#091426] dark:bg-emerald-500 text-white dark:text-[#091426] font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-slate-800 transition-all"
+              className="w-full py-3.5 bg-[#091426]  text-white  font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-slate-800 transition-all"
             >
               Enviar Enlace
             </button>
@@ -588,7 +588,7 @@ export const AuthModule: React.FC<Props> = ({
 
           <button
             onClick={() => setView('login')}
-            className="mt-6 text-xs text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 font-semibold"
+            className="mt-6 text-xs text-slate-500 hover:text-slate-800 :text-slate-200 font-semibold"
           >
             ← Volver al Login
           </button>
@@ -597,13 +597,13 @@ export const AuthModule: React.FC<Props> = ({
 
       {/* 5. TWO-FACTOR AUTHENTICATION SCREEN */}
       {view === 'two_factor' && (
-        <div className="w-full max-w-md bg-white dark:bg-[#0F172A] rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 p-8 animate-fadeIn text-center">
-          <div className="w-14 h-14 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 flex items-center justify-center mx-auto mb-4 border border-emerald-200 dark:border-emerald-800">
+        <div className="w-full max-w-md bg-white  rounded-3xl shadow-2xl border border-slate-200  p-8 animate-fadeIn text-center">
+          <div className="w-14 h-14 rounded-xl bg-emerald-50  text-emerald-600 flex items-center justify-center mx-auto mb-4 border border-emerald-200 ">
             <Smartphone className="w-7 h-7" />
           </div>
 
-          <h2 className="text-xl font-bold text-slate-900 dark:text-white">Verificación en Dos Pasos (2FA)</h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 mb-6">
+          <h2 className="text-xl font-bold text-slate-900 ">Verificación en Dos Pasos (2FA)</h2>
+          <p className="text-xs text-slate-500  mt-2 mb-6">
             Ingresa el código de 6 dígitos generado por tu aplicación autenticadora (Google Authenticator / Authy).
           </p>
 
@@ -615,7 +615,7 @@ export const AuthModule: React.FC<Props> = ({
                   type="text"
                   maxLength={1}
                   defaultValue={String((i + 3) % 9)}
-                  className="w-11 h-12 text-center text-lg font-bold bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                  className="w-11 h-12 text-center text-lg font-bold bg-slate-50  border border-slate-300  rounded-xl text-slate-900  focus:ring-2 focus:ring-emerald-500 focus:outline-none"
                 />
               ))}
             </div>

@@ -88,8 +88,8 @@ export const AILeadScoringModule: React.FC<Props> = ({ currentTenant, selectedLe
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         
         {/* Left Column: Lead Selector (4 cols) */}
-        <div className="lg:col-span-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col">
-          <h3 className="font-bold text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3 flex items-center justify-between">
+        <div className="lg:col-span-4 bg-white  p-4 rounded-xl border border-slate-200  shadow-sm flex flex-col">
+          <h3 className="font-bold text-xs uppercase tracking-wider text-slate-500  mb-3 flex items-center justify-between">
             <span>Prospectos Calificados</span>
             <span className="text-[11px] text-slate-400 font-normal">Recientes</span>
           </h3>
@@ -101,25 +101,25 @@ export const AILeadScoringModule: React.FC<Props> = ({ currentTenant, selectedLe
                 onClick={() => setSelectedLead(lead)}
                 className={`p-3 rounded-lg border cursor-pointer transition-all ${
                   selectedLead.id === lead.id
-                    ? 'border-[#091426] bg-[#F2F4F6] dark:bg-[#F2F4F6] ring-1 ring-blue-500'
-                    : 'border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40'
+                    ? 'border-[#091426] bg-[#F2F4F6]  ring-1 ring-blue-500'
+                    : 'border-slate-200  hover:bg-slate-50 :bg-slate-800/40'
                 }`}
               >
                 <div className="flex justify-between items-start">
-                  <span className="font-semibold text-xs text-slate-900 dark:text-white">
+                  <span className="font-semibold text-xs text-slate-900 ">
                     {lead.name}
                   </span>
                   {lead.aiScore && (
                     <span className={`text-[10px] font-bold font-mono px-2 py-0.5 rounded ${
-                      lead.aiScore.score >= 80 ? 'bg-green-50 text-green-700 dark:bg-emerald-950 dark:text-emerald-300 border border-green-200 dark:border-emerald-800' :
-                      lead.aiScore.score >= 50 ? 'bg-amber-50 text-amber-700 dark:bg-amber-950 dark:text-amber-300 border border-amber-200 dark:border-amber-800' :
-                      'bg-red-50 text-red-700 dark:bg-rose-950 dark:text-rose-300 border border-red-200 dark:border-rose-800'
+                      lead.aiScore.score >= 80 ? 'bg-green-50 text-green-700   border border-green-200 ' :
+                      lead.aiScore.score >= 50 ? 'bg-amber-50 text-amber-700   border border-amber-200 ' :
+                      'bg-red-50 text-red-700   border border-red-200 '
                     }`}>
                       Score: {lead.aiScore.score}
                     </span>
                   )}
                 </div>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 line-clamp-1">
+                <p className="text-[11px] text-slate-500  mt-1 line-clamp-1">
                   {lead.propertyInterest}
                 </p>
                 <div className="flex items-center gap-2 mt-2 text-[10px] text-slate-400">
@@ -137,13 +137,13 @@ export const AILeadScoringModule: React.FC<Props> = ({ currentTenant, selectedLe
           
           {/* Card: Selected Lead AI Evaluation */}
           {selectedLead && selectedLead.aiScore && (
-            <div className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-3 border-b border-slate-100 dark:border-slate-800 gap-2">
+            <div className="bg-white  p-5 rounded-xl border border-slate-200  shadow-sm space-y-4">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-3 border-b border-slate-100  gap-2">
                 <div>
-                  <span className="text-[10px] uppercase font-bold text-[#091426] dark:text-[#091426] tracking-wider">
+                  <span className="text-[10px] uppercase font-bold text-[#091426]  tracking-wider">
                     Auditoría de Prospecto con IA
                   </span>
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mt-0.5">
+                  <h3 className="text-lg font-bold text-slate-900  mt-0.5">
                     {selectedLead.name}
                   </h3>
                   <p className="text-xs text-slate-500">
@@ -154,7 +154,7 @@ export const AILeadScoringModule: React.FC<Props> = ({ currentTenant, selectedLe
                 <div className="flex items-center gap-3">
                   <div className="text-right">
                     <span className="text-[10px] text-slate-400 uppercase font-medium block">Puntaje IA</span>
-                    <span className="text-2xl font-bold font-mono text-[#091426] dark:text-[#091426]">
+                    <span className="text-2xl font-bold font-mono text-[#091426] ">
                       {selectedLead.aiScore.score}/100
                     </span>
                   </div>
@@ -163,17 +163,17 @@ export const AILeadScoringModule: React.FC<Props> = ({ currentTenant, selectedLe
 
               {/* Badges row */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
+                <div className="bg-slate-50  p-3 rounded-lg border border-slate-200 ">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Garantía Detectada:</span>
-                  <p className="text-xs font-semibold text-slate-800 dark:text-slate-200 mt-1 flex items-center gap-1.5">
-                    <ShieldCheck className="w-4 h-4 text-[#091426] dark:text-[#091426]" />
+                  <p className="text-xs font-semibold text-slate-800  mt-1 flex items-center gap-1.5">
+                    <ShieldCheck className="w-4 h-4 text-[#091426] " />
                     {selectedLead.aiScore.guaranteeStatus}
                   </p>
                 </div>
 
-                <div className="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
+                <div className="bg-slate-50  p-3 rounded-lg border border-slate-200 ">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Solvencia de Ingresos:</span>
-                  <p className="text-xs font-semibold text-slate-800 dark:text-slate-200 mt-1 flex items-center gap-1.5">
+                  <p className="text-xs font-semibold text-slate-800  mt-1 flex items-center gap-1.5">
                     <CheckCircle className="w-4 h-4 text-green-600" />
                     {selectedLead.aiScore.verifiedIncome ? 'Demostrable con Recibo' : 'Sin documentar'}
                   </p>
@@ -182,10 +182,10 @@ export const AILeadScoringModule: React.FC<Props> = ({ currentTenant, selectedLe
 
               {/* AI Reasoning */}
               <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-600  mb-1.5">
                   Justificación del Algoritmo
                 </h4>
-                <div className="p-3.5 bg-[#F2F4F6] dark:bg-[#F2F4F6]/20 rounded-lg border border-blue-100 dark:border-[#E6E8EA] text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+                <div className="p-3.5 bg-[#F2F4F6]  rounded-lg border border-blue-100  text-xs text-slate-700  leading-relaxed">
                   {selectedLead.aiScore.reason}
                 </div>
               </div>
@@ -193,19 +193,19 @@ export const AILeadScoringModule: React.FC<Props> = ({ currentTenant, selectedLe
               {/* Auto Reply Box */}
               <div>
                 <div className="flex justify-between items-center mb-1.5">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 flex items-center gap-1.5">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-600  flex items-center gap-1.5">
                     <Bot className="w-4 h-4 text-[#091426]" /> Respuesta Óptima Sugerida (WhatsApp/Instagram)
                   </h4>
                   <button
                     onClick={() => handleCopyReply(selectedLead.aiScore!.suggestedReply)}
-                    className="text-xs font-semibold text-[#091426] dark:text-[#091426] hover:underline flex items-center gap-1"
+                    className="text-xs font-semibold text-[#091426]  hover:underline flex items-center gap-1"
                   >
                     {copiedReply ? <Check className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5" />}
                     {copiedReply ? '¡Copiado!' : 'Copiar'}
                   </button>
                 </div>
 
-                <div className="p-3.5 bg-slate-50 dark:bg-slate-800/80 rounded-lg border border-slate-200 dark:border-slate-700 font-sans text-xs text-slate-800 dark:text-slate-200">
+                <div className="p-3.5 bg-slate-50  rounded-lg border border-slate-200  font-sans text-xs text-slate-800 ">
                   {selectedLead.aiScore.suggestedReply}
                 </div>
 
@@ -224,12 +224,12 @@ export const AILeadScoringModule: React.FC<Props> = ({ currentTenant, selectedLe
           )}
 
           {/* Interactive Live Message Simulator */}
-          <div className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <div className="bg-white  p-5 rounded-xl border border-slate-200  shadow-sm space-y-3">
             <div>
-              <span className="text-[10px] uppercase font-bold text-[#091426] dark:text-[#091426] tracking-wider">
+              <span className="text-[10px] uppercase font-bold text-[#091426]  tracking-wider">
                 Simulador en Vivo
               </span>
-              <h3 className="text-sm font-bold text-slate-900 dark:text-white mt-0.5">
+              <h3 className="text-sm font-bold text-slate-900  mt-0.5">
                 Probar Clasificador con un Mensaje Real
               </h3>
               <p className="text-xs text-slate-500">
@@ -241,7 +241,7 @@ export const AILeadScoringModule: React.FC<Props> = ({ currentTenant, selectedLe
               rows={3}
               value={customPrompt}
               onChange={(e) => setCustomPrompt(e.target.value)}
-              className="w-full p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#091426]"
+              className="w-full p-3 bg-slate-50  border border-slate-200  rounded-lg text-xs text-slate-900  focus:outline-none focus:ring-1 focus:ring-[#091426]"
               placeholder="Pega el mensaje del cliente aquí..."
             />
 
@@ -258,16 +258,16 @@ export const AILeadScoringModule: React.FC<Props> = ({ currentTenant, selectedLe
             </div>
 
             {simulatedResult && (
-              <div className="mt-3 p-3.5 bg-[#F2F4F6] dark:bg-[#F2F4F6]/20 rounded-lg border border-[#E6E8EA] dark:border-[#E6E8EA]/40 text-xs space-y-1.5">
+              <div className="mt-3 p-3.5 bg-[#F2F4F6]  rounded-lg border border-[#E6E8EA]  text-xs space-y-1.5">
                 <div className="flex justify-between items-center">
-                  <span className="font-bold text-slate-900 dark:text-[#091426]">
+                  <span className="font-bold text-slate-900 ">
                     Resultado: {simulatedResult.category}
                   </span>
                   <span className="px-2 py-0.5 bg-[#091426] text-white rounded font-mono font-bold text-[10px]">
                     Score: {simulatedResult.score}/100
                   </span>
                 </div>
-                <p className="text-slate-600 dark:text-slate-300">
+                <p className="text-slate-600 ">
                   <strong>Respuesta Sugerida:</strong> {simulatedResult.suggestedReply}
                 </p>
               </div>

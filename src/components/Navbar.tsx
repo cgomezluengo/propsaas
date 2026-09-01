@@ -143,19 +143,19 @@ export const Navbar: React.FC<Props> = ({
             {/* Notification Bell */}
             <button
               onClick={onOpenNotifications}
-              className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 relative transition-colors"
+              className="p-2 rounded-lg text-slate-600  hover:bg-slate-100 :bg-slate-800 relative transition-colors"
               title="Notificaciones"
             >
               <Bell className="w-4 h-4" />
               {unreadNotificationsCount > 0 && (
-                <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-900"></span>
+                <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white "></span>
               )}
             </button>
 
             {/* Dark Mode Toggle */}
             <button
               onClick={onToggleDarkMode}
-              className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className="p-2 rounded-lg text-slate-600  hover:bg-slate-100 :bg-slate-800 transition-colors"
               title={darkMode ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
             >
               {darkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4" />}
@@ -164,7 +164,7 @@ export const Navbar: React.FC<Props> = ({
             {/* Multi-language Selector */}
             <button
               onClick={() => setLang(lang === 'ES' ? 'EN' : 'ES')}
-              className="px-2 py-1 rounded-md text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1 border border-slate-200 dark:border-slate-700"
+              className="px-2 py-1 rounded-md text-xs font-semibold text-slate-600  hover:bg-slate-100 :bg-slate-800 transition-colors flex items-center gap-1 border border-slate-200 "
               title="Cambiar idioma"
             >
               <Globe className="w-3.5 h-3.5 text-slate-500" />
@@ -175,7 +175,7 @@ export const Navbar: React.FC<Props> = ({
             <div className="relative">
               <button
                 onClick={() => setIsRoleDropdownOpen(!isRoleDropdownOpen)}
-                className="flex items-center gap-2 pl-2 pr-1 py-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors border border-transparent hover:border-slate-200"
+                className="flex items-center gap-2 pl-2 pr-1 py-1 rounded-lg hover:bg-slate-100 :bg-slate-800 transition-colors border border-transparent hover:border-slate-200"
               >
                 <div className="w-7 h-7 rounded-full bg-slate-700 text-white overflow-hidden text-xs font-bold flex items-center justify-center">
                   {currentUser.avatar ? (
@@ -188,10 +188,10 @@ export const Navbar: React.FC<Props> = ({
               </button>
 
               {isRoleDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-200 dark:border-slate-800 py-1.5 z-50 animate-fadeIn">
-                  <div className="px-3 py-1.5 border-b border-slate-100 dark:border-slate-800">
-                    <p className="text-xs font-bold text-slate-900 dark:text-white truncate">{currentUser.name}</p>
-                    <span className="text-[10px] font-bold uppercase text-[#091426] dark:text-[#091426]">Rol: {currentUser.role}</span>
+                <div className="absolute right-0 mt-2 w-56 bg-white  rounded-xl shadow-xl border border-slate-200  py-1.5 z-50 animate-fadeIn">
+                  <div className="px-3 py-1.5 border-b border-slate-100 ">
+                    <p className="text-xs font-bold text-slate-900  truncate">{currentUser.name}</p>
+                    <span className="text-[10px] font-bold uppercase text-[#091426] ">Rol: {currentUser.role}</span>
                   </div>
                   <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400">
                     Simular Otro Rol
@@ -203,8 +203,8 @@ export const Navbar: React.FC<Props> = ({
                         onSelectUser(u);
                         setIsRoleDropdownOpen(false);
                       }}
-                      className={`w-full px-3 py-1.5 text-left text-xs flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800 ${
-                        currentUser.id === u.id ? 'text-[#091426] font-bold bg-[#F2F4F6] dark:bg-[#F2F4F6]' : 'text-slate-700 dark:text-slate-300'
+                      className={`w-full px-3 py-1.5 text-left text-xs flex items-center justify-between hover:bg-slate-50 :bg-slate-800 ${
+                        currentUser.id === u.id ? 'text-[#091426] font-bold bg-[#F2F4F6] ' : 'text-slate-700 '
                       }`}
                     >
                       <span>{u.name} ({u.role})</span>
@@ -218,7 +218,7 @@ export const Navbar: React.FC<Props> = ({
             {/* Mobile Hamburger */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
+              className="lg:hidden p-2 text-slate-600  hover:bg-slate-100 :bg-slate-800 rounded-lg"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -229,7 +229,7 @@ export const Navbar: React.FC<Props> = ({
 
       {/* Mobile Drawer Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 pt-2 pb-4 space-y-1 animate-fadeIn">
+        <div className="lg:hidden bg-white  border-b border-slate-200  px-4 pt-2 pb-4 space-y-1 animate-fadeIn">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeModule === item.id;
@@ -242,8 +242,8 @@ export const Navbar: React.FC<Props> = ({
                 }}
                 className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold transition-all ${
                   isActive
-                    ? 'bg-slate-900 text-white dark:bg-[#091426] dark:text-white'
-                    : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+                    ? 'bg-slate-900 text-white  '
+                    : 'text-slate-700  hover:bg-slate-100 :bg-slate-800'
                 }`}
               >
                 <Icon className="w-4 h-4" />

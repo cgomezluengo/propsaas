@@ -72,32 +72,32 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         
         {/* CARD 1: Próximo Vencimiento */}
-        <div className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+        <div className="bg-white  p-5 rounded-xl border border-slate-200  shadow-sm flex flex-col justify-between">
           <div>
             <div className="flex justify-between items-center mb-3">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-500  flex items-center gap-1.5">
                 <CreditCard className="w-4 h-4 text-[#091426]" /> Estado de Cuenta
               </span>
-              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-green-50 dark:bg-emerald-950 text-green-700 dark:text-emerald-300 border border-green-200 dark:border-emerald-800">
+              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-green-50  text-green-700  border border-green-200 ">
                 Al Día
               </span>
             </div>
 
-            <div className="text-2xl font-bold font-mono text-slate-900 dark:text-white">
+            <div className="text-2xl font-bold font-mono text-slate-900 ">
               {formatCurrency(contract.currentAmount + (contract.expensesAmount || 0))}
             </div>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 font-mono">
+            <p className="text-xs text-slate-500  mt-0.5 font-mono">
               Alquiler: {formatCurrency(contract.currentAmount)} + Expensas: {formatCurrency(contract.expensesAmount || 0)}
             </p>
 
-            <div className="mt-4 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700 text-xs">
-              <div className="flex justify-between text-slate-600 dark:text-slate-400">
+            <div className="mt-4 p-3 bg-slate-50  rounded-lg border border-slate-200  text-xs">
+              <div className="flex justify-between text-slate-600 ">
                 <span>Vencimiento:</span>
-                <span className="font-semibold text-slate-900 dark:text-white">10 de Agosto</span>
+                <span className="font-semibold text-slate-900 ">10 de Agosto</span>
               </div>
-              <div className="flex justify-between text-slate-600 dark:text-slate-400 mt-1.5">
+              <div className="flex justify-between text-slate-600  mt-1.5">
                 <span>Alias CBU Inmobiliaria:</span>
-                <span className="font-mono font-bold text-[#091426] dark:text-[#091426]">INMO.GOMEZ.JUNIN</span>
+                <span className="font-mono font-bold text-[#091426] ">INMO.GOMEZ.JUNIN</span>
               </div>
             </div>
           </div>
@@ -112,28 +112,28 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
         </div>
 
         {/* CARD 2: Transparencia de Aumento ICL / IPC */}
-        <div className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+        <div className="bg-white  p-5 rounded-xl border border-slate-200  shadow-sm flex flex-col justify-between">
           <div>
             <div className="flex justify-between items-center mb-3">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-500  flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-[#091426]" /> Transparencia Legal
               </span>
-              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#F2F4F6] dark:bg-[#F2F4F6] text-[#091426] dark:text-[#091426] border border-[#E6E8EA] dark:border-[#E6E8EA]">
+              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#F2F4F6]  text-[#091426]  border border-[#E6E8EA] ">
                 Ley 27.551 (ICL)
               </span>
             </div>
 
-            <h3 className="text-sm font-semibold text-slate-900 dark:text-white">
+            <h3 className="text-sm font-semibold text-slate-900 ">
               Próxima Actualización de Alquiler
             </h3>
-            <p className="text-xl font-bold font-mono text-[#091426] dark:text-[#091426] mt-1">
+            <p className="text-xl font-bold font-mono text-[#091426]  mt-1">
               01 de Noviembre de 2024
             </p>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+            <p className="text-xs text-slate-500  mt-0.5">
               (Faltan ~62 días para el ajuste anual)
             </p>
 
-            <div className="mt-4 p-3 bg-[#F2F4F6]/60 dark:bg-[#F2F4F6] rounded-lg border border-blue-100 dark:border-[#E6E8EA] text-xs text-slate-600 dark:text-slate-300 space-y-1">
+            <div className="mt-4 p-3 bg-[#F2F4F6]/60  rounded-lg border border-blue-100  text-xs text-slate-600  space-y-1">
               <p>• <strong>Índice:</strong> ICL publicado a diario por el Banco Central.</p>
               <p>• <strong>Estimación transparente:</strong> Sin sorpresas, la inmobiliaria te enviará el valor final 15 días antes.</p>
             </div>
@@ -141,7 +141,7 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
 
           <button
             onClick={() => setIsReportIssueOpen(true)}
-            className="mt-5 w-full py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-semibold text-xs rounded-lg transition-all flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-700"
+            className="mt-5 w-full py-2.5 bg-slate-100  hover:bg-slate-200 :bg-slate-700 text-slate-800  font-semibold text-xs rounded-lg transition-all flex items-center justify-center gap-2 border border-slate-200 "
           >
             <Wrench className="w-4 h-4 text-slate-500" />
             Reportar Incidencia de Mantenimiento
@@ -151,10 +151,10 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
       </div>
 
       {/* Historial de Recibos y Comprobantes Descargables */}
-      <div className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+      <div className="bg-white  p-5 rounded-xl border border-slate-200  shadow-sm">
         <div className="flex justify-between items-center mb-4">
           <div>
-            <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+            <h3 className="text-sm font-bold text-slate-900 ">
               Historial de Recibos Oficiales
             </h3>
             <p className="text-xs text-slate-500">Comprobantes válidos con firma digital y sello del Martillero</p>
@@ -162,21 +162,21 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
           <FileText className="w-5 h-5 text-slate-400" />
         </div>
 
-        <div className="divide-y divide-slate-100 dark:divide-slate-800">
+        <div className="divide-y divide-slate-100 ">
           {receipts.map((rcp) => (
-            <div key={rcp.id} className="py-3 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800/30 px-2 rounded-lg transition-colors">
+            <div key={rcp.id} className="py-3 flex items-center justify-between hover:bg-slate-50 :bg-slate-800/30 px-2 rounded-lg transition-colors">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-green-50 dark:bg-emerald-950/50 text-green-600 flex items-center justify-center font-bold text-xs border border-green-200 dark:border-emerald-800">
+                <div className="w-8 h-8 rounded-lg bg-green-50  text-green-600 flex items-center justify-center font-bold text-xs border border-green-200 ">
                   <CheckCircle className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-xs text-slate-900 dark:text-white">{rcp.month}</h4>
+                  <h4 className="font-semibold text-xs text-slate-900 ">{rcp.month}</h4>
                   <span className="text-[11px] text-slate-400">Abonado el {rcp.date} • {rcp.method}</span>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
-                <span className="text-xs font-bold font-mono text-slate-900 dark:text-white">
+                <span className="text-xs font-bold font-mono text-slate-900 ">
                   {formatCurrency(rcp.amount)}
                 </span>
                 <button
@@ -188,7 +188,7 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
                     contract.indexType,
                     rcp.id
                   )}
-                  className="flex items-center gap-1.5 px-2.5 py-1.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 transition-colors shadow-sm"
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 bg-white  hover:bg-slate-50 :bg-slate-700 text-slate-700  rounded-lg text-xs font-semibold border border-slate-200  transition-colors shadow-sm"
                 >
                   <Download className="w-3.5 h-3.5 text-slate-500" /> PDF
                 </button>
@@ -201,8 +201,8 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
       {/* NOTIFY PAYMENT MODAL */}
       {isNotifyPaymentOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm animate-fadeIn">
-          <div className="bg-white dark:bg-slate-900 w-full max-w-md rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-2xl">
-            <h3 className="text-base font-bold text-slate-900 dark:text-white mb-1 flex items-center gap-2">
+          <div className="bg-white  w-full max-w-md rounded-xl p-6 border border-slate-200  shadow-2xl">
+            <h3 className="text-base font-bold text-slate-900  mb-1 flex items-center gap-2">
               <Upload className="w-4 h-4 text-[#091426]" />
               Notificar Pago de Alquiler
             </h3>
@@ -212,25 +212,25 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
 
             <form onSubmit={handleSendPaymentProof} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700  mb-1">
                   Monto Transferido
                 </label>
                 <input
                   type="text"
                   readOnly
                   value={formatCurrency(contract.currentAmount + (contract.expensesAmount || 0))}
-                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 font-bold font-mono text-xs text-slate-900 dark:text-white rounded-lg border border-slate-200 dark:border-slate-700"
+                  className="w-full px-3 py-2 bg-slate-50  font-bold font-mono text-xs text-slate-900  rounded-lg border border-slate-200 "
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700  mb-1">
                   Método de Pago
                 </label>
                 <select
                   value={paymentMethod}
                   onChange={(e) => setPaymentMethod(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#091426]"
+                  className="w-full px-3 py-2 bg-slate-50  border border-slate-200  rounded-lg text-xs text-slate-900  focus:outline-none focus:ring-1 focus:ring-[#091426]"
                 >
                   <option value="Transferencia Bancaria">Transferencia Bancaria (CBU/CVU)</option>
                   <option value="Mercado Pago">Mercado Pago</option>
@@ -239,12 +239,12 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700  mb-1">
                   Adjuntar Comprobante (PNG / JPG / PDF)
                 </label>
-                <div className="border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-lg p-5 text-center hover:border-[#091426] cursor-pointer bg-slate-50 dark:bg-slate-800/50">
+                <div className="border-2 border-dashed border-slate-200  rounded-lg p-5 text-center hover:border-[#091426] cursor-pointer bg-slate-50 ">
                   <Upload className="w-5 h-5 text-slate-400 mx-auto mb-1.5" />
-                  <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 block">
+                  <span className="text-xs font-semibold text-slate-700  block">
                     Arrastra tu comprobante aquí o haz clic para buscar
                   </span>
                   <span className="text-[10px] text-slate-400">Tamaño máx: 10MB</span>
@@ -255,7 +255,7 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
                 <button
                   type="button"
                   onClick={() => setIsNotifyPaymentOpen(false)}
-                  className="px-3.5 py-2 text-xs font-semibold text-slate-500 hover:text-slate-700 dark:text-slate-400"
+                  className="px-3.5 py-2 text-xs font-semibold text-slate-500 hover:text-slate-700 "
                 >
                   Cancelar
                 </button>
@@ -275,8 +275,8 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
       {/* REPORT ISSUE MODAL */}
       {isReportIssueOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm animate-fadeIn">
-          <div className="bg-white dark:bg-slate-900 w-full max-w-md rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-2xl">
-            <h3 className="text-base font-bold text-slate-900 dark:text-white mb-1 flex items-center gap-2">
+          <div className="bg-white  w-full max-w-md rounded-xl p-6 border border-slate-200  shadow-2xl">
+            <h3 className="text-base font-bold text-slate-900  mb-1 flex items-center gap-2">
               <Wrench className="w-4 h-4 text-[#091426]" />
               Reportar Incidencia de Mantenimiento
             </h3>
@@ -286,13 +286,13 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
 
             <form onSubmit={(e) => { e.preventDefault(); alert('Incidencia reportada con éxito. El equipo de mantenimiento te contactará a la brevedad.'); setIsReportIssueOpen(false); }} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700  mb-1">
                   Rubro / Categoría
                 </label>
                 <select
                   value={issueCategory}
                   onChange={(e) => setIssueCategory(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#091426]"
+                  className="w-full px-3 py-2 bg-slate-50  border border-slate-200  rounded-lg text-xs text-slate-900  focus:outline-none focus:ring-1 focus:ring-[#091426]"
                 >
                   <option value="Plomería / Agua">Plomería / Filtración de Agua</option>
                   <option value="Electricidad">Electricidad / Corte de Suministro</option>
@@ -303,7 +303,7 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700  mb-1">
                   Descripción detallada
                 </label>
                 <textarea
@@ -312,7 +312,7 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
                   value={issueDescription}
                   onChange={(e) => setIssueDescription(e.target.value)}
                   placeholder="Explica qué ocurre en el departamento..."
-                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#091426]"
+                  className="w-full px-3 py-2 bg-slate-50  border border-slate-200  rounded-lg text-xs text-slate-900  focus:outline-none focus:ring-1 focus:ring-[#091426]"
                 />
               </div>
 
@@ -320,7 +320,7 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
                 <button
                   type="button"
                   onClick={() => setIsReportIssueOpen(false)}
-                  className="px-3.5 py-2 text-xs font-semibold text-slate-500 hover:text-slate-700 dark:text-slate-400"
+                  className="px-3.5 py-2 text-xs font-semibold text-slate-500 hover:text-slate-700 "
                 >
                   Cancelar
                 </button>

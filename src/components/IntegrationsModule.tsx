@@ -48,18 +48,18 @@ export const IntegrationsModule: React.FC<Props> = ({ currentTenant }) => {
   return (
     <div className="space-y-6 animate-fadeIn">
       {/* Top Header */}
-      <div className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+      <div className="bg-white  p-5 rounded-xl border border-slate-200  shadow-sm">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h1 className="text-xl font-bold text-slate-900 dark:text-white">
+            <h1 className="text-xl font-bold text-slate-900 ">
               Conexiones & Redes Sociales
             </h1>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            <p className="text-xs text-slate-500  mt-1">
               Conecta tus plataformas para automatizar la captación de prospectos y la publicación de propiedades.
             </p>
           </div>
 
-          <div className="flex items-center gap-2 bg-[#F2F4F6] dark:bg-[#F2F4F6] text-[#091426] dark:text-[#091426] px-3 py-1.5 rounded-lg border border-[#E6E8EA] dark:border-[#E6E8EA] text-xs font-semibold">
+          <div className="flex items-center gap-2 bg-[#F2F4F6]  text-[#091426]  px-3 py-1.5 rounded-lg border border-[#E6E8EA]  text-xs font-semibold">
             <span className="w-2 h-2 rounded-full bg-[#091426] animate-ping"></span>
             Webhooks Ingesta Activa
           </div>
@@ -68,9 +68,9 @@ export const IntegrationsModule: React.FC<Props> = ({ currentTenant }) => {
 
       {/* Toggles Bar */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
+        <div className="bg-white  p-4 rounded-xl border border-slate-200  shadow-sm flex items-center justify-between">
           <div>
-            <h4 className="font-semibold text-xs text-slate-900 dark:text-white">Importación Automática de Leads</h4>
+            <h4 className="font-semibold text-xs text-slate-900 ">Importación Automática de Leads</h4>
             <p className="text-[11px] text-slate-500 mt-0.5">
               Crea prospectos en el CRM cuando pregunten por WhatsApp, Instagram o Facebook.
             </p>
@@ -79,16 +79,16 @@ export const IntegrationsModule: React.FC<Props> = ({ currentTenant }) => {
             type="button"
             onClick={() => setAutoImportLeads(!autoImportLeads)}
             className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors ${
-              autoImportLeads ? 'bg-[#091426] justify-end' : 'bg-slate-300 dark:bg-slate-700 justify-start'
+              autoImportLeads ? 'bg-[#091426] justify-end' : 'bg-slate-300  justify-start'
             }`}
           >
             <span className="w-4 h-4 bg-white rounded-full shadow-sm"></span>
           </button>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
+        <div className="bg-white  p-4 rounded-xl border border-slate-200  shadow-sm flex items-center justify-between">
           <div>
-            <h4 className="font-semibold text-xs text-slate-900 dark:text-white">Auto-Publicación de Inmuebles</h4>
+            <h4 className="font-semibold text-xs text-slate-900 ">Auto-Publicación de Inmuebles</h4>
             <p className="text-[11px] text-slate-500 mt-0.5">
               Difunde automáticamente nuevas propiedades disponibles en las historias de Instagram.
             </p>
@@ -97,7 +97,7 @@ export const IntegrationsModule: React.FC<Props> = ({ currentTenant }) => {
             type="button"
             onClick={() => setAutoPublishProperties(!autoPublishProperties)}
             className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors ${
-              autoPublishProperties ? 'bg-[#091426] justify-end' : 'bg-slate-300 dark:bg-slate-700 justify-start'
+              autoPublishProperties ? 'bg-[#091426] justify-end' : 'bg-slate-300  justify-start'
             }`}
           >
             <span className="w-4 h-4 bg-white rounded-full shadow-sm"></span>
@@ -112,47 +112,47 @@ export const IntegrationsModule: React.FC<Props> = ({ currentTenant }) => {
           return (
             <div
               key={item.id}
-              className={`bg-white dark:bg-slate-900 p-5 rounded-xl border transition-all shadow-sm flex flex-col justify-between ${
+              className={`bg-white  p-5 rounded-xl border transition-all shadow-sm flex flex-col justify-between ${
                 item.connected 
-                  ? 'border-[#091426]/40 dark:border-[#091426]/40 ring-1 ring-blue-500/20' 
-                  : 'border-slate-200 dark:border-slate-800'
+                  ? 'border-[#091426]/40  ring-1 ring-blue-500/20' 
+                  : 'border-slate-200 '
               }`}
             >
               <div>
                 <div className="flex justify-between items-start mb-3">
-                  <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-700">
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-slate-100  text-slate-800  border border-slate-200 ">
                     {item.name === 'Instagram' && <Instagram className="w-5 h-5 text-pink-600" />}
                     {item.name === 'Facebook' && <Facebook className="w-5 h-5 text-[#091426]" />}
                     {item.name === 'YouTube' && <Youtube className="w-5 h-5 text-red-600" />}
                     {item.name === 'Twitter/X' && <Twitter className="w-5 h-5 text-sky-500" />}
                     {item.name === 'WhatsApp Business' && <MessageSquare className="w-5 h-5 text-emerald-600" />}
-                    {item.name === 'GitHub' && <Github className="w-5 h-5 text-slate-800 dark:text-slate-200" />}
+                    {item.name === 'GitHub' && <Github className="w-5 h-5 text-slate-800 " />}
                   </div>
 
                   {item.connected ? (
-                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-green-50 dark:bg-emerald-950 text-green-700 dark:text-emerald-300 border border-green-200 dark:border-emerald-800 flex items-center gap-1">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-green-50  text-green-700  border border-green-200  flex items-center gap-1">
                       <CheckCircle2 className="w-3 h-3" /> Conectado
                     </span>
                   ) : (
-                    <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 dark:bg-slate-800 text-slate-500 border border-slate-200 dark:border-slate-700">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100  text-slate-500 border border-slate-200 ">
                       Desconectado
                     </span>
                   )}
                 </div>
 
-                <h3 className="font-bold text-sm text-slate-900 dark:text-white">
+                <h3 className="font-bold text-sm text-slate-900 ">
                   {item.name}
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                <p className="text-xs text-slate-500  mt-1 leading-relaxed">
                   {item.description}
                 </p>
 
                 {item.connected && item.accountName && (
-                  <div className="mt-3 p-2.5 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700 text-xs">
+                  <div className="mt-3 p-2.5 bg-slate-50  rounded-lg border border-slate-200  text-xs">
                     <span className="text-[10px] text-slate-400 uppercase font-bold block">Cuenta vinculada:</span>
-                    <span className="font-semibold text-slate-800 dark:text-slate-200 font-mono">{item.accountName}</span>
+                    <span className="font-semibold text-slate-800  font-mono">{item.accountName}</span>
                     {item.leadsCapturedMonth && (
-                      <span className="text-[11px] text-[#091426] dark:text-[#091426] block mt-0.5 font-medium">
+                      <span className="text-[11px] text-[#091426]  block mt-0.5 font-medium">
                         +{item.leadsCapturedMonth} leads captados este mes
                       </span>
                     )}
@@ -160,14 +160,14 @@ export const IntegrationsModule: React.FC<Props> = ({ currentTenant }) => {
                 )}
               </div>
 
-              <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
+              <div className="mt-4 pt-3 border-t border-slate-100 ">
                 <button
                   type="button"
                   disabled={isBusy}
                   onClick={() => toggleConnection(item.id)}
                   className={`w-full py-2 px-3 rounded-lg text-xs font-semibold transition-all flex items-center justify-center gap-2 ${
                     item.connected
-                      ? 'bg-rose-50 text-rose-700 dark:bg-rose-950/40 dark:text-rose-300 border border-rose-200 hover:bg-rose-100'
+                      ? 'bg-rose-50 text-rose-700   border border-rose-200 hover:bg-rose-100'
                       : 'bg-[#091426] hover:bg-[#1E293B] text-white shadow-sm'
                   }`}
                 >

@@ -23,14 +23,10 @@ export default function App() {
   const [notifications, setNotifications] = useState<AppNotification[]>(mockNotifications);
   const [selectedLeadForAI, setSelectedLeadForAI] = useState<Lead | null>(mockLeads[0]);
 
-  // Sync Dark Mode class with HTML root
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [darkMode]);
+    document.documentElement.classList.remove('dark');
+    document.body.className = "bg-[#F7F9FB] text-[#191C1E] antialiased";
+  }, []);
 
   const handleMarkAllNotificationsRead = () => {
     setNotifications(prev => prev.map(n => ({ ...n, read: true })));
@@ -47,7 +43,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans transition-colors duration-200">
+    <div className="min-h-screen bg-[#F7F9FB] text-[#191C1E] flex flex-col font-sans transition-colors duration-200">
       {/* Top Main Navigation Bar */}
       <Navbar
         activeModule={activeModule}
@@ -56,8 +52,8 @@ export default function App() {
         onSelectTenant={setCurrentTenant}
         currentUser={currentUser}
         onSelectUser={setCurrentUser}
-        darkMode={darkMode}
-        onToggleDarkMode={() => setDarkMode(!darkMode)}
+        darkMode={false}
+        onToggleDarkMode={() => {}}
         onOpenSpecsModal={() => setIsSpecsModalOpen(true)}
         onOpenNotifications={() => setIsNotificationsOpen(true)}
         unreadNotificationsCount={notifications.filter(n => !n.read).length}
