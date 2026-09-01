@@ -68,16 +68,16 @@ export const AILeadScoringModule: React.FC<Props> = ({ currentTenant, selectedLe
   return (
     <div className="space-y-6 animate-fadeIn">
       {/* Header */}
-      <div className="bg-slate-900 text-white p-5 sm:p-6 rounded-xl border border-slate-800 shadow-sm relative overflow-hidden">
+      <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white p-5 sm:p-6 rounded-2xl shadow-sm relative overflow-hidden">
         <div className="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-blue-950 text-blue-300 text-[11px] font-bold uppercase tracking-wider mb-2 border border-blue-800">
-              <Sparkles className="w-3.5 h-3.5 text-blue-400" /> Asistente de Respuestas
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/20 text-white text-[11px] font-bold uppercase tracking-wider mb-2 backdrop-blur-sm">
+              <Sparkles className="w-3.5 h-3.5 text-amber-300" /> Asistente de Respuestas
             </div>
             <h1 className="text-lg sm:text-2xl font-bold text-white">
               Respuestas Automáticas & Evaluación de Consultas
             </h1>
-            <p className="text-xs text-slate-300 mt-1 max-w-xl leading-relaxed">
+            <p className="text-xs sm:text-sm text-blue-100 mt-1 max-w-xl leading-relaxed">
               Detectá rápido a las personas que tienen recibo de sueldo y garantía lista para alquilar, y enviales respuestas amables por WhatsApp con 1 solo clic.
             </p>
           </div>

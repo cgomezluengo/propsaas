@@ -46,23 +46,23 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
   return (
     <div className="max-w-4xl mx-auto space-y-6 animate-fadeIn pb-12">
       {/* Mobile-Friendly App Header */}
-      <div className="bg-slate-900 text-white p-6 rounded-xl border border-slate-800 shadow-sm relative overflow-hidden">
+      <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white p-6 rounded-2xl shadow-sm relative overflow-hidden">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 relative z-10">
           <div>
-            <span className="text-[11px] uppercase tracking-wider text-blue-400 font-bold">
+            <span className="text-[11px] uppercase tracking-wider text-blue-200 font-bold">
               Portal Oficial del Inquilino
             </span>
-            <h1 className="text-xl sm:text-2xl font-bold mt-1">
+            <h1 className="text-xl sm:text-2xl font-bold mt-1 text-white">
               Hola, {contract.tenantName}
             </h1>
-            <p className="text-xs text-slate-300 mt-1 flex items-center gap-1.5">
-              <Home className="w-3.5 h-3.5 text-blue-400" />
+            <p className="text-xs sm:text-sm text-blue-100 mt-1 flex items-center gap-1.5">
+              <Home className="w-3.5 h-3.5 text-blue-200" />
               {contract.propertyAddress} ({contract.city})
             </p>
           </div>
 
-          <div className="bg-slate-800/80 px-3.5 py-2 rounded-lg border border-slate-700/80 text-right">
-            <span className="text-[10px] text-slate-400 uppercase block font-medium">Administra:</span>
+          <div className="bg-white/15 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/20 text-left sm:text-right">
+            <span className="text-[10px] text-blue-200 uppercase block font-medium">Administra:</span>
             <span className="text-xs font-bold text-white">{currentTenant.name}</span>
           </div>
         </div>
