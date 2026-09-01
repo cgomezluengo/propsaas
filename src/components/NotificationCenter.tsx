@@ -28,7 +28,7 @@ export const NotificationCenter: React.FC<Props> = ({
         {/* Header */}
         <div className="p-4 border-b border-slate-800 flex justify-between items-center bg-slate-900 text-white">
           <div className="flex items-center gap-2">
-            <Bell className="w-4 h-4 text-blue-400" />
+            <Bell className="w-4 h-4 text-[#091426]" />
             <h3 className="font-bold text-sm text-white">Centro de Notificaciones</h3>
           </div>
           <button 
@@ -46,7 +46,7 @@ export const NotificationCenter: React.FC<Props> = ({
           </span>
           <button
             onClick={onMarkAllRead}
-            className="text-blue-600 dark:text-blue-400 hover:underline font-semibold flex items-center gap-1 text-[11px]"
+            className="text-[#091426] dark:text-[#091426] hover:underline font-semibold flex items-center gap-1 text-[11px]"
           >
             <CheckCheck className="w-3.5 h-3.5" /> Marcar todas como leídas
           </button>
@@ -65,7 +65,7 @@ export const NotificationCenter: React.FC<Props> = ({
               }}
               className={`p-3.5 rounded-lg border cursor-pointer transition-all ${
                 !n.read 
-                  ? 'bg-blue-50/40 dark:bg-slate-800 border-blue-200 dark:border-slate-700 shadow-sm' 
+                  ? 'bg-[#F2F4F6] dark:bg-slate-800 border-[#E6E8EA] dark:border-slate-700 shadow-sm' 
                   : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 opacity-70'
               }`}
             >
@@ -74,7 +74,7 @@ export const NotificationCenter: React.FC<Props> = ({
                   n.type === 'urgent' ? 'bg-red-50 text-red-600 dark:bg-rose-950/60 border border-red-200 dark:border-rose-800' :
                   n.type === 'alert' ? 'bg-amber-50 text-amber-600 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800' :
                   n.type === 'success' ? 'bg-green-50 text-green-600 dark:bg-emerald-950/60 border border-green-200 dark:border-emerald-800' :
-                  'bg-blue-50 text-blue-600 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800'
+                  'bg-[#F2F4F6] text-[#091426] dark:bg-[#F2F4F6] border border-[#E6E8EA] dark:border-[#E6E8EA]'
                 }`}>
                   {n.type === 'urgent' && <AlertTriangle className="w-3.5 h-3.5" />}
                   {n.type === 'alert' && <RefreshCw className="w-3.5 h-3.5" />}

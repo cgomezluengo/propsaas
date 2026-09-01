@@ -140,7 +140,7 @@ export const LandingModule: React.FC<Props> = ({ onNavigate }) => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-9 h-9 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center border border-blue-200 dark:border-blue-800">
+              <div className="w-9 h-9 rounded-lg bg-[#F2F4F6] dark:bg-[#F2F4F6] text-[#091426] dark:text-[#091426] flex items-center justify-center border border-[#E6E8EA] dark:border-[#E6E8EA]">
                 <Calculator className="w-4 h-4" />
               </div>
               <div>
@@ -152,7 +152,7 @@ export const LandingModule: React.FC<Props> = ({ onNavigate }) => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
                 <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase mb-2">
-                  Consultas mensuales recibidas: <span className="text-blue-600 font-bold">{calculatorLeads}</span>
+                  Consultas mensuales recibidas: <span className="text-[#091426] font-bold">{calculatorLeads}</span>
                 </label>
                 <input 
                   type="range" 
@@ -166,7 +166,7 @@ export const LandingModule: React.FC<Props> = ({ onNavigate }) => {
 
               <div>
                 <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase mb-2">
-                  Valor promedio del alquiler/operación: <span className="text-blue-600 font-bold">{formatCurrency(avgTicket)}</span>
+                  Valor promedio del alquiler/operación: <span className="text-[#091426] font-bold">{formatCurrency(avgTicket)}</span>
                 </label>
                 <input 
                   type="range" 
@@ -180,14 +180,14 @@ export const LandingModule: React.FC<Props> = ({ onNavigate }) => {
               </div>
             </div>
 
-            <div className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4 bg-blue-50/50 dark:bg-blue-950/20 p-4 rounded-lg border border-blue-100 dark:border-blue-900/40">
+            <div className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4 bg-[#F2F4F6] dark:bg-[#F2F4F6]/20 p-4 rounded-lg border border-blue-100 dark:border-[#E6E8EA]/40">
               <div>
                 <span className="text-xs text-slate-600 dark:text-slate-400">Consultas convertidas en visitas/reservas:</span>
                 <p className="text-base font-bold text-slate-900 dark:text-white">~{recoveredLeads} operaciones adicionales al mes</p>
               </div>
               <div className="text-right">
-                <span className="text-xs text-blue-700 dark:text-blue-400 font-semibold uppercase">Comisiones ganadas estimadas:</span>
-                <p className="text-xl font-bold text-blue-600 dark:text-blue-400">{formatCurrency(estimatedSavings)} / mes</p>
+                <span className="text-xs text-[#091426] dark:text-[#091426] font-semibold uppercase">Comisiones ganadas estimadas:</span>
+                <p className="text-xl font-bold text-[#091426] dark:text-[#091426]">{formatCurrency(estimatedSavings)} / mes</p>
               </div>
             </div>
           </div>
@@ -382,10 +382,10 @@ export const LandingModule: React.FC<Props> = ({ onNavigate }) => {
             <p className="text-xs text-slate-400 mt-1">© 2026 PropTech Pro SaaS B2B. Todos los derechos reservados.</p>
           </div>
           <div className="flex gap-6 text-xs text-slate-400">
-            <a href="#" className="hover:text-blue-400 transition-colors">Privacidad</a>
-            <a href="#" className="hover:text-blue-400 transition-colors">Términos</a>
-            <a href="#" className="hover:text-blue-400 transition-colors">Contacto</a>
-            <a href="#" className="hover:text-blue-400 transition-colors">Precios</a>
+            <a href="#" className="hover:text-[#091426] transition-colors">Privacidad</a>
+            <a href="#" className="hover:text-[#091426] transition-colors">Términos</a>
+            <a href="#" className="hover:text-[#091426] transition-colors">Contacto</a>
+            <a href="#" className="hover:text-[#091426] transition-colors">Precios</a>
           </div>
         </div>
       </footer>

@@ -142,13 +142,13 @@ CREATE POLICY tenant_isolation_leads ON leads
         {/* Header */}
         <div className="bg-slate-900 text-white px-6 py-4 flex justify-between items-center border-b border-slate-800">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-blue-950 text-blue-400 border border-blue-800 flex items-center justify-center font-bold">
+            <div className="w-9 h-9 rounded-lg bg-[#F2F4F6] text-[#091426] border border-[#E6E8EA] flex items-center justify-center font-bold">
               <Server className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="font-bold text-base text-white">Documento de Arquitectura & Entregables Técnicos</h3>
-                <span className="px-2 py-0.5 rounded text-[11px] font-semibold bg-blue-950 text-blue-300 border border-blue-800">
+                <span className="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#F2F4F6] text-[#091426] border border-[#E6E8EA]">
                   Senior Architect / B2B SaaS
                 </span>
               </div>
@@ -169,7 +169,7 @@ CREATE POLICY tenant_isolation_leads ON leads
             onClick={() => setActiveTab('stack')}
             className={`flex items-center gap-2 py-3 px-4 font-semibold text-xs border-b-2 transition-colors whitespace-nowrap ${
               activeTab === 'stack'
-                ? 'border-blue-600 text-blue-600 dark:text-blue-400'
+                ? 'border-[#091426] text-[#091426] dark:text-[#091426]'
                 : 'border-transparent text-slate-500 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
@@ -179,7 +179,7 @@ CREATE POLICY tenant_isolation_leads ON leads
             onClick={() => setActiveTab('db_schema')}
             className={`flex items-center gap-2 py-3 px-4 font-semibold text-xs border-b-2 transition-colors whitespace-nowrap ${
               activeTab === 'db_schema'
-                ? 'border-blue-600 text-blue-600 dark:text-blue-400'
+                ? 'border-[#091426] text-[#091426] dark:text-[#091426]'
                 : 'border-transparent text-slate-500 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
@@ -189,7 +189,7 @@ CREATE POLICY tenant_isolation_leads ON leads
             onClick={() => setActiveTab('api_definition')}
             className={`flex items-center gap-2 py-3 px-4 font-semibold text-xs border-b-2 transition-colors whitespace-nowrap ${
               activeTab === 'api_definition'
-                ? 'border-blue-600 text-blue-600 dark:text-blue-400'
+                ? 'border-[#091426] text-[#091426] dark:text-[#091426]'
                 : 'border-transparent text-slate-500 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
@@ -199,7 +199,7 @@ CREATE POLICY tenant_isolation_leads ON leads
             onClick={() => setActiveTab('mvp_roadmap')}
             className={`flex items-center gap-2 py-3 px-4 font-semibold text-xs border-b-2 transition-colors whitespace-nowrap ${
               activeTab === 'mvp_roadmap'
-                ? 'border-blue-600 text-blue-600 dark:text-blue-400'
+                ? 'border-[#091426] text-[#091426] dark:text-[#091426]'
                 : 'border-transparent text-slate-500 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
@@ -212,12 +212,12 @@ CREATE POLICY tenant_isolation_leads ON leads
           {/* TAB 1: STACK */}
           {activeTab === 'stack' && (
             <div className="space-y-6">
-              <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/40 rounded-xl p-4">
-                <h4 className="font-bold text-blue-900 dark:text-blue-300 text-xs flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-blue-600" />
+              <div className="bg-[#F2F4F6] dark:bg-[#F2F4F6] border border-[#E6E8EA] dark:border-[#E6E8EA]/40 rounded-xl p-4">
+                <h4 className="font-bold text-[#091426] dark:text-[#091426] text-xs flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#091426]" />
                   Dictamen del Arquitecto: Stack Tecnológico de Máxima Velocidad y Aislamiento Multi-Tenant
                 </h4>
-                <p className="text-xs text-blue-800 dark:text-blue-400 mt-1">
+                <p className="text-xs text-[#091426] dark:text-[#091426] mt-1">
                   Optimizamos para despliegue rápido, costo operativo bajo (scale-to-zero) y absoluta seguridad en la separación de datos entre inmobiliarias competidoras en la misma región.
                 </p>
               </div>
@@ -225,7 +225,7 @@ CREATE POLICY tenant_isolation_leads ON leads
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="border border-slate-200 dark:border-slate-800 rounded-xl p-4 bg-white dark:bg-slate-900 shadow-sm">
                   <div className="flex items-center gap-2 text-slate-900 dark:text-white font-bold mb-2">
-                    <span className="w-7 h-7 rounded-lg bg-blue-100 dark:bg-blue-900/50 text-blue-600 flex items-center justify-center text-xs">FE</span>
+                    <span className="w-7 h-7 rounded-lg bg-[#E6E8EA] dark:bg-[#F2F4F6] text-[#091426] flex items-center justify-center text-xs">FE</span>
                     Frontend & Portal Inquilino
                   </div>
                   <ul className="text-xs space-y-2 text-slate-600 dark:text-slate-400">
@@ -304,7 +304,7 @@ CREATE POLICY tenant_isolation_leads ON leads
                 {/* Endpoint 1 */}
                 <div className="border border-slate-200 dark:border-slate-800 rounded-xl p-4 bg-white dark:bg-slate-900">
                   <div className="flex items-center gap-3">
-                    <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-blue-100 text-blue-700 dark:bg-blue-900/60 dark:text-blue-300">POST</span>
+                    <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-[#E6E8EA] text-[#091426] dark:bg-[#1E293B]/60 dark:text-[#091426]">POST</span>
                     <code className="text-xs font-mono font-semibold text-slate-900 dark:text-white">/api/v1/auth/register-tenant</code>
                     <span className="text-xs text-slate-500 ml-auto">Onboarding de Agencia</span>
                   </div>
@@ -364,7 +364,7 @@ CREATE POLICY tenant_isolation_leads ON leads
                 {/* Endpoint 6 */}
                 <div className="border border-slate-200 dark:border-slate-800 rounded-xl p-4 bg-white dark:bg-slate-900">
                   <div className="flex items-center gap-3">
-                    <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-blue-100 text-blue-700 dark:bg-blue-900/60 dark:text-blue-300">POST</span>
+                    <span className="px-2.5 py-1 rounded-md text-xs font-bold bg-[#E6E8EA] text-[#091426] dark:bg-[#1E293B]/60 dark:text-[#091426]">POST</span>
                     <code className="text-xs font-mono font-semibold text-slate-900 dark:text-white">/api/v1/webhooks/social-leads</code>
                     <span className="text-xs text-slate-500 ml-auto">Webhook Ingesta Omnicanal</span>
                   </div>

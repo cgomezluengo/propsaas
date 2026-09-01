@@ -46,23 +46,23 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
   return (
     <div className="max-w-4xl mx-auto space-y-6 animate-fadeIn pb-12">
       {/* Mobile-Friendly App Header */}
-      <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white p-6 rounded-2xl shadow-sm relative overflow-hidden">
+      <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white p-6 rounded-xl shadow-sm relative overflow-hidden">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 relative z-10">
           <div>
-            <span className="text-[11px] uppercase tracking-wider text-blue-200 font-bold">
+            <span className="text-[11px] uppercase tracking-wider text-[#091426] font-bold">
               Portal Oficial del Inquilino
             </span>
             <h1 className="text-xl sm:text-2xl font-bold mt-1 text-white">
               Hola, {contract.tenantName}
             </h1>
             <p className="text-xs sm:text-sm text-blue-100 mt-1 flex items-center gap-1.5">
-              <Home className="w-3.5 h-3.5 text-blue-200" />
+              <Home className="w-3.5 h-3.5 text-[#091426]" />
               {contract.propertyAddress} ({contract.city})
             </p>
           </div>
 
           <div className="bg-white/15 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/20 text-left sm:text-right">
-            <span className="text-[10px] text-blue-200 uppercase block font-medium">Administra:</span>
+            <span className="text-[10px] text-[#091426] uppercase block font-medium">Administra:</span>
             <span className="text-xs font-bold text-white">{currentTenant.name}</span>
           </div>
         </div>
@@ -76,7 +76,7 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
           <div>
             <div className="flex justify-between items-center mb-3">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-                <CreditCard className="w-4 h-4 text-blue-600" /> Estado de Cuenta
+                <CreditCard className="w-4 h-4 text-[#091426]" /> Estado de Cuenta
               </span>
               <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-green-50 dark:bg-emerald-950 text-green-700 dark:text-emerald-300 border border-green-200 dark:border-emerald-800">
                 Al Día
@@ -97,14 +97,14 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
               </div>
               <div className="flex justify-between text-slate-600 dark:text-slate-400 mt-1.5">
                 <span>Alias CBU Inmobiliaria:</span>
-                <span className="font-mono font-bold text-blue-600 dark:text-blue-400">INMO.GOMEZ.JUNIN</span>
+                <span className="font-mono font-bold text-[#091426] dark:text-[#091426]">INMO.GOMEZ.JUNIN</span>
               </div>
             </div>
           </div>
 
           <button
             onClick={() => setIsNotifyPaymentOpen(true)}
-            className="mt-5 w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs uppercase tracking-wider rounded-lg transition-all shadow-sm flex items-center justify-center gap-2"
+            className="mt-5 w-full py-2.5 bg-[#091426] hover:bg-[#1E293B] text-white font-semibold text-xs uppercase tracking-wider rounded-lg transition-all shadow-sm flex items-center justify-center gap-2"
           >
             <Upload className="w-4 h-4" />
             Notificar Pago / Enviar Comprobante
@@ -116,9 +116,9 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
           <div>
             <div className="flex justify-between items-center mb-3">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-blue-600" /> Transparencia Legal
+                <ShieldCheck className="w-4 h-4 text-[#091426]" /> Transparencia Legal
               </span>
-              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
+              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#F2F4F6] dark:bg-[#F2F4F6] text-[#091426] dark:text-[#091426] border border-[#E6E8EA] dark:border-[#E6E8EA]">
                 Ley 27.551 (ICL)
               </span>
             </div>
@@ -126,14 +126,14 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
             <h3 className="text-sm font-semibold text-slate-900 dark:text-white">
               Próxima Actualización de Alquiler
             </h3>
-            <p className="text-xl font-bold font-mono text-blue-600 dark:text-blue-400 mt-1">
+            <p className="text-xl font-bold font-mono text-[#091426] dark:text-[#091426] mt-1">
               01 de Noviembre de 2024
             </p>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
               (Faltan ~62 días para el ajuste anual)
             </p>
 
-            <div className="mt-4 p-3 bg-blue-50/60 dark:bg-blue-950/30 rounded-lg border border-blue-100 dark:border-blue-900/50 text-xs text-slate-600 dark:text-slate-300 space-y-1">
+            <div className="mt-4 p-3 bg-[#F2F4F6]/60 dark:bg-[#F2F4F6] rounded-lg border border-blue-100 dark:border-[#E6E8EA] text-xs text-slate-600 dark:text-slate-300 space-y-1">
               <p>• <strong>Índice:</strong> ICL publicado a diario por el Banco Central.</p>
               <p>• <strong>Estimación transparente:</strong> Sin sorpresas, la inmobiliaria te enviará el valor final 15 días antes.</p>
             </div>
@@ -203,7 +203,7 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm animate-fadeIn">
           <div className="bg-white dark:bg-slate-900 w-full max-w-md rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-2xl">
             <h3 className="text-base font-bold text-slate-900 dark:text-white mb-1 flex items-center gap-2">
-              <Upload className="w-4 h-4 text-blue-600" />
+              <Upload className="w-4 h-4 text-[#091426]" />
               Notificar Pago de Alquiler
             </h3>
             <p className="text-xs text-slate-500 mb-4">
@@ -230,7 +230,7 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
                 <select
                   value={paymentMethod}
                   onChange={(e) => setPaymentMethod(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#091426]"
                 >
                   <option value="Transferencia Bancaria">Transferencia Bancaria (CBU/CVU)</option>
                   <option value="Mercado Pago">Mercado Pago</option>
@@ -242,7 +242,7 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
                 <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
                   Adjuntar Comprobante (PNG / JPG / PDF)
                 </label>
-                <div className="border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-lg p-5 text-center hover:border-blue-500 cursor-pointer bg-slate-50 dark:bg-slate-800/50">
+                <div className="border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-lg p-5 text-center hover:border-[#091426] cursor-pointer bg-slate-50 dark:bg-slate-800/50">
                   <Upload className="w-5 h-5 text-slate-400 mx-auto mb-1.5" />
                   <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 block">
                     Arrastra tu comprobante aquí o haz clic para buscar
@@ -262,7 +262,7 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
                 <button
                   type="submit"
                   disabled={paymentNotified}
-                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-lg shadow-sm"
+                  className="px-4 py-2 bg-[#091426] hover:bg-[#1E293B] text-white font-semibold text-xs rounded-lg shadow-sm"
                 >
                   {paymentNotified ? 'Enviando...' : 'Enviar a la Inmobiliaria'}
                 </button>
@@ -277,7 +277,7 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm animate-fadeIn">
           <div className="bg-white dark:bg-slate-900 w-full max-w-md rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-2xl">
             <h3 className="text-base font-bold text-slate-900 dark:text-white mb-1 flex items-center gap-2">
-              <Wrench className="w-4 h-4 text-blue-600" />
+              <Wrench className="w-4 h-4 text-[#091426]" />
               Reportar Incidencia de Mantenimiento
             </h3>
             <p className="text-xs text-slate-500 mb-4">
@@ -292,7 +292,7 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
                 <select
                   value={issueCategory}
                   onChange={(e) => setIssueCategory(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#091426]"
                 >
                   <option value="Plomería / Agua">Plomería / Filtración de Agua</option>
                   <option value="Electricidad">Electricidad / Corte de Suministro</option>
@@ -312,7 +312,7 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
                   value={issueDescription}
                   onChange={(e) => setIssueDescription(e.target.value)}
                   placeholder="Explica qué ocurre en el departamento..."
-                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#091426]"
                 />
               </div>
 
@@ -326,7 +326,7 @@ export const TenantPortalModule: React.FC<Props> = ({ currentTenant, currentUser
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-lg shadow-sm"
+                  className="px-4 py-2 bg-[#091426] hover:bg-[#1E293B] text-white font-semibold text-xs rounded-lg shadow-sm"
                 >
                   Enviar Reporte
                 </button>

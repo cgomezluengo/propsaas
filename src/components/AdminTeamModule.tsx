@@ -49,7 +49,7 @@ export const AdminTeamModule: React.FC<Props> = ({ currentTenant, currentUser })
 
         <button
           onClick={() => setIsInviteModalOpen(true)}
-          className="flex items-center gap-2 px-3.5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg transition-all shadow-sm"
+          className="flex items-center gap-2 px-3.5 py-2 bg-[#091426] hover:bg-[#1E293B] text-white text-xs font-semibold rounded-lg transition-all shadow-sm"
         >
           <UserPlus className="w-4 h-4" /> Invitar Miembro
         </button>
@@ -74,14 +74,14 @@ export const AdminTeamModule: React.FC<Props> = ({ currentTenant, currentUser })
           <h3 className="text-sm font-bold text-slate-900 dark:text-white mt-1">
             {currentTenant.city}, {currentTenant.province}
           </h3>
-          <p className="text-xs text-blue-600 dark:text-blue-400 font-medium mt-0.5">Depto. Judicial Junín</p>
+          <p className="text-xs text-[#091426] dark:text-[#091426] font-medium mt-0.5">Depto. Judicial Junín</p>
         </div>
 
         <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
           <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
             Plan Contratado
           </span>
-          <h3 className="text-sm font-bold text-slate-900 dark:text-white mt-1 uppercase text-blue-600 dark:text-blue-400">
+          <h3 className="text-sm font-bold text-slate-900 dark:text-white mt-1 uppercase text-[#091426] dark:text-[#091426]">
             {currentTenant.plan}
           </h3>
           <p className="text-xs text-slate-500 mt-0.5">Aislamiento PostgreSQL RLS activo</p>
@@ -131,7 +131,7 @@ export const AdminTeamModule: React.FC<Props> = ({ currentTenant, currentUser })
                   <td className="px-5 py-3">
                     <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
                       u.role === 'admin' ? 'bg-purple-50 text-purple-700 dark:bg-purple-950 dark:text-purple-300 border border-purple-200 dark:border-purple-800' :
-                      u.role === 'martillero' ? 'bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300 border border-blue-200 dark:border-blue-800' :
+                      u.role === 'martillero' ? 'bg-[#F2F4F6] text-[#091426] dark:bg-[#F2F4F6] dark:text-[#091426] border border-[#E6E8EA] dark:border-[#E6E8EA]' :
                       u.role === 'cobranzas' ? 'bg-amber-50 text-amber-700 dark:bg-amber-950 dark:text-amber-300 border border-amber-200 dark:border-amber-800' :
                       'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border border-slate-200 dark:border-slate-700'
                     }`}>
@@ -174,7 +174,7 @@ export const AdminTeamModule: React.FC<Props> = ({ currentTenant, currentUser })
           </div>
 
           <div className="p-3.5 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700">
-            <span className="font-bold text-blue-600 dark:text-blue-400 block mb-1">Martillero / Ventas</span>
+            <span className="font-bold text-[#091426] dark:text-[#091426] block mb-1">Martillero / Ventas</span>
             <p className="text-slate-500 text-[11px] leading-relaxed">
               Gestión de leads en Kanban, respuestas asistidas por IA, agenda de visitas y catálogo de inmuebles.
             </p>
@@ -218,7 +218,7 @@ export const AdminTeamModule: React.FC<Props> = ({ currentTenant, currentUser })
                   value={inviteName}
                   onChange={(e) => setInviteName(e.target.value)}
                   placeholder="Ej: Marcelo Venta"
-                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#091426]"
                 />
               </div>
 
@@ -232,7 +232,7 @@ export const AdminTeamModule: React.FC<Props> = ({ currentTenant, currentUser })
                   value={inviteEmail}
                   onChange={(e) => setInviteEmail(e.target.value)}
                   placeholder="marcelo@inmobiliaria.com"
-                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#091426]"
                 />
               </div>
 
@@ -243,7 +243,7 @@ export const AdminTeamModule: React.FC<Props> = ({ currentTenant, currentUser })
                 <select
                   value={inviteRole}
                   onChange={(e: any) => setInviteRole(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#091426]"
                 >
                   <option value="martillero">Martillero / Asesor Comercial</option>
                   <option value="cobranzas">Cobranzas & Administración</option>
@@ -262,7 +262,7 @@ export const AdminTeamModule: React.FC<Props> = ({ currentTenant, currentUser })
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-lg shadow-sm"
+                  className="px-4 py-2 bg-[#091426] hover:bg-[#1E293B] text-white font-semibold text-xs rounded-lg shadow-sm"
                 >
                   Enviar Invitación
                 </button>

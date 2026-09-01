@@ -117,7 +117,7 @@ export const ContractsModule: React.FC<Props> = ({ currentTenant }) => {
           
           <button
             onClick={() => setIsNewContractOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow-sm transition-all"
+            className="flex items-center gap-2 px-4 py-2 bg-[#091426] hover:bg-[#1E293B] text-white text-xs font-semibold rounded-lg shadow-sm transition-all"
           >
             <Plus className="w-4 h-4" /> Nuevo Contrato
           </button>
@@ -130,7 +130,7 @@ export const ContractsModule: React.FC<Props> = ({ currentTenant }) => {
           onClick={() => setActiveTab('contracts')}
           className={`pb-3 text-sm font-bold border-b-2 transition-all flex items-center gap-2 ${
             activeTab === 'contracts'
-              ? 'border-blue-600 text-blue-600 dark:text-blue-400'
+              ? 'border-[#091426] text-[#091426] dark:text-[#091426]'
               : 'border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-white'
           }`}
         >
@@ -140,7 +140,7 @@ export const ContractsModule: React.FC<Props> = ({ currentTenant }) => {
           onClick={() => setActiveTab('properties')}
           className={`pb-3 text-sm font-bold border-b-2 transition-all flex items-center gap-2 ${
             activeTab === 'properties'
-              ? 'border-blue-600 text-blue-600 dark:text-blue-400'
+              ? 'border-[#091426] text-[#091426] dark:text-[#091426]'
               : 'border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-white'
           }`}
         >
@@ -159,7 +159,7 @@ export const ContractsModule: React.FC<Props> = ({ currentTenant }) => {
                 placeholder="Buscar por inquilino o dirección..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-9 pr-3 py-1.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-full pl-9 pr-3 py-1.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#091426]"
               />
             </div>
             <span className="text-xs text-slate-500 font-medium">
@@ -205,7 +205,7 @@ export const ContractsModule: React.FC<Props> = ({ currentTenant }) => {
                       </td>
 
                       <td className="px-5 py-3.5">
-                        <span className="px-2 py-0.5 bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 rounded font-mono font-bold text-[10px]">
+                        <span className="px-2 py-0.5 bg-[#F2F4F6] dark:bg-[#F2F4F6] text-[#091426] dark:text-[#091426] border border-[#E6E8EA] dark:border-[#E6E8EA] rounded font-mono font-bold text-[10px]">
                           {contract.indexType}
                         </span>
                       </td>
@@ -235,7 +235,7 @@ export const ContractsModule: React.FC<Props> = ({ currentTenant }) => {
                               setSelectedContractForCalc(contract);
                               setCalcIndexType((contract.indexType === 'IPC' ? 'IPC' : 'ICL') as any);
                             }}
-                            className="px-2.5 py-1.5 bg-blue-50 dark:bg-blue-950/80 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:bg-blue-100 font-semibold rounded-lg transition-all flex items-center gap-1 text-xs"
+                            className="px-2.5 py-1.5 bg-[#F2F4F6] dark:bg-[#F2F4F6] text-[#091426] dark:text-[#091426] border border-[#E6E8EA] dark:border-[#E6E8EA] hover:bg-[#E6E8EA] font-semibold rounded-lg transition-all flex items-center gap-1 text-xs"
                           >
                             <Calculator className="w-3.5 h-3.5" /> Calcular Ajuste
                           </button>
@@ -283,7 +283,7 @@ export const ContractsModule: React.FC<Props> = ({ currentTenant }) => {
                     {prop.operationType}
                   </span>
                   <span className={`px-2 py-0.5 text-[10px] font-bold uppercase rounded text-white ${
-                    prop.status === 'disponible' ? 'bg-blue-600' :
+                    prop.status === 'disponible' ? 'bg-[#091426]' :
                     prop.status === 'reservada' ? 'bg-amber-600' : 'bg-green-600'
                   }`}>
                     {prop.status}
@@ -321,7 +321,7 @@ export const ContractsModule: React.FC<Props> = ({ currentTenant }) => {
             <div className="bg-slate-900 text-white p-5 flex justify-between items-start">
               <div>
                 <div className="flex items-center gap-2">
-                  <Calculator className="w-5 h-5 text-blue-400" />
+                  <Calculator className="w-5 h-5 text-[#091426]" />
                   <h3 className="text-base font-bold text-white">
                     Calculadora Legal de Actualización
                   </h3>
@@ -356,7 +356,7 @@ export const ContractsModule: React.FC<Props> = ({ currentTenant }) => {
                       onClick={() => setCalcIndexType(idx.id as any)}
                       className={`p-2.5 rounded-lg border text-left transition-all ${
                         calcIndexType === idx.id
-                          ? 'border-blue-600 bg-blue-50 dark:bg-blue-950/60 ring-1 ring-blue-500'
+                          ? 'border-[#091426] bg-[#F2F4F6] dark:bg-[#F2F4F6] ring-1 ring-blue-500'
                           : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800'
                       }`}
                     >
@@ -373,7 +373,7 @@ export const ContractsModule: React.FC<Props> = ({ currentTenant }) => {
                   <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
                     Variación Acumulada del Período
                   </label>
-                  <span className="text-xs font-bold font-mono text-blue-600 dark:text-blue-400">
+                  <span className="text-xs font-bold font-mono text-[#091426] dark:text-[#091426]">
                     +{calcPercentage}%
                   </span>
                 </div>
@@ -403,7 +403,7 @@ export const ContractsModule: React.FC<Props> = ({ currentTenant }) => {
 
                 <div className="flex justify-between text-xs text-slate-400 font-mono">
                   <span>Incremento Aplicado (+{calcPercentage}%):</span>
-                  <span className="font-bold text-blue-400">
+                  <span className="font-bold text-[#091426]">
                     +{formatCurrency(selectedContractForCalc.currentAmount * (calcPercentage / 100))}
                   </span>
                 </div>
@@ -437,7 +437,7 @@ export const ContractsModule: React.FC<Props> = ({ currentTenant }) => {
                 type="button"
                 disabled={isUpdating}
                 onClick={handleApplyCalculatedRent}
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-lg shadow-sm flex items-center gap-2 transition-all disabled:opacity-50"
+                className="px-4 py-2 bg-[#091426] hover:bg-[#1E293B] text-white font-semibold text-xs rounded-lg shadow-sm flex items-center gap-2 transition-all disabled:opacity-50"
               >
                 {isUpdating ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <CheckCircle className="w-3.5 h-3.5" />}
                 {isUpdating ? 'Aplicando...' : 'Aplicar Aumento & Descargar PDF'}
@@ -452,7 +452,7 @@ export const ContractsModule: React.FC<Props> = ({ currentTenant }) => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm animate-fadeIn">
           <div className="bg-white dark:bg-slate-900 w-full max-w-lg rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-2xl">
             <h3 className="text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-              <Plus className="w-5 h-5 text-blue-600" />
+              <Plus className="w-5 h-5 text-[#091426]" />
               Dar de Alta Nuevo Contrato de Locación
             </h3>
 
@@ -467,7 +467,7 @@ export const ContractsModule: React.FC<Props> = ({ currentTenant }) => {
                   value={newTenantName}
                   onChange={(e) => setNewTenantName(e.target.value)}
                   placeholder="Ej: Laura Santillán"
-                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#091426]"
                 />
               </div>
 
@@ -481,7 +481,7 @@ export const ContractsModule: React.FC<Props> = ({ currentTenant }) => {
                     required
                     value={newTenantCuit}
                     onChange={(e) => setNewTenantCuit(e.target.value)}
-                    className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500 font-mono"
+                    className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#091426] font-mono"
                   />
                 </div>
                 <div>
@@ -491,7 +491,7 @@ export const ContractsModule: React.FC<Props> = ({ currentTenant }) => {
                   <select
                     value={newIndex}
                     onChange={(e: any) => setNewIndex(e.target.value)}
-                    className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#091426]"
                   >
                     <option value="ICL">ICL (Banco Central)</option>
                     <option value="IPC">IPC (INDEC)</option>
@@ -510,7 +510,7 @@ export const ContractsModule: React.FC<Props> = ({ currentTenant }) => {
                   value={newAddress}
                   onChange={(e) => setNewAddress(e.target.value)}
                   placeholder="Ej: Av. San Martín 450, Piso 2A"
-                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#091426]"
                 />
               </div>
 
@@ -523,7 +523,7 @@ export const ContractsModule: React.FC<Props> = ({ currentTenant }) => {
                   required
                   value={newAmount}
                   onChange={(e) => setNewAmount(Number(e.target.value))}
-                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500 font-mono"
+                  className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#091426] font-mono"
                 />
               </div>
 
@@ -537,7 +537,7 @@ export const ContractsModule: React.FC<Props> = ({ currentTenant }) => {
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-lg shadow-sm"
+                  className="px-4 py-2 bg-[#091426] hover:bg-[#1E293B] text-white font-semibold text-xs rounded-lg shadow-sm"
                 >
                   Guardar Contrato
                 </button>

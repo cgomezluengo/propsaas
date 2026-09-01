@@ -84,7 +84,7 @@ export const AuthModule: React.FC<Props> = ({
       
       {/* 1. LOGIN SCREEN (Matches user's exact mockup) */}
       {view === 'login' && (
-        <div className="w-full max-w-5xl bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col md:flex-row min-h-[600px] animate-fadeIn">
+        <div className="w-full max-w-5xl bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col md:flex-row min-h-[600px] animate-fadeIn">
           {/* Left Hero Image Box */}
           <div className="hidden md:flex md:w-1/2 relative flex-col justify-end p-10 lg:p-12 overflow-hidden">
             <div 
@@ -97,7 +97,7 @@ export const AuthModule: React.FC<Props> = ({
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/80 to-transparent"></div>
             
             <div className="relative z-10 text-white">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-blue-950/80 text-blue-300 text-xs font-semibold uppercase tracking-wider mb-4 border border-blue-800">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#F2F4F6] text-[#091426] text-xs font-semibold uppercase tracking-wider mb-4 border border-[#E6E8EA]">
                 <Sparkles className="w-3.5 h-3.5" />
                 Para Inmobiliarias
               </div>
@@ -124,7 +124,7 @@ export const AuthModule: React.FC<Props> = ({
             {/* Brand Logo */}
             <div className="flex justify-between items-center mb-8">
               <div className="text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-sm">
+                <div className="w-8 h-8 rounded-lg bg-[#091426] text-white flex items-center justify-center font-bold text-sm">
                   P
                 </div>
                 PropTech Pro
@@ -136,7 +136,7 @@ export const AuthModule: React.FC<Props> = ({
                 onClick={() => setIs2FAEnabled(!is2FAEnabled)}
                 className={`text-[11px] px-2.5 py-1 rounded-md border transition-colors flex items-center gap-1.5 font-medium ${
                   is2FAEnabled 
-                    ? 'bg-blue-50 text-blue-700 border-blue-300 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-800'
+                    ? 'bg-[#F2F4F6] text-[#091426] border-[#CBD5E1] dark:bg-[#F2F4F6] dark:text-[#091426] dark:border-[#E6E8EA]'
                     : 'bg-slate-50 text-slate-500 border-slate-200 dark:bg-slate-800 dark:text-slate-400'
                 }`}
                 title="Activar simulación de autenticación de doble factor"
@@ -168,7 +168,7 @@ export const AuthModule: React.FC<Props> = ({
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="ejemplo@inmobiliaria.com"
-                      className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all"
+                      className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#091426] focus:border-transparent transition-all"
                     />
                   </div>
                 </div>
@@ -181,7 +181,7 @@ export const AuthModule: React.FC<Props> = ({
                     <button
                       type="button"
                       onClick={() => setView('forgot_password')}
-                      className="text-xs text-blue-600 dark:text-blue-400 hover:underline font-semibold"
+                      className="text-xs text-[#091426] dark:text-[#091426] hover:underline font-semibold"
                     >
                       ¿Olvidé mi contraseña?
                     </button>
@@ -194,7 +194,7 @@ export const AuthModule: React.FC<Props> = ({
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="••••••••"
-                      className="w-full pl-10 pr-10 py-2.5 bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all"
+                      className="w-full pl-10 pr-10 py-2.5 bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#091426] focus:border-transparent transition-all"
                     />
                     <button
                       type="button"
@@ -209,7 +209,7 @@ export const AuthModule: React.FC<Props> = ({
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs uppercase tracking-wider rounded-lg active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-sm mt-2"
+                  className="w-full py-2.5 bg-[#091426] hover:bg-[#1E293B] text-white font-semibold text-xs uppercase tracking-wider rounded-lg active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-sm mt-2"
                 >
                   Ingresar
                   <ArrowRight className="w-4 h-4" />
@@ -243,7 +243,7 @@ export const AuthModule: React.FC<Props> = ({
                 ¿Tu inmobiliaria aún no está en la red?{' '}
                 <button
                   onClick={() => setView('onboarding')}
-                  className="font-semibold text-blue-600 dark:text-blue-400 hover:underline ml-1"
+                  className="font-semibold text-[#091426] dark:text-[#091426] hover:underline ml-1"
                 >
                   Registrar Inmobiliaria
                 </button>
@@ -255,11 +255,11 @@ export const AuthModule: React.FC<Props> = ({
 
       {/* 2. ONBOARDING WIZARD (Dar de alta la agencia) */}
       {view === 'onboarding' && (
-        <div className="w-full max-w-2xl bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-8 animate-fadeIn">
+        <div className="w-full max-w-2xl bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-200 dark:border-slate-800 p-8 animate-fadeIn">
           {/* Header */}
           <div className="flex justify-between items-center pb-6 border-b border-slate-200 dark:border-slate-800">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#091426] dark:text-[#091426]">
                 Alta de Inmobiliaria Multi-Tenant
               </span>
               <h2 className="text-xl font-bold text-slate-900 dark:text-white mt-1">
@@ -274,7 +274,7 @@ export const AuthModule: React.FC<Props> = ({
           {/* Progress bar */}
           <div className="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full my-6 overflow-hidden">
             <div 
-              className="bg-blue-600 h-full transition-all duration-300"
+              className="bg-[#091426] h-full transition-all duration-300"
               style={{ width: `${(wizardStep / 3) * 100}%` }}
             />
           </div>
@@ -293,7 +293,7 @@ export const AuthModule: React.FC<Props> = ({
                     setAgencyName(e.target.value);
                     setWorkspaceUrl(e.target.value.toLowerCase().replace(/[^a-z0-9]/g, ''));
                   }}
-                  className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-semibold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-semibold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#091426]"
                   placeholder="Ej: Inmobiliaria Junín Propiedades"
                 />
               </div>
@@ -310,7 +310,7 @@ export const AuthModule: React.FC<Props> = ({
                     type="text"
                     value={workspaceUrl}
                     onChange={(e) => setWorkspaceUrl(e.target.value)}
-                    className="flex-1 px-4 py-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-sm font-mono text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    className="flex-1 px-4 py-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-sm font-mono text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#091426]"
                     placeholder="miinmobiliaria"
                   />
                   <span className="px-3 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-mono rounded-r-lg border border-l-0 border-slate-200 dark:border-slate-700">
@@ -328,7 +328,7 @@ export const AuthModule: React.FC<Props> = ({
                     type="email"
                     value={adminEmail}
                     onChange={(e) => setAdminEmail(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#091426]"
                   />
                 </div>
                 <div>
@@ -339,7 +339,7 @@ export const AuthModule: React.FC<Props> = ({
                     type="tel"
                     value={adminPhone}
                     onChange={(e) => setAdminPhone(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#091426]"
                   />
                 </div>
               </div>
@@ -358,7 +358,7 @@ export const AuthModule: React.FC<Props> = ({
                     type="text"
                     value={cuit}
                     onChange={(e) => setCuit(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#091426]"
                   />
                 </div>
                 <div>
@@ -368,7 +368,7 @@ export const AuthModule: React.FC<Props> = ({
                   <select
                     value={agencyCity}
                     onChange={(e) => setAgencyCity(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#091426]"
                   >
                     <option value="Junín">Junín (Provincia de Buenos Aires)</option>
                     <option value="Pergamino">Pergamino</option>
@@ -388,11 +388,11 @@ export const AuthModule: React.FC<Props> = ({
                   type="text"
                   value={matricula}
                   onChange={(e) => setMatricula(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#091426]"
                 />
               </div>
 
-              <div className="bg-blue-50 dark:bg-blue-950/30 p-4 rounded-xl border border-blue-200 dark:border-blue-800 text-xs text-blue-800 dark:text-blue-300">
+              <div className="bg-[#F2F4F6] dark:bg-[#F2F4F6] p-4 rounded-xl border border-[#E6E8EA] dark:border-[#E6E8EA] text-xs text-[#091426] dark:text-[#091426]">
                 <span className="font-bold">✓ Verificación Regional:</span> Tu espacio de trabajo quedará habilitado para operar con indexaciones oficiales del Banco Central (ICL) y Cámara Inmobiliaria de la Prov. de Buenos Aires.
               </div>
             </div>
@@ -410,7 +410,7 @@ export const AuthModule: React.FC<Props> = ({
                   onClick={() => setSelectedPlan('freemium')}
                   className={`cursor-pointer p-4 rounded-xl border transition-all ${
                     selectedPlan === 'freemium' 
-                      ? 'border-blue-600 bg-blue-50/40 dark:bg-blue-950/30 ring-2 ring-blue-500/20' 
+                      ? 'border-[#091426] bg-[#F2F4F6] dark:bg-[#F2F4F6] ring-2 ring-blue-500/20' 
                       : 'border-slate-200 dark:border-slate-700'
                   }`}
                 >
@@ -423,13 +423,13 @@ export const AuthModule: React.FC<Props> = ({
                   onClick={() => setSelectedPlan('agencia')}
                   className={`cursor-pointer p-4 rounded-xl border transition-all ${
                     selectedPlan === 'agencia' 
-                      ? 'border-blue-600 bg-blue-50/40 dark:bg-blue-950/30 ring-2 ring-blue-500/20' 
+                      ? 'border-[#091426] bg-[#F2F4F6] dark:bg-[#F2F4F6] ring-2 ring-blue-500/20' 
                       : 'border-slate-200 dark:border-slate-700'
                   }`}
                 >
                   <div className="flex justify-between items-center">
                     <span className="font-bold text-xs text-slate-900 dark:text-white">Agencia</span>
-                    <span className="text-[9px] font-bold bg-blue-600 text-white px-1.5 py-0.5 rounded">Recomendado</span>
+                    <span className="text-[9px] font-bold bg-[#091426] text-white px-1.5 py-0.5 rounded">Recomendado</span>
                   </div>
                   <p className="text-lg font-bold text-slate-900 dark:text-white mt-1">$49/mes</p>
                   <p className="text-[11px] text-slate-500 mt-2">Hasta 5 usuarios + IA CRM</p>
@@ -439,7 +439,7 @@ export const AuthModule: React.FC<Props> = ({
                   onClick={() => setSelectedPlan('multi_sucursal')}
                   className={`cursor-pointer p-4 rounded-xl border transition-all ${
                     selectedPlan === 'multi_sucursal' 
-                      ? 'border-blue-600 bg-blue-50/40 dark:bg-blue-950/30 ring-2 ring-blue-500/20' 
+                      ? 'border-[#091426] bg-[#F2F4F6] dark:bg-[#F2F4F6] ring-2 ring-blue-500/20' 
                       : 'border-slate-200 dark:border-slate-700'
                   }`}
                 >
@@ -475,7 +475,7 @@ export const AuthModule: React.FC<Props> = ({
               <button
                 type="button"
                 onClick={() => setWizardStep(wizardStep + 1)}
-                className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-lg flex items-center gap-2 transition-colors ml-auto"
+                className="px-5 py-2 bg-[#091426] hover:bg-[#1E293B] text-white font-semibold text-xs rounded-lg flex items-center gap-2 transition-colors ml-auto"
               >
                 Continuar <ArrowRight className="w-4 h-4" />
               </button>
@@ -483,7 +483,7 @@ export const AuthModule: React.FC<Props> = ({
               <button
                 type="button"
                 onClick={handleFinishOnboarding}
-                className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-lg flex items-center gap-2 transition-colors ml-auto shadow-sm"
+                className="px-5 py-2 bg-[#091426] hover:bg-[#1E293B] text-white font-semibold text-xs rounded-lg flex items-center gap-2 transition-colors ml-auto shadow-sm"
               >
                 Crear Inmobiliaria y Entrar <CheckCircle className="w-4 h-4" />
               </button>
@@ -494,9 +494,9 @@ export const AuthModule: React.FC<Props> = ({
 
       {/* 3. TENANT SELECTOR (Multi-Sucursal Transition) */}
       {view === 'tenant_selector' && (
-        <div className="w-full max-w-xl bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-8 animate-fadeIn">
+        <div className="w-full max-w-xl bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-200 dark:border-slate-800 p-8 animate-fadeIn">
           <div className="text-center mb-6">
-            <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800 flex items-center justify-center mx-auto mb-3">
+            <div className="w-12 h-12 rounded-xl bg-[#F2F4F6] dark:bg-[#F2F4F6] text-[#091426] dark:text-[#091426] border border-[#E6E8EA] dark:border-[#E6E8EA] flex items-center justify-center mx-auto mb-3">
               <Building2 className="w-6 h-6" />
             </div>
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Selecciona tu Inmobiliaria</h2>
@@ -510,14 +510,14 @@ export const AuthModule: React.FC<Props> = ({
               <div
                 key={tenant.id}
                 onClick={() => handleSelectTenantAndEnter(tenant)}
-                className="cursor-pointer p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 dark:hover:border-blue-500 hover:bg-blue-50/20 dark:hover:bg-blue-950/20 transition-all flex items-center justify-between group"
+                className="cursor-pointer p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-[#091426] dark:hover:border-[#091426] hover:bg-[#F2F4F6]/20 dark:hover:bg-[#F2F4F6]/20 transition-all flex items-center justify-between group"
               >
                 <div className="flex items-center gap-3.5">
                   <div className="w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center font-bold text-slate-700 dark:text-slate-200 overflow-hidden border border-slate-200 dark:border-slate-700">
                     <img src={tenant.logo} alt={tenant.name} className="w-full h-full object-cover" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-sm text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">
+                    <h4 className="font-semibold text-sm text-slate-900 dark:text-white group-hover:text-[#091426] transition-colors">
                       {tenant.name}
                     </h4>
                     <p className="text-xs text-slate-500 dark:text-slate-400">
@@ -529,7 +529,7 @@ export const AuthModule: React.FC<Props> = ({
                   <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
                     {tenant.plan}
                   </span>
-                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-0.5 transition-all" />
+                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#091426] group-hover:translate-x-0.5 transition-all" />
                 </div>
               </div>
             ))}
@@ -544,7 +544,7 @@ export const AuthModule: React.FC<Props> = ({
             </button>
             <button
               onClick={() => setView('onboarding')}
-              className="font-semibold text-blue-600 dark:text-blue-400 hover:underline"
+              className="font-semibold text-[#091426] dark:text-[#091426] hover:underline"
             >
               + Registrar otra sucursal
             </button>
@@ -555,7 +555,7 @@ export const AuthModule: React.FC<Props> = ({
       {/* 4. FORGOT PASSWORD SCREEN */}
       {view === 'forgot_password' && (
         <div className="w-full max-w-md bg-white dark:bg-[#0F172A] rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 p-8 animate-fadeIn text-center">
-          <div className="w-14 h-14 rounded-2xl bg-amber-50 dark:bg-amber-950/40 text-amber-600 flex items-center justify-center mx-auto mb-4 border border-amber-200 dark:border-amber-800">
+          <div className="w-14 h-14 rounded-xl bg-amber-50 dark:bg-amber-950/40 text-amber-600 flex items-center justify-center mx-auto mb-4 border border-amber-200 dark:border-amber-800">
             <KeyRound className="w-7 h-7" />
           </div>
 
@@ -598,7 +598,7 @@ export const AuthModule: React.FC<Props> = ({
       {/* 5. TWO-FACTOR AUTHENTICATION SCREEN */}
       {view === 'two_factor' && (
         <div className="w-full max-w-md bg-white dark:bg-[#0F172A] rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 p-8 animate-fadeIn text-center">
-          <div className="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 flex items-center justify-center mx-auto mb-4 border border-emerald-200 dark:border-emerald-800">
+          <div className="w-14 h-14 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 flex items-center justify-center mx-auto mb-4 border border-emerald-200 dark:border-emerald-800">
             <Smartphone className="w-7 h-7" />
           </div>
 

@@ -59,8 +59,8 @@ export const IntegrationsModule: React.FC<Props> = ({ currentTenant }) => {
             </p>
           </div>
 
-          <div className="flex items-center gap-2 bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 px-3 py-1.5 rounded-lg border border-blue-200 dark:border-blue-800 text-xs font-semibold">
-            <span className="w-2 h-2 rounded-full bg-blue-600 animate-ping"></span>
+          <div className="flex items-center gap-2 bg-[#F2F4F6] dark:bg-[#F2F4F6] text-[#091426] dark:text-[#091426] px-3 py-1.5 rounded-lg border border-[#E6E8EA] dark:border-[#E6E8EA] text-xs font-semibold">
+            <span className="w-2 h-2 rounded-full bg-[#091426] animate-ping"></span>
             Webhooks Ingesta Activa
           </div>
         </div>
@@ -79,7 +79,7 @@ export const IntegrationsModule: React.FC<Props> = ({ currentTenant }) => {
             type="button"
             onClick={() => setAutoImportLeads(!autoImportLeads)}
             className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors ${
-              autoImportLeads ? 'bg-blue-600 justify-end' : 'bg-slate-300 dark:bg-slate-700 justify-start'
+              autoImportLeads ? 'bg-[#091426] justify-end' : 'bg-slate-300 dark:bg-slate-700 justify-start'
             }`}
           >
             <span className="w-4 h-4 bg-white rounded-full shadow-sm"></span>
@@ -97,7 +97,7 @@ export const IntegrationsModule: React.FC<Props> = ({ currentTenant }) => {
             type="button"
             onClick={() => setAutoPublishProperties(!autoPublishProperties)}
             className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors ${
-              autoPublishProperties ? 'bg-blue-600 justify-end' : 'bg-slate-300 dark:bg-slate-700 justify-start'
+              autoPublishProperties ? 'bg-[#091426] justify-end' : 'bg-slate-300 dark:bg-slate-700 justify-start'
             }`}
           >
             <span className="w-4 h-4 bg-white rounded-full shadow-sm"></span>
@@ -114,7 +114,7 @@ export const IntegrationsModule: React.FC<Props> = ({ currentTenant }) => {
               key={item.id}
               className={`bg-white dark:bg-slate-900 p-5 rounded-xl border transition-all shadow-sm flex flex-col justify-between ${
                 item.connected 
-                  ? 'border-blue-600/40 dark:border-blue-500/40 ring-1 ring-blue-500/20' 
+                  ? 'border-[#091426]/40 dark:border-[#091426]/40 ring-1 ring-blue-500/20' 
                   : 'border-slate-200 dark:border-slate-800'
               }`}
             >
@@ -122,7 +122,7 @@ export const IntegrationsModule: React.FC<Props> = ({ currentTenant }) => {
                 <div className="flex justify-between items-start mb-3">
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-700">
                     {item.name === 'Instagram' && <Instagram className="w-5 h-5 text-pink-600" />}
-                    {item.name === 'Facebook' && <Facebook className="w-5 h-5 text-blue-600" />}
+                    {item.name === 'Facebook' && <Facebook className="w-5 h-5 text-[#091426]" />}
                     {item.name === 'YouTube' && <Youtube className="w-5 h-5 text-red-600" />}
                     {item.name === 'Twitter/X' && <Twitter className="w-5 h-5 text-sky-500" />}
                     {item.name === 'WhatsApp Business' && <MessageSquare className="w-5 h-5 text-emerald-600" />}
@@ -152,7 +152,7 @@ export const IntegrationsModule: React.FC<Props> = ({ currentTenant }) => {
                     <span className="text-[10px] text-slate-400 uppercase font-bold block">Cuenta vinculada:</span>
                     <span className="font-semibold text-slate-800 dark:text-slate-200 font-mono">{item.accountName}</span>
                     {item.leadsCapturedMonth && (
-                      <span className="text-[11px] text-blue-600 dark:text-blue-400 block mt-0.5 font-medium">
+                      <span className="text-[11px] text-[#091426] dark:text-[#091426] block mt-0.5 font-medium">
                         +{item.leadsCapturedMonth} leads captados este mes
                       </span>
                     )}
@@ -168,7 +168,7 @@ export const IntegrationsModule: React.FC<Props> = ({ currentTenant }) => {
                   className={`w-full py-2 px-3 rounded-lg text-xs font-semibold transition-all flex items-center justify-center gap-2 ${
                     item.connected
                       ? 'bg-rose-50 text-rose-700 dark:bg-rose-950/40 dark:text-rose-300 border border-rose-200 hover:bg-rose-100'
-                      : 'bg-blue-600 hover:bg-blue-700 text-white shadow-sm'
+                      : 'bg-[#091426] hover:bg-[#1E293B] text-white shadow-sm'
                   }`}
                 >
                   {isBusy && <RefreshCw className="w-3.5 h-3.5 animate-spin" />}
@@ -184,7 +184,7 @@ export const IntegrationsModule: React.FC<Props> = ({ currentTenant }) => {
       <div className="bg-slate-900 text-white p-5 rounded-xl border border-slate-800 shadow-sm">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <span className="text-[11px] font-bold uppercase tracking-wider text-blue-400">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#091426]">
               Desarrolladores & Portales (Zonaprop / Argenprop / Meta)
             </span>
             <h3 className="text-sm font-bold text-white mt-0.5">URL de Webhook Ingesta Multi-Tenant</h3>
