@@ -214,93 +214,93 @@ export const DashboardCRMModule: React.FC<Props> = ({
     <div className="space-y-6 animate-fadeIn">
       
       {/* 1. Header with Daily Summary & Quick Mode Switcher */}
-      <div className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+      <div className="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 pb-4 border-b border-slate-100 dark:border-slate-800">
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              <h1 className="text-xl font-bold text-slate-900 dark:text-white">
-                Seguimiento & CRM Inmobiliario
+              <h1 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                Consultas & Clientes Interesados
               </h1>
               <span className="text-xs px-2.5 py-0.5 rounded-md bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 font-bold border border-blue-200 dark:border-blue-800">
                 {currentTenant.name}
               </span>
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-              Hola, <span className="font-semibold text-slate-800 dark:text-slate-200">{currentUser.name}</span>. Todo el flujo de prospectos organizado en pasos claros y directos.
+              Hola, <span className="font-semibold text-slate-800 dark:text-slate-200">{currentUser.name}</span>. Acá tenés todas las personas que consultaron por tus propiedades ordenadas por urgencia.
             </p>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
             <button
               onClick={() => exportLeadsToCSV(leads)}
-              className="flex items-center gap-1.5 px-3 py-2 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold rounded-lg border border-slate-200 dark:border-slate-700 transition-all shadow-sm"
-              title="Descargar lista de prospectos en Excel"
+              className="flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-2 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold rounded-lg border border-slate-200 dark:border-slate-700 transition-all shadow-sm"
+              title="Descargar lista de consultas en Excel"
             >
-              <Download className="w-3.5 h-3.5 text-slate-500" /> Exportar CSV
+              <Download className="w-3.5 h-3.5 text-slate-500" /> Descargar Excel
             </button>
 
             <button
               onClick={() => setIsNewLeadModalOpen(true)}
-              className="flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow-sm transition-all active:scale-95"
+              className="flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow-sm transition-all active:scale-95"
             >
-              <Plus className="w-4 h-4" /> Carga Rápida (15 seg)
+              <Plus className="w-4 h-4" /> + Cargar Consulta
             </button>
           </div>
         </div>
 
         {/* View Mode Toggle Bar */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pt-3">
-          <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg">
+          <div className="flex flex-wrap items-center gap-1.5 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg w-full sm:w-auto">
             <button
               onClick={() => setViewMode('easy_flow')}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-bold transition-all ${
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-3 py-1.5 rounded-md text-xs font-bold transition-all ${
                 viewMode === 'easy_flow'
                   ? 'bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 shadow-sm'
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               <Zap className="w-3.5 h-3.5 text-amber-500" />
-              <span>⚡ Modo Flujo Fácil (Recomendado)</span>
+              <span>⚡ Modo Paso a Paso</span>
             </button>
 
             <button
               onClick={() => setViewMode('kanban')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
                 viewMode === 'kanban'
                   ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm'
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               <LayoutGrid className="w-3.5 h-3.5" />
-              <span>Tablero Kanban</span>
+              <span>Columnas</span>
             </button>
 
             <button
               onClick={() => setViewMode('list')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
                 viewMode === 'list'
                   ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm'
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               <List className="w-3.5 h-3.5" />
-              <span>Lista Compacta</span>
+              <span>Lista</span>
             </button>
           </div>
 
           {/* Quick Urgency Toggles */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 w-full sm:w-auto">
             <button
               onClick={() => setUrgencyFilterOnly(!urgencyFilterOnly)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 border ${
+              className={`w-full sm:w-auto justify-center px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 border ${
                 urgencyFilterOnly
                   ? 'bg-red-500 text-white border-red-600 shadow-sm'
                   : 'bg-slate-50 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100'
               }`}
             >
               <AlertTriangle className={`w-3.5 h-3.5 ${urgencyFilterOnly ? 'text-white' : 'text-red-500'}`} />
-              <span>Solo Urgentes ({unansweredCount})</span>
+              <span>Sin responder ({unansweredCount})</span>
             </button>
           </div>
         </div>
@@ -315,10 +315,10 @@ export const DashboardCRMModule: React.FC<Props> = ({
             </div>
             <div>
               <h4 className="text-xs font-bold text-blue-900 dark:text-blue-200">
-                Flujo Simple en 3 Pasos para Martilleros y Ventas
+                ¿Cómo usar esta sección? (Super fácil en 3 pasos)
               </h4>
               <p className="text-xs text-blue-800/80 dark:text-blue-300/80 mt-0.5 leading-relaxed">
-                <span className="font-bold">1. Responder:</span> Hacé clic en <span className="font-semibold text-emerald-700 dark:text-emerald-300">"WhatsApp con IA"</span> para mandar la respuesta sugerida al instante → <span className="font-bold">2. Visita:</span> Tocá <span className="font-semibold">"Agendar Visita"</span> para fijar fecha → <span className="font-bold">3. Cierre:</span> Pasalo a contrato con 1 clic.
+                <span className="font-bold">1. Responder:</span> Tocá <span className="font-semibold text-emerald-700 dark:text-emerald-300">"WhatsApp"</span> para enviar un mensaje ya preparado → <span className="font-bold">2. Agendar:</span> Tocá <span className="font-semibold">"Agendar Visita"</span> cuando coordinen el día → <span className="font-bold">3. Contrato:</span> Marcá la seña y generá el contrato con 1 clic.
               </p>
             </div>
           </div>

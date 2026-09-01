@@ -99,22 +99,22 @@ export const AuthModule: React.FC<Props> = ({
             <div className="relative z-10 text-white">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-blue-950/80 text-blue-300 text-xs font-semibold uppercase tracking-wider mb-4 border border-blue-800">
                 <Sparkles className="w-3.5 h-3.5" />
-                SaaS B2B Multi-Tenant
+                Para Inmobiliarias
               </div>
               <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-white mb-3">
-                Transformando la <br />
-                Gestión Inmobiliaria
+                Administrá tus alquileres <br />
+                y clientes sin enredos
               </h1>
               <p className="text-sm text-slate-300 max-w-sm leading-relaxed">
-                Plataforma centralizada para operaciones B2B, contratos, cálculo ICL/IPC y análisis de datos en tiempo real.
+                Aumentos automáticos con ICL e IPC, emisión rápida de recibos y atención por WhatsApp desde una sola pantalla.
               </p>
 
               <div className="mt-8 pt-6 border-t border-slate-800 flex items-center gap-4 text-xs text-slate-400">
-                <span>📍 Junín & PBA</span>
+                <span>📍 Junín y Prov. Bs. As.</span>
                 <span>•</span>
-                <span>🔒 Aislamiento RLS</span>
+                <span>📑 Recibos Oficiales</span>
                 <span>•</span>
-                <span>⚡ IA Scoring</span>
+                <span>💬 WhatsApp Integrado</span>
               </div>
             </div>
           </div>

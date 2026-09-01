@@ -25,52 +25,52 @@ export const LandingModule: React.FC<Props> = ({ onNavigate }) => {
         <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-blue-950 text-blue-300 border border-blue-800">
           Nuevo
         </span>
-        <span className="text-slate-300">Plataforma SaaS B2B especializada en Junín y Provincia de Buenos Aires (ICL / IPC Automático)</span>
+        <span className="text-slate-300">Sistema inmobiliario simple y automático • Alquileres, ICL / IPC y WhatsApp</span>
       </div>
 
       {/* Hero Section */}
-      <section className="relative pt-16 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+      <section className="relative pt-12 sm:pt-16 pb-16 sm:pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
         <div className="absolute top-1/2 -left-24 w-80 h-80 bg-slate-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
         <div className="text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 text-xs font-semibold uppercase tracking-wider mb-6 border border-blue-200 dark:border-blue-800">
             <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-            PropTech Pro B2B SaaS
+            Para Inmobiliarias y Martilleros
           </div>
 
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
-            Gestión Inmobiliaria <br className="hidden sm:inline" />
+          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
+            Administrá tus alquileres y clientes <br className="hidden sm:inline" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-700 to-slate-900 dark:from-blue-400 dark:via-blue-300 dark:to-slate-200">
-              Inteligente
+              de forma simple y sin vueltas
             </span>
           </h1>
 
-          <p className="mt-5 text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Optimiza la administración de tus propiedades, contratos e inquilinos con una plataforma SaaS B2B diseñada para la eficiencia operativa y la transparencia financiera.
+          <p className="mt-4 sm:mt-5 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            Calculá aumentos automáticos por ICL o IPC, emití recibos con un clic y respondé consultas de WhatsApp al instante sin perder ningún cliente.
           </p>
 
           {/* Action Buttons */}
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
             <button
-              onClick={() => onNavigate('auth')}
-              className="w-full sm:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-lg shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2"
+              onClick={() => onNavigate('dashboard')}
+              className="w-full sm:w-auto px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-xl shadow-md active:scale-95 transition-all flex items-center justify-center gap-2"
             >
-              Prueba Gratuita
+              Probar Sistema Gratis
               <ArrowRight className="w-4 h-4" />
             </button>
             <button
-              onClick={() => onNavigate('dashboard')}
-              className="w-full sm:w-auto px-6 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-semibold text-sm rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 active:scale-95 transition-all flex items-center justify-center gap-2"
+              onClick={() => onNavigate('contracts')}
+              className="w-full sm:w-auto px-6 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-semibold text-sm rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 active:scale-95 transition-all flex items-center justify-center gap-2"
             >
-              Agendar Demo
+              Ver Calculadora ICL / IPC
             </button>
           </div>
 
-          <div className="mt-6 flex items-center justify-center gap-6 text-xs text-slate-500 dark:text-slate-400">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-slate-500 dark:text-slate-400">
             <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-blue-600" /> Sin tarjeta de crédito</span>
-            <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-blue-600" /> Setup en 2 minutos</span>
-            <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-blue-600" /> Multi-Tenant RLS</span>
+            <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-blue-600" /> Listo para usar en 1 minuto</span>
+            <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-blue-600" /> Soporte por WhatsApp</span>
           </div>
         </div>
 
@@ -85,14 +85,14 @@ export const LandingModule: React.FC<Props> = ({ onNavigate }) => {
                 <Users className="w-4 h-4" />
               </div>
               <span className="text-[10px] font-bold uppercase tracking-wider text-rose-600 bg-rose-50 dark:bg-rose-950/40 px-2 py-0.5 rounded border border-rose-200 dark:border-rose-800">
-                Alerta &gt;48h
+                Avisos Automáticos
               </span>
             </div>
             <h4 className="font-bold text-sm text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">
-              CRM & Embudo Kanban
+              Seguimiento de Consultas
             </h4>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
-              Evita perder leads de WhatsApp e Instagram. Notificaciones inmediatas antes de que el cliente busque otra inmobiliaria.
+              No dejes consultas colgadas. Respondé por WhatsApp con 1 toque antes de que el interesado alquile en otro lado.
             </p>
           </div>
 
@@ -105,14 +105,14 @@ export const LandingModule: React.FC<Props> = ({ onNavigate }) => {
                 <TrendingUp className="w-4 h-4" />
               </div>
               <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800">
-                Índice ICL / IPC
+                Índices ICL / IPC
               </span>
             </div>
             <h4 className="font-bold text-sm text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">
-              Actualización de Alquileres
+              Aumento de Alquileres
             </h4>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
-              Cálculo automático de aumentos legales, emisión de recibos digitales con firma y aviso preventivo al inquilino.
+              Calculá cuánto sube cada contrato al instante, descargá el recibo listo para firmar y avisale al inquilino.
             </p>
           </div>
 
@@ -125,14 +125,14 @@ export const LandingModule: React.FC<Props> = ({ onNavigate }) => {
                 <Smartphone className="w-4 h-4" />
               </div>
               <span className="text-[10px] font-bold uppercase tracking-wider text-purple-600 bg-purple-50 dark:bg-purple-950/40 px-2 py-0.5 rounded border border-purple-200 dark:border-purple-800">
-                Mobile First
+                Desde el Celular
               </span>
             </div>
             <h4 className="font-bold text-sm text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">
-              Portal del Inquilino
+              Portal para Inquilinos
             </h4>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
-              Acceso 24/7 para ver fecha de vencimiento, notificar transferencias bancarias y descargar comprobantes PDF oficiales.
+              Tus inquilinos pueden consultar cuánto pagar, ver el alias para transferir y descargar sus recibos cuando quieran.
             </p>
           </div>
         </div>
@@ -147,8 +147,8 @@ export const LandingModule: React.FC<Props> = ({ onNavigate }) => {
                 <Calculator className="w-4 h-4" />
               </div>
               <div>
-                <h3 className="text-base font-bold text-slate-900 dark:text-white">Calculadora de Recuperación de Leads & Rentabilidad</h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400">Estima cuánto dinero pierde tu inmobiliaria por no responder a tiempo (&gt;48h)</p>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white">Calculadora de Ganancia por Respuestas Rápidas</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400">Mirá cuánto dinero extra genera tu inmobiliaria respondiendo a tiempo las consultas</p>
               </div>
             </div>
 
@@ -185,11 +185,11 @@ export const LandingModule: React.FC<Props> = ({ onNavigate }) => {
 
             <div className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4 bg-blue-50/50 dark:bg-blue-950/20 p-4 rounded-lg border border-blue-100 dark:border-blue-900/40">
               <div>
-                <span className="text-xs text-slate-600 dark:text-slate-400">Leads recuperados con CRM & IA:</span>
-                <p className="text-base font-bold text-slate-900 dark:text-white">~{recoveredLeads} operaciones adicionales / mes</p>
+                <span className="text-xs text-slate-600 dark:text-slate-400">Consultas convertidas en visitas/reservas:</span>
+                <p className="text-base font-bold text-slate-900 dark:text-white">~{recoveredLeads} operaciones adicionales al mes</p>
               </div>
               <div className="text-right">
-                <span className="text-xs text-blue-700 dark:text-blue-400 font-semibold uppercase">Honorarios preservados:</span>
+                <span className="text-xs text-blue-700 dark:text-blue-400 font-semibold uppercase">Comisiones ganadas estimadas:</span>
                 <p className="text-xl font-bold text-blue-600 dark:text-blue-400">{formatCurrency(estimatedSavings)} / mes</p>
               </div>
             </div>
@@ -200,9 +200,9 @@ export const LandingModule: React.FC<Props> = ({ onNavigate }) => {
       {/* Features Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Características Principales</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">¿Por qué usar el sistema?</h2>
           <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
-            Herramientas diseñadas para escalar tu portafolio inmobiliario y eliminar fricciones con propietarios e inquilinos.
+            Herramientas fáciles de entender pensadas para el día a día de una inmobiliaria argentina.
           </p>
         </div>
 
@@ -213,16 +213,16 @@ export const LandingModule: React.FC<Props> = ({ onNavigate }) => {
               <div className="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 flex items-center justify-center mb-4 border border-blue-200 dark:border-blue-800">
                 <MessageSquare className="w-5 h-5" />
               </div>
-              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">CRM de Prospectos</h3>
+              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Panel de Consultas & WhatsApp</h3>
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                Gestiona el ciclo de vida completo de los clientes potenciales. Seguimiento automatizado, embudos de conversión y comunicación centralizada para agencias.
+                Centralizá las consultas de WhatsApp, llamadas y portales en un solo lugar. Marcá con un toque quién ya visitó la propiedad o quién está por señar.
               </p>
             </div>
             <button 
               onClick={() => onNavigate('dashboard')}
               className="mt-6 flex items-center gap-1.5 text-xs font-bold text-blue-600 dark:text-blue-400 hover:gap-2 transition-all"
             >
-              Explorar CRM <ArrowRight className="w-3.5 h-3.5" />
+              Ver Panel de Consultas <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
@@ -232,16 +232,16 @@ export const LandingModule: React.FC<Props> = ({ onNavigate }) => {
               <div className="w-10 h-10 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 flex items-center justify-center mb-4 border border-emerald-200 dark:border-emerald-800">
                 <TrendingUp className="w-5 h-5" />
               </div>
-              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Actualización Automática de Alquileres</h3>
+              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Aumentos Automáticos de Alquiler</h3>
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                Olvídate de los cálculos manuales. Nuestro motor aplica automáticamente los índices de actualización de contratos (IPC, ICL, etc.) y notifica a los inquilinos con antelación, garantizando precisión financiera y cumplimiento legal.
+                Sin cálculos complicados: elegí el contrato, seleccioná el índice oficial (ICL o IPC) y obtené el nuevo valor del alquiler junto al recibo oficial en PDF.
               </p>
             </div>
             <button 
               onClick={() => onNavigate('contracts')}
               className="mt-6 flex items-center gap-1.5 text-xs font-bold text-blue-600 dark:text-blue-400 hover:gap-2 transition-all"
             >
-              Ver Calculadora <ArrowRight className="w-3.5 h-3.5" />
+              Calcular Aumentos <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
@@ -251,16 +251,16 @@ export const LandingModule: React.FC<Props> = ({ onNavigate }) => {
               <div className="w-10 h-10 rounded-lg bg-purple-50 dark:bg-purple-950/60 text-purple-600 flex items-center justify-center mb-4 border border-purple-200 dark:border-purple-800">
                 <Smartphone className="w-5 h-5" />
               </div>
-              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Portal de Inquilinos</h3>
+              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Portal para Inquilinos</h3>
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                Acceso 24/7 para que los inquilinos descarguen recibos, reporten incidencias de mantenimiento y revisen el estado de su cuenta corriente en tiempo real.
+                Tus inquilinos pueden entrar desde su celular, ver el monto a pagar, enviar el comprobante de transferencia y reportar cualquier arreglo que necesite la casa.
               </p>
             </div>
             <button 
               onClick={() => onNavigate('tenant_portal')}
               className="mt-6 flex items-center gap-1.5 text-xs font-bold text-blue-600 dark:text-blue-400 hover:gap-2 transition-all"
             >
-              Ver Portal Móvil <ArrowRight className="w-3.5 h-3.5" />
+              Ver Portal de Inquilinos <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>
@@ -270,77 +270,77 @@ export const LandingModule: React.FC<Props> = ({ onNavigate }) => {
       <section className="py-16 bg-slate-50 dark:bg-slate-900/40 border-t border-slate-200 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Planes y Precios</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Planes Claros y Transparentes</h2>
             <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
-              Escala sin fricciones. Elige el plan que se adapte a tu operación inmobiliaria.
+              Elegí la opción ideal según el tamaño de tu inmobiliaria.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto items-stretch">
-            {/* Card 1: Freemium */}
+            {/* Card 1: Inicial */}
             <div className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
               <div>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                  FREEMIUM (GRATIS)
+                  INICIAL (GRATIS)
                 </span>
                 <div className="mt-3 flex items-baseline gap-1">
                   <span className="text-3xl font-bold text-slate-900 dark:text-white">$0</span>
                   <span className="text-slate-500 text-xs">/mes</span>
                 </div>
                 <p className="mt-1.5 text-xs text-slate-500 dark:text-slate-400">
-                  Ideal para administradores independientes y martilleros individuales.
+                  Para martilleros o administradores independientes que están empezando.
                 </p>
 
                 <ul className="mt-6 space-y-2.5 text-xs text-slate-600 dark:text-slate-300">
                   <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> 1 Usuario</li>
                   <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> Hasta 50 propiedades</li>
-                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> Gestión de contratos básica</li>
-                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> Portal de inquilinos</li>
-                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> Conexión Social (1 cuenta)</li>
+                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> Calculadora de aumentos ICL / IPC</li>
+                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> Portal para inquilinos</li>
+                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> Recibos de alquiler en PDF</li>
                 </ul>
               </div>
 
               <button
-                onClick={() => onNavigate('auth')}
+                onClick={() => onNavigate('dashboard')}
                 className="mt-6 w-full py-2.5 px-4 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-semibold text-xs rounded-lg transition-all"
               >
-                Comenzar Gratis
+                Empezar Gratis
               </button>
             </div>
 
-            {/* Card 2: Agencia (Popular) */}
+            {/* Card 2: Inmobiliaria (Popular) */}
             <div className="bg-slate-900 text-white rounded-xl p-6 border-2 border-blue-600 shadow-lg flex flex-col justify-between relative transform md:-translate-y-1">
               <div className="absolute -top-3 right-6 bg-blue-600 text-white text-[10px] font-bold uppercase tracking-wider py-0.5 px-2.5 rounded-full">
-                Popular
+                Recomendado
               </div>
 
               <div>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-blue-400">
-                  AGENCIA
+                  INMOBILIARIA
                 </span>
                 <div className="mt-3 flex items-baseline gap-1">
                   <span className="text-3xl font-bold text-white">$49</span>
                   <span className="text-slate-400 text-xs">/mes</span>
                 </div>
                 <p className="mt-1.5 text-xs text-slate-300">
-                  Para equipos y agencias en crecimiento en Junín y la provincia.
+                  Para oficinas inmobiliarias con equipo de atención y ventas.
                 </p>
 
                 <ul className="mt-6 space-y-2.5 text-xs text-slate-200">
-                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-400" /> Hasta 5 Usuarios (Roles Admin/Ventas)</li>
-                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-400" /> Propiedades ilimitadas</li>
-                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-400" /> CRM de Prospectos con alertas &gt;48h</li>
+                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-400" /> Hasta 5 Usuarios del equipo</li>
+                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-400" /> Propiedades y contratos ilimitados</li>
+                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-400" /> Seguimiento de consultas y avisos automáticos</li>
+                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-400" /> Respuestas de WhatsApp con 1 clic</li>
                   <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-400" /> Portal de inquilinos con notificaciones</li>
-                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-400" /> Conexión Social Ilimitada</li>
-                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-400" /> Automatización de Leads con IA</li>
+                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-400" /> Asistente inteligente para evaluar interesados</li>
                 </ul>
               </div>
 
               <button
-                onClick={() => onNavigate('auth')}
+                onClick={() => onNavigate('dashboard')}
                 className="mt-6 w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs rounded-lg shadow-sm transition-all"
               >
-                Prueba Gratuita 14 Días
+                Probar 14 Días Gratis
               </button>
             </div>
 
@@ -355,23 +355,22 @@ export const LandingModule: React.FC<Props> = ({ onNavigate }) => {
                   <span className="text-slate-500 text-xs">/mes</span>
                 </div>
                 <p className="mt-1.5 text-xs text-slate-500 dark:text-slate-400">
-                  Control total para grandes operaciones con múltiples sucursales.
+                  Para empresas inmobiliarias con varias oficinas o sucursales.
                 </p>
 
                 <ul className="mt-6 space-y-2.5 text-xs text-slate-600 dark:text-slate-300">
-                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> Usuarios Ilimitados</li>
-                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> Multi-Tenant con selector de sucursal</li>
-                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> API Access & Integraciones Webhook</li>
-                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> Reportes financieros avanzados y CSV/PDF</li>
-                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> Soporte prioritario 24/7</li>
+                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> Usuarios ilimitados</li>
+                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> Manejo de múltiples sucursales</li>
+                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> Reportes de cobro y contratos exportables a Excel</li>
+                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> Asesor dedicado y soporte telefónico</li>
                 </ul>
               </div>
 
               <button
-                onClick={() => onNavigate('auth')}
+                onClick={() => onNavigate('dashboard')}
                 className="mt-6 w-full py-2.5 px-4 bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white font-semibold text-xs rounded-lg transition-all"
               >
-                Contactar Ventas
+                Consultar por Sucursales
               </button>
             </div>
           </div>
