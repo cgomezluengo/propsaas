@@ -70,7 +70,9 @@ export default function App() {
       }
       setDbReady(true);
     } catch (err) {
-      console.error('Error initializing SQLite:', err);
+      console.error('Error initializing SQLite, falling back to mockData:', err);
+      // Fallback to prevent UI freeze
+      setDbReady(true);
     }
   };
 
