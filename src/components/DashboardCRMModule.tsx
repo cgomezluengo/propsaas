@@ -4,7 +4,8 @@ import {
   Plus, Search, Filter, Download, Sparkles, CheckCircle2, Clock, 
   Check, Calendar, Share2, 
   Eye, MessageSquare, UserCheck, CalendarCheck, Archive, FileText,
-  Building, MapPin, Send, ChevronRight, CheckSquare, KeyRound, User as UserIcon
+  Building, MapPin, Send, ChevronRight, CheckSquare, KeyRound, User as UserIcon,
+  Timer, TrendingUp, Bed, Bath, Home, ArrowRight, UserPlus, FileCheck, Layers, Lock, ShieldCheck, Mail
 } from 'lucide-react';
 import { Lead, Tenant, User } from '../types';
 import { mockLeads } from '../data/mockData';
@@ -29,9 +30,11 @@ export const DashboardCRMModule: React.FC<Props> = ({
   const [channelFilter, setChannelFilter] = useState<string>('all');
   const [urgencyFilterOnly, setUrgencyFilterOnly] = useState<boolean>(false);
   
-  // Modals and Selected States
+  // Selected Lead for Context Drawer (Desktop split view exactly like Stitch)
+  const [selectedLead, setSelectedLead] = useState<Lead>(mockLeads[0]);
+  
+  // Modals
   const [isNewLeadModalOpen, setIsNewLeadModalOpen] = useState(false);
-  const [selectedLeadForDetail, setSelectedLeadForDetail] = useState<Lead | null>(null);
   const [whatsappModalLead, setWhatsappModalLead] = useState<Lead | null>(null);
   const [customWhatsAppMessage, setCustomWhatsAppMessage] = useState<string>('');
   const [scheduleVisitLead, setScheduleVisitLead] = useState<Lead | null>(null);
@@ -62,8 +65,8 @@ export const DashboardCRMModule: React.FC<Props> = ({
       return lead;
     }));
 
-    if (selectedLeadForDetail && selectedLeadForDetail.id === leadId) {
-      setSelectedLeadForDetail(prev => prev ? { ...prev, status: newStatus, hoursUnanswered: 0 } : null);
+    if (selectedLead.id === leadId) {
+      setSelectedLead(prev => ({ ...prev, status: newStatus, hoursUnanswered: 0 }));
     }
   };
 
@@ -113,7 +116,7 @@ export const DashboardCRMModule: React.FC<Props> = ({
     
     let detectedName = 'Consulta WhatsApp';
     let detectedPhone = '+54 236 4';
-    let detectedProperty = 'Inmueble Consultada';
+    let detectedProperty = 'Inmueble Consultado';
 
     const phoneMatch = pastedText.match(/(\+?\d[\d\s-]{8,})/);
     if (phoneMatch) detectedPhone = phoneMatch[0].trim();
@@ -127,11 +130,11 @@ export const DashboardCRMModule: React.FC<Props> = ({
     }
 
     if (pastedText.toLowerCase().includes('depto') || pastedText.toLowerCase().includes('departamento')) {
-      detectedProperty = 'Departamento 2 Ambientes';
+      detectedProperty = 'Departamento 2 Ambientes Belgrano';
     } else if (pastedText.toLowerCase().includes('casa')) {
-      detectedProperty = 'Casa Familiar';
+      detectedProperty = 'Casa Familiar con Cochera';
     } else if (pastedText.toLowerCase().includes('local') || pastedText.toLowerCase().includes('oficina')) {
-      detectedProperty = 'Local Comercial';
+      detectedProperty = 'Local Comercial Centro';
     }
 
     setNewName(detectedName);
@@ -151,25 +154,26 @@ export const DashboardCRMModule: React.FC<Props> = ({
       email: `${newName.toLowerCase().replace(/[^a-z0-9]/g, '') || 'lead'}@consulta.com`,
       channel: newChannel,
       propertyInterest: newProperty || 'Propiedad Consultada',
-      propertyAddress: 'Zona Centro',
+      propertyAddress: 'Zona Centro - Junín',
       status: 'new',
       leadType: 'alquiler',
       budget: newBudget,
       timeframe: 'Inmediato',
-      createdAt: 'Recién cargado',
+      createdAt: 'Hace 5 min',
       hoursUnanswered: 0,
       notes: newNotes || 'Consulta cargada mediante flujo rápido.',
       aiScore: {
-        score: 92,
+        score: 94,
         category: 'alta_intencion',
         reason: 'Lead calificado con alta intención de visita.',
         suggestedReply: `¡Hola ${newName.split(' ')[0]}! Gracias por consultar por ${newProperty}. ¿Querés que coordinemos una visita esta semana?`,
-        guaranteeStatus: 'Garantía disponible',
+        guaranteeStatus: 'Garantía en verificación',
         verifiedIncome: true
       }
     };
 
     setLeads([newLeadItem, ...leads]);
+    setSelectedLead(newLeadItem);
     setIsNewLeadModalOpen(false);
     setNewName('');
     setNewProperty('');
@@ -210,442 +214,575 @@ export const DashboardCRMModule: React.FC<Props> = ({
   const currentList = getCurrentList();
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6 animate-fadeIn text-[#191C1E] min-h-[750px]">
+    <div className="flex flex-col lg:flex-row gap-6 text-[#191C1E] animate-fadeIn -mx-4 sm:-mx-6 lg:-mx-8 -my-6 sm:-my-8 min-h-[calc(100vh-4rem)]">
       
       {/* ========================================================================= */}
-      {/* 1. LEFT FIXED SIDEBAR: ACCESOS Y MENÚS SEPARADOS POR ESTADO */}
+      {/* 1. LEFT SIDEBAR: EXACT STITCH THEME (#091426 NAVY DARK CONTAINER)       */}
       {/* ========================================================================= */}
-      <aside className="w-full lg:w-72 bg-white rounded-xl border border-[#E6E8EA] p-4 flex flex-col justify-between shadow-[0_4px_6px_-1px_rgba(0,0,0,0.03)] shrink-0">
+      <aside className="w-full lg:w-[280px] bg-[#091426] text-white p-4 flex flex-col justify-between shrink-0 shadow-lg z-20">
         <div className="space-y-6">
           
-          {/* Tenant Agency Brand Info */}
-          <div className="p-3 bg-[#F7F9FB] rounded-xl border border-[#E6E8EA]">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#091426] text-white flex items-center justify-center font-bold text-sm shadow-xs">
-                {currentTenant.name.charAt(0)}
-              </div>
-              <div className="min-w-0">
-                <h2 className="text-xs font-bold text-[#191C1E] truncate">{currentTenant.name}</h2>
-                <p className="text-[10px] text-[#006C49] font-semibold">{currentTenant.city}, {currentTenant.province}</p>
+          {/* Brand Header */}
+          <div className="px-2 py-2 flex items-center gap-3">
+            <div className="w-9 h-9 rounded-lg bg-[#006C49] text-white flex items-center justify-center font-bold text-base shadow-sm">
+              <Building className="w-5 h-5" />
+            </div>
+            <div>
+              <h1 className="text-xl font-bold text-white tracking-tight leading-tight">PropSaaS</h1>
+              <p className="text-[11px] text-[#8590A6] font-medium">Estate Logic CRM</p>
+            </div>
+          </div>
+
+          {/* Tenant Switcher Button */}
+          <div className="px-1">
+            <div className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl border border-white/10 bg-white/5 text-left">
+              <div className="flex items-center gap-2.5 overflow-hidden">
+                <div className="w-6 h-6 rounded bg-white text-[#091426] flex items-center justify-center font-black text-xs shrink-0">
+                  {currentTenant.name.charAt(0)}
+                </div>
+                <div className="min-w-0">
+                  <p className="text-xs font-bold text-white truncate">{currentTenant.name}</p>
+                  <p className="text-[10px] text-[#006C49] font-medium truncate">{currentTenant.city}</p>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* SECTION: BANDEJA CRM (ESTADOS EN MENÚS SEPARADOS) */}
-          <div>
-            <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-3 mb-2 flex items-center justify-between">
-              <span>Bandeja CRM & Prospectos</span>
-              <span className="text-[9px] bg-slate-100 text-slate-600 px-1.5 py-0.2 rounded font-mono font-bold">
-                {leads.length}
-              </span>
-            </div>
-
-            <nav className="space-y-1">
-              {/* 1. Nuevas Consultas */}
-              <button
-                onClick={() => { setActiveSection('nuevas'); setUrgencyFilterOnly(false); }}
-                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold transition-all text-left ${
-                  activeSection === 'nuevas'
-                    ? 'bg-[#091426] text-white shadow-sm font-bold'
-                    : 'text-slate-700 hover:bg-[#F2F4F6] hover:text-[#091426]'
-                }`}
-              >
-                <div className="flex items-center gap-2.5">
-                  <MessageSquare className={`w-4 h-4 ${activeSection === 'nuevas' ? 'text-white' : 'text-[#091426]'}`} />
-                  <span>1. Nuevas Consultas</span>
-                </div>
-                {urgent24Count > 0 ? (
-                  <span className="text-[10px] font-bold bg-[#BA1A1A] text-white px-2 py-0.5 rounded-full animate-pulse shadow-xs">
-                    {urgent24Count} urgentes
-                  </span>
-                ) : (
-                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${activeSection === 'nuevas' ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600'}`}>
-                    {leadsNew.length}
-                  </span>
-                )}
-              </button>
-
-              {/* 2. En Conversación */}
-              <button
-                onClick={() => setActiveSection('conversacion')}
-                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold transition-all text-left ${
-                  activeSection === 'conversacion'
-                    ? 'bg-[#091426] text-white shadow-sm font-bold'
-                    : 'text-slate-700 hover:bg-[#F2F4F6] hover:text-[#091426]'
-                }`}
-              >
-                <div className="flex items-center gap-2.5">
-                  <UserCheck className={`w-4 h-4 ${activeSection === 'conversacion' ? 'text-white' : 'text-amber-600'}`} />
-                  <span>2. En Conversación</span>
-                </div>
-                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                  activeSection === 'conversacion' ? 'bg-[#006C49] text-white' : 'bg-amber-100 text-amber-800'
-                }`}>
-                  {leadsContacted.length} activos
-                </span>
-              </button>
-
-              {/* 3. Visitas Agendadas */}
-              <button
-                onClick={() => setActiveSection('visitas')}
-                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold transition-all text-left ${
-                  activeSection === 'visitas'
-                    ? 'bg-[#091426] text-white shadow-sm font-bold'
-                    : 'text-slate-700 hover:bg-[#F2F4F6] hover:text-[#091426]'
-                }`}
-              >
-                <div className="flex items-center gap-2.5">
-                  <CalendarCheck className={`w-4 h-4 ${activeSection === 'visitas' ? 'text-white' : 'text-[#006C49]'}`} />
-                  <span>3. Visitas Agendadas</span>
-                </div>
-                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                  activeSection === 'visitas' ? 'bg-white/20 text-white' : 'bg-emerald-100 text-[#006C49]'
-                }`}>
-                  {leadsVisit.length} citas
-                </span>
-              </button>
-
-              {/* 4. Clientes Ganados / Cerrados */}
-              <button
-                onClick={() => setActiveSection('ganados')}
-                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold transition-all text-left ${
-                  activeSection === 'ganados'
-                    ? 'bg-[#091426] text-white shadow-sm font-bold'
-                    : 'text-slate-700 hover:bg-[#F2F4F6] hover:text-[#091426]'
-                }`}
-              >
-                <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className={`w-4 h-4 ${activeSection === 'ganados' ? 'text-white' : 'text-[#006C49]'}`} />
-                  <span>4. Clientes Ganados</span>
-                </div>
-                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                  activeSection === 'ganados' ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600'
-                }`}>
-                  {leadsWon.length}
-                </span>
-              </button>
-
-              {/* 5. Descartados */}
-              <button
-                onClick={() => setActiveSection('descartados')}
-                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold transition-all text-left ${
-                  activeSection === 'descartados'
-                    ? 'bg-[#091426] text-white shadow-sm font-bold'
-                    : 'text-slate-700 hover:bg-[#F2F4F6] hover:text-[#091426]'
-                }`}
-              >
-                <div className="flex items-center gap-2.5">
-                  <Archive className={`w-4 h-4 ${activeSection === 'descartados' ? 'text-white' : 'text-slate-400'}`} />
-                  <span>5. Descartados / Archivo</span>
-                </div>
-                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                  activeSection === 'descartados' ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-400'
-                }`}>
-                  {leadsLost.length}
-                </span>
-              </button>
-            </nav>
-          </div>
-
-          {/* Quick Actions in Sidebar */}
-          <div className="pt-3 border-t border-[#E6E8EA] space-y-2">
+          {/* CTA: Nueva Propiedad / Cargar Consulta */}
+          <div className="px-1">
             <button
               onClick={() => setIsNewLeadModalOpen(true)}
-              className="w-full py-2.5 px-3 bg-[#091426] hover:bg-[#1E293B] text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-sm transition-all active:scale-[0.98]"
+              className="w-full bg-[#006C49] hover:bg-[#007D55] text-white text-xs font-bold py-2.5 rounded-xl flex items-center justify-center gap-2 shadow-sm transition-all active:scale-[0.98]"
             >
               <Plus className="w-4 h-4" /> + Cargar Consulta
             </button>
+          </div>
 
-            <button
-              onClick={() => exportLeadsToCSV(leads)}
-              className="w-full py-2 px-3 bg-white hover:bg-[#F2F4F6] text-slate-700 font-semibold text-xs rounded-xl border border-[#CBD5E1] flex items-center justify-center gap-1.5 transition-all shadow-2xs"
-            >
-              <Download className="w-3.5 h-3.5 text-slate-500" /> Exportar a Excel
-            </button>
+          {/* Nav Items Grouped by Sections */}
+          <div className="space-y-5 px-1 overflow-y-auto">
+            
+            {/* Group: BANDEJA CRM (ESTADOS EN MENÚS SEPARADOS) */}
+            <div>
+              <p className="px-2 mb-2 text-[10px] font-bold text-[#8590A6] uppercase tracking-wider">
+                Bandeja CRM
+              </p>
+              
+              <div className="space-y-1">
+                {/* 1. Nuevas Consultas */}
+                <button
+                  onClick={() => { setActiveSection('nuevas'); setUrgencyFilterOnly(false); }}
+                  className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs transition-all text-left ${
+                    activeSection === 'nuevas'
+                      ? 'bg-white/15 text-[#6FFBBE] font-bold border-r-4 border-[#6FFBBE]'
+                      : 'text-[#D8E3FB] opacity-80 hover:bg-white/10 hover:opacity-100'
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5">
+                    <MessageSquare className="w-4 h-4" />
+                    <span>1. Nuevas Consultas</span>
+                  </div>
+                  {urgent24Count > 0 ? (
+                    <span className="bg-[#BA1A1A] text-white text-[10px] font-bold px-2 py-0.5 rounded-full animate-pulse">
+                      {urgent24Count} urg. &gt;24h
+                    </span>
+                  ) : (
+                    <span className="bg-white/10 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                      {leadsNew.length}
+                    </span>
+                  )}
+                </button>
+
+                {/* 2. En Conversación */}
+                <button
+                  onClick={() => setActiveSection('conversacion')}
+                  className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs transition-all text-left ${
+                    activeSection === 'conversacion'
+                      ? 'bg-white/15 text-[#6FFBBE] font-bold border-r-4 border-[#6FFBBE]'
+                      : 'text-[#D8E3FB] opacity-80 hover:bg-white/10 hover:opacity-100'
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5">
+                    <UserCheck className="w-4 h-4" />
+                    <span>2. En Conversación</span>
+                  </div>
+                  <span className="bg-[#006C49] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                    {leadsContacted.length} activos
+                  </span>
+                </button>
+
+                {/* 3. Visitas Agendadas */}
+                <button
+                  onClick={() => setActiveSection('visitas')}
+                  className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs transition-all text-left ${
+                    activeSection === 'visitas'
+                      ? 'bg-white/15 text-[#6FFBBE] font-bold border-r-4 border-[#6FFBBE]'
+                      : 'text-[#D8E3FB] opacity-80 hover:bg-white/10 hover:opacity-100'
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5">
+                    <CalendarCheck className="w-4 h-4" />
+                    <span>3. Visitas Agendadas</span>
+                  </div>
+                  <span className="bg-white/10 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                    {leadsVisit.length} citas
+                  </span>
+                </button>
+
+                {/* 4. Clientes Ganados */}
+                <button
+                  onClick={() => setActiveSection('ganados')}
+                  className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs transition-all text-left ${
+                    activeSection === 'ganados'
+                      ? 'bg-white/15 text-[#6FFBBE] font-bold border-r-4 border-[#6FFBBE]'
+                      : 'text-[#D8E3FB] opacity-80 hover:bg-white/10 hover:opacity-100'
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5">
+                    <CheckCircle2 className="w-4 h-4" />
+                    <span>4. Clientes Ganados</span>
+                  </div>
+                  <span className="bg-white/10 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                    {leadsWon.length}
+                  </span>
+                </button>
+
+                {/* 5. Descartados */}
+                <button
+                  onClick={() => setActiveSection('descartados')}
+                  className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs transition-all text-left ${
+                    activeSection === 'descartados'
+                      ? 'bg-white/15 text-[#6FFBBE] font-bold border-r-4 border-[#6FFBBE]'
+                      : 'text-[#D8E3FB] opacity-80 hover:bg-white/10 hover:opacity-100'
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5">
+                    <Archive className="w-4 h-4" />
+                    <span>5. Descartados</span>
+                  </div>
+                  <span className="bg-white/10 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                    {leadsLost.length}
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            {/* Group: GESTIÓN */}
+            <div>
+              <p className="px-2 mb-2 text-[10px] font-bold text-[#8590A6] uppercase tracking-wider">
+                Gestión
+              </p>
+              <div className="space-y-1 text-xs text-[#D8E3FB] opacity-80">
+                <button onClick={() => exportLeadsToCSV(leads)} className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-white/10 hover:text-white transition-all text-left">
+                  <Download className="w-4 h-4 text-slate-400" />
+                  <span>Exportar Reporte CSV</span>
+                </button>
+              </div>
+            </div>
+
           </div>
 
         </div>
 
-        {/* Bottom Profile Pill */}
-        <div className="pt-4 border-t border-[#E6E8EA] mt-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-full bg-[#091426] text-white flex items-center justify-center text-xs font-bold">
+        {/* Profile Pill at bottom */}
+        <div className="pt-4 border-t border-white/10 px-2 flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <div className="w-9 h-9 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center font-bold text-xs">
               {currentUser.name.charAt(0)}
             </div>
             <div className="min-w-0">
-              <p className="text-xs font-bold text-[#191C1E] truncate">{currentUser.name}</p>
-              <span className="text-[10px] text-slate-400 capitalize">{currentUser.role}</span>
+              <p className="text-xs font-bold text-white truncate">{currentUser.name}</p>
+              <p className="text-[10px] text-[#8590A6] capitalize">{currentUser.role} • Plan Agencia</p>
             </div>
           </div>
-          <span className="text-[9px] bg-emerald-50 text-[#006C49] font-bold px-2 py-0.5 rounded-full border border-emerald-200">
-            Online
-          </span>
+          <span className="w-2.5 h-2.5 rounded-full bg-[#006C49] ring-2 ring-emerald-900 animate-pulse"></span>
         </div>
       </aside>
 
       {/* ========================================================================= */}
-      {/* 2. MAIN CONTENT AREA: VISTA DIRECTA ORIENTADA A LA ACCIÓN (NO KANBAN) */}
+      {/* 2. MAIN WORKSPACE CANVAS (SPLIT VIEW: LIST + CONTEXT DRAWER LIKE STITCH) */}
       {/* ========================================================================= */}
-      <div className="flex-1 flex flex-col space-y-5">
+      <main className="flex-1 flex flex-col bg-[#F7F9FB] overflow-hidden">
         
-        {/* Top Header Card */}
-        <div className="bg-white p-5 rounded-xl border border-[#E6E8EA] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.03)]">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        {/* Header & Stats Bento Grid */}
+        <header className="p-6 bg-white border-b border-[#E6E8EA] shrink-0 space-y-5">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-lg font-bold text-[#191C1E]">
-                  {activeSection === 'nuevas' && 'Bandeja de Entrada: Nuevas Consultas'}
-                  {activeSection === 'conversacion' && 'Prospectos en Conversación Activa'}
-                  {activeSection === 'visitas' && 'Agenda de Visitas Inmobiliarias'}
-                  {activeSection === 'ganados' && 'Operaciones y Clientes Ganados'}
-                  {activeSection === 'descartados' && 'Histórico de Consultas Archivadas'}
-                </h1>
-                <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-[#F2F4F6] text-[#091426] border border-[#E6E8EA]">
-                  {currentList.length} items
-                </span>
-              </div>
-              <p className="text-xs text-slate-500 mt-1">
-                {activeSection === 'nuevas' && 'Consultas recientes ordenadas por tiempo de espera. Respondé con 1 clic para no perder prospectos.'}
-                {activeSection === 'conversacion' && 'Personas ya contactadas. Coordiná la visita o solicitá los requisitos de garantía.'}
-                {activeSection === 'visitas' && 'Visitas programadas con martillero. Enviá la ubicación exacta o avanzá a la reserva.'}
-                {activeSection === 'ganados' && 'Leads que concretaron contrato o compra satisfactoriamente.'}
-                {activeSection === 'descartados' && 'Consultas archivadas o sin interés.'}
+              <h1 className="text-2xl font-bold text-[#091426] tracking-tight">
+                {activeSection === 'nuevas' && 'Bandeja de Entrada: Nuevas Consultas Inmobiliarias'}
+                {activeSection === 'conversacion' && 'Prospectos en Conversación Activa'}
+                {activeSection === 'visitas' && 'Agenda de Visitas Inmobiliarias'}
+                {activeSection === 'ganados' && 'Operaciones y Clientes Ganados'}
+                {activeSection === 'descartados' && 'Histórico de Consultas Archivadas'}
+              </h1>
+              <p className="text-sm text-slate-500 mt-1">
+                {activeSection === 'nuevas' && 'Gestiona y responde a los leads entrantes de todos los canales (WhatsApp, Instagram, Portales).'}
+                {activeSection === 'conversacion' && 'Contactos iniciados en espera de agendamiento o entrega de documentación de garantía.'}
+                {activeSection === 'visitas' && 'Coordinación logística con martilleros y recorridos con prospectos.'}
+                {activeSection === 'ganados' && 'Operaciones cerradas y listas para emisión de contrato.'}
+                {activeSection === 'descartados' && 'Archivo histórico de prospectos no calificados.'}
               </p>
             </div>
 
-            {/* Quick KPIs */}
-            {activeSection === 'nuevas' && (
-              <div className="flex items-center gap-2">
-                <div className="px-3 py-2 bg-[#FFDAD6]/40 border border-[#FFDAD6] rounded-xl text-center">
-                  <p className="text-[10px] font-bold uppercase text-[#BA1A1A]">Demora &gt;24h</p>
-                  <p className="text-base font-bold font-mono text-[#BA1A1A]">{urgent24Count}</p>
-                </div>
-                <div className="px-3 py-2 bg-emerald-50 border border-emerald-200 rounded-xl text-center">
-                  <p className="text-[10px] font-bold uppercase text-[#006C49]">Atención SLA</p>
-                  <p className="text-base font-bold font-mono text-[#006C49]">96%</p>
-                </div>
-              </div>
-            )}
-
-            {activeSection === 'visitas' && (
-              <div className="flex items-center gap-1.5 bg-[#F2F4F6] p-1 rounded-xl border border-[#E6E8EA]">
-                {(['hoy', 'manana', 'semana', 'todos'] as const).map(d => (
-                  <button
-                    key={d}
-                    onClick={() => setSelectedDayFilter(d)}
-                    className={`px-3 py-1 rounded-lg text-xs font-bold capitalize transition-all ${
-                      selectedDayFilter === d ? 'bg-[#091426] text-white shadow-xs' : 'text-slate-600 hover:text-[#091426]'
-                    }`}
-                  >
-                    {d}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Search and Filters Toolbar */}
-          <div className="mt-4 pt-4 border-t border-[#E6E8EA] flex flex-col sm:flex-row justify-between items-center gap-3">
-            <div className="relative w-full sm:w-80">
-              <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-              <input
-                type="text"
-                placeholder="Buscar por cliente, propiedad o teléfono..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-9 pr-3 py-1.5 bg-[#F7F9FB] border border-[#E6E8EA] rounded-lg text-xs text-[#191C1E] focus:outline-none focus:ring-2 focus:ring-[#091426]"
-              />
-            </div>
-
-            <div className="flex items-center gap-2 w-full sm:w-auto overflow-x-auto">
-              <span className="text-xs font-semibold text-slate-500 flex items-center gap-1">
-                <Filter className="w-3.5 h-3.5 text-slate-400" /> Canal:
-              </span>
-              {['all', 'whatsapp', 'instagram', 'facebook', 'web'].map((chn) => (
-                <button
-                  key={chn}
-                  onClick={() => setChannelFilter(chn)}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all capitalize whitespace-nowrap ${
-                    channelFilter === chn
-                      ? 'bg-[#091426] text-white shadow-xs font-bold'
-                      : 'bg-[#F2F4F6] text-slate-600 hover:bg-[#E6E8EA]'
-                  }`}
-                >
-                  {chn === 'all' ? 'Todos' : chn}
-                </button>
-              ))}
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => exportLeadsToCSV(leads)}
+                className="px-3.5 py-2 bg-white hover:bg-[#F2F4F6] text-[#091426] text-xs font-semibold rounded-xl border border-[#CBD5E1] transition-all flex items-center gap-1.5 shadow-2xs"
+              >
+                <Download className="w-3.5 h-3.5" /> Exportar
+              </button>
+              <button
+                onClick={() => setIsNewLeadModalOpen(true)}
+                className="px-4 py-2 bg-[#091426] hover:bg-[#1E293B] text-white text-xs font-bold rounded-xl transition-all shadow-sm"
+              >
+                + Cargar Lead
+              </button>
             </div>
           </div>
-        </div>
 
-        {/* Direct Action Cards List */}
-        <div className="space-y-3 flex-1">
-          {currentList.length === 0 ? (
-            <div className="bg-white rounded-xl border border-dashed border-[#CBD5E1] p-12 text-center">
-              <CheckCircle2 className="w-10 h-10 text-[#006C49] mx-auto mb-2" />
-              <h3 className="font-bold text-sm text-[#191C1E]">No hay elementos en esta sección</h3>
-              <p className="text-xs text-slate-500 mt-1">Estás al día con tus prospectos en este estado.</p>
+          {/* Quick Stats Bento Box */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            
+            {/* Bento 1: Urgency / Unanswered */}
+            <div className="bg-white border border-[#E6E8EA] rounded-xl p-4 shadow-2xs flex items-center gap-4 border-l-4 border-l-[#BA1A1A]">
+              <div className="w-12 h-12 rounded-full bg-[#FFDAD6]/60 flex items-center justify-center text-[#BA1A1A] shrink-0">
+                <AlertTriangle className="w-6 h-6" />
+              </div>
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Total Sin Responder</p>
+                <p className="text-2xl font-bold font-mono text-[#091426] leading-none mt-1">
+                  {urgent24Count} <span className="text-[#BA1A1A] text-xs font-bold font-sans ml-1">Urgentes (&gt;24h)</span>
+                </p>
+              </div>
             </div>
-          ) : (
-            currentList.map((lead) => (
-              <div
-                key={lead.id}
-                className={`bg-white rounded-xl border transition-all p-4 shadow-[0_2px_4px_-1px_rgba(0,0,0,0.03)] hover:border-[#091426]/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 ${
-                  activeSection === 'nuevas' && lead.hoursUnanswered >= 48
-                    ? 'border-[#FFDAD6] bg-red-50/20'
-                    : 'border-[#E6E8EA]'
+
+            {/* Bento 2: Average Time */}
+            <div className="bg-white border border-[#E6E8EA] rounded-xl p-4 shadow-2xs flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-[#D8E3FB]/50 flex items-center justify-center text-[#091426] shrink-0">
+                <Clock className="w-6 h-6" />
+              </div>
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Tiempo Promedio</p>
+                <p className="text-2xl font-bold font-mono text-[#091426] leading-none mt-1">
+                  18 <span className="text-slate-500 text-xs font-sans">minutos</span>
+                </p>
+              </div>
+            </div>
+
+            {/* Bento 3: SLA Compliance */}
+            <div className="bg-white border border-[#E6E8EA] rounded-xl p-4 shadow-2xs flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center text-[#006C49] shrink-0">
+                <TrendingUp className="w-6 h-6" />
+              </div>
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-wider text-slate-500">SLA de Respuesta (&lt;1h)</p>
+                <p className="text-2xl font-bold font-mono text-[#006C49] leading-none mt-1">
+                  94% <span className="text-[#006C49] text-xs font-sans font-bold ml-1">✓ Óptimo</span>
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </header>
+
+        {/* Split Container: Left Inbox List + Right Context Drawer */}
+        <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
+          
+          {/* Left List Container */}
+          <div className="w-full lg:w-[60%] flex flex-col border-r border-[#E6E8EA] bg-white">
+            
+            {/* Toolbar: Search and Filter */}
+            <div className="p-4 border-b border-[#E6E8EA] flex flex-wrap items-center gap-3 bg-white sticky top-0 z-10">
+              <div className="relative flex-1 min-w-[200px]">
+                <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  placeholder="Buscar lead, propiedad o teléfono..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-9 pr-3 py-2 bg-[#F7F9FB] border border-[#E6E8EA] rounded-xl text-xs text-[#191C1E] focus:outline-none focus:ring-2 focus:ring-[#091426]"
+                />
+              </div>
+
+              <button
+                onClick={() => setChannelFilter(channelFilter === 'all' ? 'whatsapp' : 'all')}
+                className="flex items-center gap-1.5 px-3 py-2 border border-[#E6E8EA] rounded-xl text-xs font-semibold hover:bg-[#F2F4F6] transition-colors"
+              >
+                <Filter className="w-3.5 h-3.5 text-slate-500" /> Canal: <span className="capitalize font-bold">{channelFilter}</span>
+              </button>
+
+              <button
+                onClick={() => setUrgencyFilterOnly(!urgencyFilterOnly)}
+                className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold transition-all ${
+                  urgencyFilterOnly
+                    ? 'bg-[#BA1A1A] text-white border border-[#BA1A1A]'
+                    : 'bg-[#FFDAD6]/30 text-[#BA1A1A] border border-[#FFDAD6] hover:bg-[#FFDAD6]/50'
                 }`}
               >
-                {/* Left: Lead Context & Details */}
-                <div className="space-y-1.5 flex-1 min-w-0">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-[#F2F4F6] text-[#091426] border border-[#E6E8EA]">
-                      {lead.channel}
-                    </span>
-                    
-                    <h3 className="font-bold text-sm text-[#191C1E] truncate">
-                      {lead.name}
-                    </h3>
-                    
-                    <span className="text-xs font-mono text-slate-500">
-                      • {lead.phone}
-                    </span>
+                <AlertTriangle className="w-3.5 h-3.5" /> Solo Urgentes ({urgent24Count})
+              </button>
+            </div>
 
-                    {activeSection === 'nuevas' && lead.hoursUnanswered >= 24 && (
-                      <span className="text-[10px] font-bold text-[#BA1A1A] bg-[#FFDAD6]/60 px-2 py-0.5 rounded-full flex items-center gap-1 border border-[#FFDAD6]">
-                        <Clock className="w-3 h-3" /> {lead.hoursUnanswered}h sin responder
-                      </span>
-                    )}
-
-                    {lead.aiScore && (
-                      <span className="text-[10px] font-bold text-[#006C49] bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 flex items-center gap-1">
-                        <Sparkles className="w-3 h-3" /> IA Intent: {lead.aiScore.score}%
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="flex items-center gap-2 text-xs text-slate-700">
-                    <span className="font-semibold text-[#091426]">Interés:</span> {lead.propertyInterest}
-                    <span className="text-slate-400">|</span>
-                    <span className="font-semibold text-slate-500">Presupuesto:</span> <span className="font-mono">{lead.budget}</span>
-                  </div>
-
-                  {lead.notes && (
-                    <p className="text-xs text-slate-600 bg-[#F7F9FB] p-2 rounded-lg border border-[#E6E8EA] line-clamp-2">
-                      "{lead.notes}"
-                    </p>
-                  )}
+            {/* Scrollable Action Cards List */}
+            <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#F7F9FB]">
+              {currentList.length === 0 ? (
+                <div className="py-16 text-center bg-white rounded-xl border border-dashed border-[#CBD5E1]">
+                  <CheckCircle2 className="w-10 h-10 text-[#006C49] mx-auto mb-2" />
+                  <p className="text-sm font-bold text-[#091426]">¡Bandeja al día!</p>
+                  <p className="text-xs text-slate-500 mt-1">No hay elementos pendientes en esta sección.</p>
                 </div>
+              ) : (
+                currentList.map((lead) => {
+                  const isSelected = selectedLead.id === lead.id;
+                  const isUrgent48 = lead.hoursUnanswered >= 48;
+                  const isUrgent24 = lead.hoursUnanswered >= 24;
 
-                {/* Right: Direct 1-Click Action Buttons */}
-                <div className="flex flex-wrap items-center gap-2 shrink-0 w-full md:w-auto justify-end pt-2 md:pt-0 border-t md:border-t-0 border-[#E6E8EA]">
-                  
-                  {/* Common button: View Lead Sheet */}
-                  <button
-                    onClick={() => setSelectedLeadForDetail(lead)}
-                    className="px-2.5 py-1.5 bg-[#F2F4F6] hover:bg-[#E6E8EA] text-slate-700 text-xs font-semibold rounded-lg flex items-center gap-1 transition-all"
-                    title="Ver ficha completa y notas"
-                  >
-                    <Eye className="w-3.5 h-3.5 text-slate-500" /> Ficha
-                  </button>
-
-                  {/* Contextual Action: NUEVAS CONSULTAS */}
-                  {activeSection === 'nuevas' && (
-                    <>
-                      <button
-                        onClick={() => handleMoveLead(lead.id, 'lost')}
-                        className="px-2.5 py-1.5 text-slate-400 hover:text-[#BA1A1A] text-xs font-medium"
-                      >
-                        ✕ Descartar
-                      </button>
-                      <button
-                        onClick={() => handleOpenWhatsAppModal(lead)}
-                        className="px-3.5 py-1.5 bg-[#006C49] hover:bg-[#007D55] text-white text-xs font-bold rounded-xl flex items-center gap-1.5 shadow-sm active:scale-[0.98] transition-all"
-                      >
-                        <Phone className="w-3.5 h-3.5" /> Responder WhatsApp
-                      </button>
-                    </>
-                  )}
-
-                  {/* Contextual Action: EN CONVERSACIÓN */}
-                  {activeSection === 'conversacion' && (
-                    <>
-                      <button
-                        onClick={() => handleOpenWhatsAppModal(lead)}
-                        className="px-3 py-1.5 bg-white hover:bg-[#F2F4F6] text-[#006C49] text-xs font-bold rounded-xl border border-emerald-300 flex items-center gap-1"
-                      >
-                        <Phone className="w-3.5 h-3.5" /> Chat
-                      </button>
-                      <button
-                        onClick={() => setScheduleVisitLead(lead)}
-                        className="px-3.5 py-1.5 bg-[#091426] hover:bg-[#1E293B] text-white text-xs font-bold rounded-xl flex items-center gap-1.5 shadow-sm active:scale-[0.98] transition-all"
-                      >
-                        <Calendar className="w-3.5 h-3.5" /> Agendar Visita
-                      </button>
-                    </>
-                  )}
-
-                  {/* Contextual Action: VISITAS AGENDADAS */}
-                  {activeSection === 'visitas' && (
-                    <>
-                      <a
-                        href={`https://wa.me/${lead.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent('Hola! Te comparto la ubicación exacta para nuestra visita de hoy: ' + lead.propertyAddress)}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="px-3 py-1.5 bg-white hover:bg-[#F2F4F6] text-[#006C49] text-xs font-bold rounded-xl border border-emerald-300 flex items-center gap-1"
-                      >
-                        <Share2 className="w-3.5 h-3.5" /> Mandar GPS
-                      </a>
-                      <button
-                        onClick={() => {
-                          handleMoveLead(lead.id, 'converted');
-                          alert(`¡Excelente! ${lead.name} reservó la propiedad. Ya podés confeccionar el contrato.`);
-                        }}
-                        className="px-3.5 py-1.5 bg-[#006C49] hover:bg-[#007D55] text-white text-xs font-bold rounded-xl flex items-center gap-1.5 shadow-sm active:scale-[0.98] transition-all"
-                      >
-                        <Check className="w-3.5 h-3.5" /> Concretar Reserva
-                      </button>
-                    </>
-                  )}
-
-                  {/* Contextual Action: GANADOS */}
-                  {activeSection === 'ganados' && (
-                    <span className="text-xs font-bold text-[#006C49] bg-emerald-50 px-3 py-1 rounded-xl border border-emerald-200">
-                      ✓ Operación Concretada
-                    </span>
-                  )}
-
-                  {/* Contextual Action: DESCARTADOS */}
-                  {activeSection === 'descartados' && (
-                    <button
-                      onClick={() => handleMoveLead(lead.id, 'new')}
-                      className="text-xs font-semibold text-[#091426] hover:underline"
+                  return (
+                    <div
+                      key={lead.id}
+                      onClick={() => setSelectedLead(lead)}
+                      className={`bg-white rounded-xl p-5 shadow-2xs border transition-all cursor-pointer relative overflow-hidden group ${
+                        isSelected 
+                          ? 'ring-2 ring-[#091426] border-transparent shadow-md' 
+                          : 'border-[#E6E8EA] hover:border-slate-300'
+                      }`}
                     >
-                      ↺ Recuperar Consulta
-                    </button>
-                  )}
+                      {/* Urgency Indicator Edge */}
+                      <div className={`absolute left-0 top-0 bottom-0 w-1.5 ${
+                        isUrgent48 ? 'bg-[#BA1A1A]' : isUrgent24 ? 'bg-amber-500' : 'bg-[#006C49]'
+                      }`} />
 
+                      {/* Card Top Metadata */}
+                      <div className="flex justify-between items-start mb-2 pl-2">
+                        <div className="flex items-center gap-2">
+                          {isUrgent48 ? (
+                            <span className="bg-[#FFDAD6] text-[#BA1A1A] px-2 py-0.5 rounded font-bold text-[10px] tracking-wider flex items-center gap-1">
+                              <AlertTriangle className="w-3 h-3" /> URGENTE &gt; 48H
+                            </span>
+                          ) : isUrgent24 ? (
+                            <span className="bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-bold text-[10px] tracking-wider flex items-center gap-1">
+                              <Clock className="w-3 h-3" /> URGENTE &gt; 24H
+                            </span>
+                          ) : (
+                            <span className="bg-emerald-100 text-[#006C49] px-2 py-0.5 rounded font-bold text-[10px] tracking-wider">
+                              NUEVO
+                            </span>
+                          )}
+
+                          <span className="text-slate-500 text-xs flex items-center gap-1 font-medium capitalize">
+                            <span className="w-2 h-2 rounded-full bg-slate-300"></span>
+                            {lead.channel}
+                          </span>
+                        </div>
+
+                        <span className="text-slate-400 text-xs font-mono">{lead.createdAt}</span>
+                      </div>
+
+                      {/* Lead Identity & Property */}
+                      <div className="pl-2">
+                        <h3 className="text-base font-bold text-[#091426] group-hover:text-[#006C49] transition-colors">
+                          {lead.name}
+                        </h3>
+
+                        <div className="flex items-center gap-1.5 my-1.5 text-xs text-slate-600 font-medium">
+                          <Home className="w-3.5 h-3.5 text-slate-400" />
+                          <span>{lead.propertyInterest}</span>
+                          <span className="text-slate-300">•</span>
+                          <span className="font-mono text-slate-800 font-bold">{lead.budget}</span>
+                        </div>
+
+                        {/* AI Insight Box */}
+                        {lead.aiScore && (
+                          <div className="bg-[#F7F9FB] rounded-xl p-3 my-3 flex items-start gap-2.5 border border-[#E6E8EA]">
+                            <Sparkles className="w-4 h-4 text-[#006C49] shrink-0 mt-0.5" />
+                            <div className="min-w-0">
+                              <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                                Análisis de IA: Alta Intención ({lead.aiScore.score}%)
+                              </p>
+                              <p className="text-xs text-slate-700 italic mt-0.5 line-clamp-2">
+                                "{lead.notes}"
+                              </p>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Action Buttons Row */}
+                        <div className="flex flex-wrap items-center gap-2 mt-3 pt-3 border-t border-[#E6E8EA]">
+                          <button
+                            onClick={(e) => { e.stopPropagation(); handleOpenWhatsAppModal(lead); }}
+                            className="flex-1 py-2 px-3 bg-[#091426] hover:bg-[#1E293B] text-white text-xs font-bold rounded-xl flex items-center justify-center gap-1.5 shadow-xs active:scale-[0.98] transition-all"
+                          >
+                            <Phone className="w-3.5 h-3.5" /> Responder WhatsApp
+                          </button>
+
+                          <button
+                            onClick={(e) => { e.stopPropagation(); setScheduleVisitLead(lead); }}
+                            className="py-2 px-3 bg-white hover:bg-[#F2F4F6] text-[#091426] text-xs font-bold rounded-xl border border-[#CBD5E1] flex items-center gap-1.5 shadow-2xs transition-all"
+                          >
+                            <Calendar className="w-3.5 h-3.5 text-slate-500" /> Agendar
+                          </button>
+
+                          <button
+                            onClick={(e) => { e.stopPropagation(); handleMoveLead(lead.id, 'lost'); }}
+                            className="p-2 text-slate-400 hover:text-[#BA1A1A] hover:bg-[#FFDAD6]/30 rounded-xl transition-colors"
+                            title="Descartar Consulta"
+                          >
+                            ✕
+                          </button>
+                        </div>
+
+                      </div>
+                    </div>
+                  );
+                })
+              )}
+            </div>
+          </div>
+
+          {/* Right Context Panel (Detail & Interactive Assistant Drawer) */}
+          <div className="hidden lg:flex flex-col w-[40%] bg-white border-l border-[#E6E8EA] h-full relative">
+            
+            {/* Header of Context Panel */}
+            <div className="p-4 border-b border-[#E6E8EA] flex justify-between items-center bg-white sticky top-0 z-20">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#091426] text-white flex items-center justify-center font-bold text-sm shadow-xs">
+                  {selectedLead.name.split(' ').map(n => n[0]).join('')}
+                </div>
+                <div>
+                  <h2 className="text-base font-bold text-[#091426] leading-tight">{selectedLead.name}</h2>
+                  <p className="text-xs text-slate-500 flex items-center gap-1.5 mt-0.5">
+                    <span className="w-2 h-2 rounded-full bg-[#006C49] inline-block"></span>
+                    En línea • {selectedLead.phone}
+                  </p>
                 </div>
               </div>
-            ))
-          )}
+
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={() => handleOpenWhatsAppModal(selectedLead)}
+                  className="w-8 h-8 rounded-lg hover:bg-[#F2F4F6] flex items-center justify-center text-slate-600 transition-colors"
+                  title="Llamar o WhatsApp"
+                >
+                  <Phone className="w-4 h-4 text-[#006C49]" />
+                </button>
+              </div>
+            </div>
+
+            {/* Scrollable Content inside Drawer */}
+            <div className="flex-1 overflow-y-auto p-6 space-y-5 bg-white">
+              
+              {/* Property of Interest Thumbnail Card */}
+              <div className="bg-[#F7F9FB] rounded-xl p-4 border border-[#E6E8EA]">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">
+                  Propiedad de Interés
+                </p>
+                <div className="flex gap-3.5">
+                  <div className="w-20 h-20 rounded-lg bg-slate-200 border border-[#CBD5E1] flex items-center justify-center text-slate-400 shrink-0 overflow-hidden">
+                    <Building className="w-8 h-8 text-slate-400" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="text-sm font-bold text-[#091426] truncate">{selectedLead.propertyInterest}</h4>
+                    <p className="text-xs font-bold text-[#006C49] font-mono mt-0.5">{selectedLead.budget} / mes</p>
+                    
+                    <div className="flex items-center gap-3 text-slate-500 text-xs mt-1.5">
+                      <span className="flex items-center gap-1"><Bed className="w-3 h-3" /> 2 Dorm.</span>
+                      <span className="flex items-center gap-1"><Bath className="w-3 h-3" /> 1 Baño</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Logistical Checklist (Lockbox and keys) */}
+              <div className="bg-white rounded-xl p-4 border border-[#E6E8EA] space-y-2.5">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                  Logística &amp; Llaves para la Visita
+                </p>
+                <div className="flex items-center justify-between text-xs bg-[#F7F9FB] p-2.5 rounded-lg border border-[#E6E8EA]">
+                  <span className="flex items-center gap-2 font-medium text-slate-700">
+                    <KeyRound className="w-4 h-4 text-[#006C49]" /> Código Lockbox:
+                  </span>
+                  <span className="font-mono font-bold text-[#091426] bg-white px-2 py-0.5 rounded border border-[#CBD5E1]">
+                    #4829-B
+                  </span>
+                </div>
+                <div className="flex items-center justify-between text-xs bg-[#F7F9FB] p-2.5 rounded-lg border border-[#E6E8EA]">
+                  <span className="flex items-center gap-2 font-medium text-slate-700">
+                    <ShieldCheck className="w-4 h-4 text-[#006C49]" /> Garantía Propietaria:
+                  </span>
+                  <span className="font-bold text-[#006C49]">En mano / Validada</span>
+                </div>
+              </div>
+
+              {/* Conversation History Snippet */}
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 text-center mb-3">
+                  Registro de Mensajes Recientes
+                </p>
+                
+                <div className="flex gap-2.5 mb-3">
+                  <div className="w-7 h-7 rounded-full bg-[#E6E8EA] text-slate-600 flex items-center justify-center text-xs font-bold shrink-0">
+                    {selectedLead.name.charAt(0)}
+                  </div>
+                  <div className="bg-[#F7F9FB] rounded-2xl rounded-tl-xs p-3 max-w-[85%] border border-[#E6E8EA]">
+                    <p className="text-xs text-slate-800 leading-relaxed">
+                      "{selectedLead.notes}"
+                    </p>
+                    <p className="text-[10px] text-slate-400 text-right mt-1">{selectedLead.createdAt} • Vía {selectedLead.channel}</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            {/* AI Quick Reply & Direct Sender (Bottom Fixed) */}
+            <div className="p-4 border-t border-[#E6E8EA] bg-white space-y-3">
+              <div>
+                <p className="text-[11px] font-bold text-[#006C49] flex items-center gap-1 mb-2">
+                  <Sparkles className="w-3.5 h-3.5" /> Respuesta sugerida por IA:
+                </p>
+                <div className="flex gap-1.5 overflow-x-auto pb-1">
+                  <button
+                    onClick={() => handleOpenWhatsAppModal(selectedLead)}
+                    className="whitespace-nowrap px-3 py-1.5 bg-[#D8E3FB]/40 hover:bg-[#D8E3FB] text-[#091426] rounded-full text-xs font-semibold transition-all border border-[#091426]/10"
+                  >
+                    Agendar visita mañana
+                  </button>
+                  <button
+                    onClick={() => handleOpenWhatsAppModal(selectedLead)}
+                    className="whitespace-nowrap px-3 py-1.5 bg-[#F2F4F6] hover:bg-[#E6E8EA] text-slate-700 rounded-full text-xs font-semibold transition-all border border-[#CBD5E1]"
+                  >
+                    Pedir garantía
+                  </button>
+                </div>
+              </div>
+
+              {/* Direct WhatsApp trigger button */}
+              <button
+                onClick={() => handleOpenWhatsAppModal(selectedLead)}
+                className="w-full py-2.5 bg-[#006C49] hover:bg-[#007D55] text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-sm active:scale-[0.98] transition-all"
+              >
+                <Phone className="w-4 h-4" /> Abrir WhatsApp con Respuesta IA
+              </button>
+            </div>
+
+          </div>
+
         </div>
 
-      </div>
+      </main>
 
       {/* ========================================================================= */}
-      {/* 3. MODALS: WHATSAPP SMART AI SENDER */}
+      {/* 3. MODALS: WHATSAPP SMART SENDER WITH AI                                  */}
       {/* ========================================================================= */}
       {whatsappModalLead && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#091426]/70 backdrop-blur-xs animate-fadeIn">
           <div className="bg-white w-full max-w-lg rounded-xl p-6 border border-[#E6E8EA] shadow-2xl space-y-4">
             <div className="flex justify-between items-center pb-3 border-b border-[#E6E8EA]">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-lg bg-emerald-100 text-[#006C49] flex items-center justify-center">
                   <Phone className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-[#191C1E]">
+                  <h3 className="text-sm font-bold text-[#091426]">
                     Enviar WhatsApp a {whatsappModalLead.name}
                   </h3>
                   <p className="text-xs font-mono text-slate-500">{whatsappModalLead.phone}</p>
@@ -692,13 +829,13 @@ export const DashboardCRMModule: React.FC<Props> = ({
       )}
 
       {/* ========================================================================= */}
-      {/* 4. MODALS: AGENDAR VISITA */}
+      {/* 4. MODALS: AGENDAR VISITA                                                 */}
       {/* ========================================================================= */}
       {scheduleVisitLead && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#091426]/70 backdrop-blur-xs animate-fadeIn">
           <div className="bg-white w-full max-w-md rounded-xl p-6 border border-[#E6E8EA] shadow-2xl space-y-4">
             <div className="flex justify-between items-center pb-3 border-b border-[#E6E8EA]">
-              <h3 className="text-sm font-bold text-[#191C1E] flex items-center gap-2">
+              <h3 className="text-sm font-bold text-[#091426] flex items-center gap-2">
                 <Calendar className="w-4 h-4 text-[#091426]" /> Agendar Visita con Martillero
               </h3>
               <button onClick={() => setScheduleVisitLead(null)} className="text-slate-400 font-bold">✕</button>
@@ -722,7 +859,7 @@ export const DashboardCRMModule: React.FC<Props> = ({
                   required
                   value={visitDate}
                   onChange={(e) => setVisitDate(e.target.value)}
-                  placeholder="Ej: Mañana 17:30 hs o Sábado 10:00 hs"
+                  placeholder="Ej: Hoy 16:30 hs o Sábado 10:00 hs"
                   className="w-full px-3 py-2 bg-[#F7F9FB] border border-[#E6E8EA] rounded-xl text-xs text-[#191C1E] focus:outline-none focus:ring-2 focus:ring-[#091426]"
                 />
               </div>
@@ -758,52 +895,13 @@ export const DashboardCRMModule: React.FC<Props> = ({
       )}
 
       {/* ========================================================================= */}
-      {/* 5. MODALS: FICHA DE LEAD / DETALLE */}
-      {/* ========================================================================= */}
-      {selectedLeadForDetail && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#091426]/70 backdrop-blur-xs animate-fadeIn">
-          <div className="bg-white w-full max-w-lg rounded-xl p-6 border border-[#E6E8EA] shadow-2xl space-y-4">
-            <div className="flex justify-between items-center pb-3 border-b border-[#E6E8EA]">
-              <div>
-                <h3 className="text-base font-bold text-[#191C1E]">{selectedLeadForDetail.name}</h3>
-                <p className="text-xs text-slate-500">{selectedLeadForDetail.email} • {selectedLeadForDetail.phone}</p>
-              </div>
-              <button onClick={() => setSelectedLeadForDetail(null)} className="text-slate-400 font-bold">✕</button>
-            </div>
-
-            <div className="space-y-2 text-xs">
-              <div className="p-3 bg-[#F7F9FB] rounded-xl border border-[#E6E8EA]">
-                <span className="font-bold text-[#091426]">Inmueble:</span> {selectedLeadForDetail.propertyInterest}
-                <br />
-                <span className="font-bold text-[#091426]">Presupuesto:</span> {selectedLeadForDetail.budget}
-              </div>
-
-              <div className="p-3 bg-[#F7F9FB] rounded-xl border border-[#E6E8EA]">
-                <span className="font-bold text-[#091426]">Notas y Diálogo:</span>
-                <p className="mt-1 text-slate-700">{selectedLeadForDetail.notes || 'Sin notas adicionales.'}</p>
-              </div>
-            </div>
-
-            <div className="pt-3 border-t border-[#E6E8EA] flex justify-end gap-2">
-              <button
-                onClick={() => setSelectedLeadForDetail(null)}
-                className="px-4 py-2 bg-[#F2F4F6] text-slate-700 text-xs font-semibold rounded-xl"
-              >
-                Cerrar
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ========================================================================= */}
-      {/* 6. MODALS: CARGA RÁPIDA DE CONSULTA */}
+      {/* 5. MODALS: FAST LEAD CAPTURE                                              */}
       {/* ========================================================================= */}
       {isNewLeadModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#091426]/70 backdrop-blur-xs animate-fadeIn">
           <div className="bg-white w-full max-w-md rounded-xl p-6 border border-[#E6E8EA] shadow-2xl space-y-4">
             <div className="flex justify-between items-center pb-3 border-b border-[#E6E8EA]">
-              <h3 className="text-sm font-bold text-[#191C1E] flex items-center gap-2">
+              <h3 className="text-sm font-bold text-[#091426] flex items-center gap-2">
                 <Plus className="w-4 h-4 text-[#091426]" /> Cargar Nueva Consulta
               </h3>
               <button onClick={() => setIsNewLeadModalOpen(false)} className="text-slate-400 font-bold">✕</button>
