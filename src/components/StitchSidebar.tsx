@@ -9,6 +9,7 @@ interface Props {
   urgentCount: number;
   activeCount: number;
   visitsCount: number;
+  wonCount?: number;
   onOpenNewLeadModal: () => void;
 }
 
@@ -20,6 +21,7 @@ export const StitchSidebar: React.FC<Props> = ({
   urgentCount,
   activeCount,
   visitsCount,
+  wonCount = 0,
   onOpenNewLeadModal,
 }) => {
   return (
@@ -175,6 +177,11 @@ export const StitchSidebar: React.FC<Props> = ({
                   <span className="material-symbols-outlined text-[18px]">handshake</span>
                   <span>4. Clientes Ganados</span>
                 </div>
+                {wonCount > 0 && (
+                  <span className="bg-[#006C49] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                    {wonCount}
+                  </span>
+                )}
               </button>
 
               {/* 5. Descartados */}
