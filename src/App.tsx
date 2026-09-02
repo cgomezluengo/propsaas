@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { CRMViewTab, Lead } from './types';
-import { mockTenant, mockUser, mockLeadsList } from './data/mockData';
+import { CRMViewTab, Lead, PropertyItem, ContractItem } from './types';
+import { mockTenant, mockUser, mockLeadsList, mockProperties, mockContracts } from './data/mockData';
+import { useLocalStorage } from './utils/useLocalStorage';
 import { StitchSidebar } from './components/StitchSidebar';
 import { StitchNuevasConsultasView } from './components/StitchNuevasConsultasView';
 import { StitchEnSeguimientoView } from './components/StitchEnSeguimientoView';
@@ -11,8 +12,13 @@ import { StitchInquilinosView } from './components/StitchInquilinosView';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<CRMViewTab>('nuevas_consultas');
-  const [leads, setLeads] = useState<Lead[]>(mockLeadsList);
-  const [selectedLead, setSelectedLead] = useState<Lead>(mockLeadsList[0]);
+  
+  // LocalStorage cached persistent state
+  const [leads, setLeads] = useLocalStorage<Lead[]>('propsaas_cached_leads', mockLeadsList);
+  const [properties, setProperties] = useLocalStorage<PropertyItem[]>('propsaas_cached_properties', mockProperties);
+  const [contracts, setContracts] = useLocalStorage<ContractItem[]>('propsaas_cached_contracts', mockContracts);
+
+  const [selectedLead, setSelectedLead] = useState<Lead>(leads[0] || mockLeadsList[0]);
   const [searchTerm, setSearchTerm] = useState('');
   const [channelFilter, setChannelFilter] = useState('all');
   const [urgentOnly, setUrgentOnly] = useState(false);
@@ -71,7 +77,15 @@ export default function App() {
   };
 
   const handleDiscard = (id: string) => {
-    setLeads(prev => prev.map(l => l.id === id ? { ...l, status: 'lost' } : l));
+    if (confirm('¿Descartar este lead y enviarlo al archivo?')) {
+      setLeads(prev => prev.map(l => l.id === id ? { ...l, status: 'lost' } : l));
+    }
+  };
+
+  const handleDeleteLeadPermanent = (id: string) => {
+    if (confirm('¿Eliminar definitivamente este prospecto del cache?')) {
+      setLeads(prev => prev.filter(l => l.id !== id));
+    }
   };
 
   const handleConcretarReserva = (lead: Lead) => {
@@ -113,6 +127,38 @@ export default function App() {
     setActiveTab('nuevas_consultas');
   };
 
+  // Properties handlers
+  const handleAddProperty = (item: PropertyItem) => {
+    setProperties([item, ...properties]);
+  };
+  const handleDeleteProperty = (id: string) => {
+    setProperties(prev => prev.filter(p => p.id !== id));
+  };
+
+  // Contracts handlers
+  const handleAddContract = (item: ContractItem) => {
+    setContracts([item, ...contracts]);
+  };
+  const handleUpdateContract = (item: ContractItem) => {
+    setContracts(prev => prev.map(c => c.id === item.id ? item : c));
+  };
+  const handleDeleteContract = (id: string) => {
+    setContracts(prev => prev.filter(c => c.id !== id));
+  };
+
+  // Reset Cache
+  const handleResetDemoData = () => {
+    if (confirm('¿Restablecer todos los datos del cache a los valores iniciales de la demo?')) {
+      localStorage.removeItem('propsaas_cached_leads');
+      localStorage.removeItem('propsaas_cached_properties');
+      localStorage.removeItem('propsaas_cached_contracts');
+      setLeads(mockLeadsList);
+      setProperties(mockProperties);
+      setContracts(mockContracts);
+      alert('¡Datos restablecidos con éxito!');
+    }
+  };
+
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-[#F7F9FB] font-sans antialiased text-[#191C1E]">
       
@@ -135,28 +181,35 @@ export default function App() {
         <header className="px-8 py-6 bg-white border-b border-[#E0E3E5] shrink-0">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-5">
             <div>
-              <h1 className="text-2xl font-bold text-[#091426] tracking-tight">
-                {activeTab === 'nuevas_consultas' && 'Bandeja de Entrada: Nuevas Consultas Inmobiliarias'}
-                {activeTab === 'en_seguimiento' && 'Prospectos En Conversación Activa'}
-                {activeTab === 'visitas_agendadas' && 'Agenda de Visitas Inmobiliarias'}
-                {activeTab === 'cierres_ganados' && 'Operaciones y Clientes Ganados'}
-                {activeTab === 'descartados' && 'Histórico de Consultas Archivadas'}
-                {activeTab === 'propiedades' && 'Inventario y Catálogo de Inmuebles'}
-                {activeTab === 'contratos' && 'Gestión de Contratos y Aumentos ICL/IPC'}
-                {activeTab === 'inquilinos' && 'Portal de Transparencia para Inquilinos'}
-              </h1>
+              <div className="flex items-center gap-2">
+                <h1 className="text-2xl font-bold text-[#091426] tracking-tight">
+                  {activeTab === 'nuevas_consultas' && 'Bandeja de Entrada: Nuevas Consultas Inmobiliarias'}
+                  {activeTab === 'en_seguimiento' && 'Prospectos En Conversación Activa'}
+                  {activeTab === 'visitas_agendadas' && 'Agenda de Visitas Inmobiliarias'}
+                  {activeTab === 'cierres_ganados' && 'Operaciones y Clientes Ganados'}
+                  {activeTab === 'descartados' && 'Histórico de Consultas Archivadas'}
+                  {activeTab === 'propiedades' && 'Inventario y Catálogo de Inmuebles'}
+                  {activeTab === 'contratos' && 'Gestión de Contratos y Aumentos ICL/IPC'}
+                  {activeTab === 'inquilinos' && 'Portal de Transparencia para Inquilinos'}
+                </h1>
+                <span className="bg-emerald-100 text-[#006C49] text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#006C49] animate-pulse"></span>
+                  Cache Activo
+                </span>
+              </div>
               <p className="text-sm text-[#45474C] mt-0.5">
                 Gestiona y responde a los prospectos de forma centralizada sin fricciones.
               </p>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <button 
-                onClick={() => alert('Exportando lista en CSV...')}
-                className="bg-white text-[#091426] border border-[#75777D]/30 rounded-lg px-4 py-2 text-xs font-semibold hover:bg-[#F7F9FB] transition-colors flex items-center gap-2 shadow-xs"
+                onClick={handleResetDemoData}
+                title="Restablecer datos originales del cache"
+                className="bg-white text-slate-500 border border-[#E0E3E5] rounded-lg px-3 py-2 text-xs font-semibold hover:bg-slate-50 transition-colors flex items-center gap-1 shadow-2xs"
               >
-                <span className="material-symbols-outlined text-[18px]">download</span>
-                Exportar CSV
+                <span className="material-symbols-outlined text-[16px]">restart_alt</span>
+                Reset Cache
               </button>
               <button 
                 onClick={() => setIsNewModalOpen(true)}
@@ -252,11 +305,20 @@ export default function App() {
         )}
 
         {activeTab === 'propiedades' && (
-          <StitchPropiedadesView />
+          <StitchPropiedadesView
+            properties={properties}
+            onAddProperty={handleAddProperty}
+            onDeleteProperty={handleDeleteProperty}
+          />
         )}
 
         {activeTab === 'contratos' && (
-          <StitchContratosView />
+          <StitchContratosView
+            contracts={contracts}
+            onAddContract={handleAddContract}
+            onUpdateContract={handleUpdateContract}
+            onDeleteContract={handleDeleteContract}
+          />
         )}
 
         {activeTab === 'inquilinos' && (
@@ -265,16 +327,32 @@ export default function App() {
 
         {(activeTab === 'cierres_ganados' || activeTab === 'descartados') && (
           <div className="flex-1 p-8 overflow-y-auto">
-            <div className="bg-white rounded-xl p-8 border border-[#E0E3E5] shadow-xs text-center">
+            <div className="bg-white rounded-xl p-8 border border-[#E0E3E5] shadow-xs text-center space-y-4">
               <span className="material-symbols-outlined text-4xl text-[#006C49] mb-2">folder_open</span>
               <h3 className="text-lg font-bold text-[#091426]">
                 {activeTab === 'cierres_ganados' ? 'Operaciones y Clientes Ganados' : 'Histórico de Consultas Descartadas'}
               </h3>
-              <p className="text-xs text-slate-500 mt-1">
-                {activeTab === 'cierres_ganados'
-                  ? 'Aquí se listan todos los clientes que concretaron reserva o contrato.'
-                  : 'Archivo histórico de prospectos que no avanzaron.'}
-              </p>
+              
+              {currentLeads.length === 0 ? (
+                <p className="text-xs text-slate-500">No hay elementos en esta categoría actualmente.</p>
+              ) : (
+                <div className="max-w-2xl mx-auto space-y-2 text-left">
+                  {currentLeads.map(l => (
+                    <div key={l.id} className="p-3 bg-[#F7F9FB] rounded-lg border border-[#E0E3E5] flex justify-between items-center text-xs">
+                      <div>
+                        <p className="font-bold text-[#091426]">{l.name} • {l.propertyTitle}</p>
+                        <p className="text-slate-500 text-[11px]">{l.phone} - {l.propertyPrice}</p>
+                      </div>
+                      <button
+                        onClick={() => handleDeleteLeadPermanent(l.id)}
+                        className="text-[#BA1A1A] hover:underline text-xs font-bold"
+                      >
+                        Eliminar
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -356,7 +434,7 @@ export default function App() {
                   Cancelar
                 </button>
                 <button type="submit" className="px-4 py-2 bg-[#091426] text-white text-xs font-bold rounded-lg">
-                  Guardar
+                  Guardar en Cache
                 </button>
               </div>
             </form>
