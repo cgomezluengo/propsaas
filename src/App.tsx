@@ -27,12 +27,12 @@ export default function App() {
   const [dbReady, setDbReady] = useState(false);
   const [selectedTenantFilter, setSelectedTenantFilter] = useState<string>('');
   
-  // State backed by SQLite
-  const [leads, setLeads] = useState<Lead[]>([]);
-  const [properties, setProperties] = useState<PropertyItem[]>([]);
-  const [contracts, setContracts] = useState<ContractItem[]>([]);
+  // State backed by SQLite (seeded with mockData as robust default)
+  const [leads, setLeads] = useState<Lead[]>(mockLeadsList);
+  const [properties, setProperties] = useState<PropertyItem[]>(mockProperties);
+  const [contracts, setContracts] = useState<ContractItem[]>(mockContracts);
 
-  const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
+  const [selectedLead, setSelectedLead] = useState<Lead | null>(mockLeadsList[0]);
   const [searchTerm, setSearchTerm] = useState('');
   const [channelFilter, setChannelFilter] = useState('all');
   const [urgentOnly, setUrgentOnly] = useState(false);

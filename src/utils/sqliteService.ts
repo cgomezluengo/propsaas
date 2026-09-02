@@ -12,9 +12,9 @@ export async function getDatabase(): Promise<Database> {
   if (sqlPromise) return sqlPromise;
 
   sqlPromise = (async () => {
-    const base = import.meta.env.BASE_URL || '/';
+    const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
     const SQL = await initSqlJs({
-      locateFile: (file) => `${base}${file}`
+      locateFile: (file) => `${base}/${file}`
     });
 
     // Check if we have saved DB in localStorage

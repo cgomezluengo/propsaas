@@ -195,30 +195,31 @@ export const StitchNuevasConsultasView: React.FC<Props> = ({
 
       {/* Right Column: Context Panel Preview (Exact Stitch Right Side) */}
       <div className="hidden lg:flex flex-col w-[40%] bg-white border-l border-[#E0E3E5] h-full relative">
-        
-        {/* Header of Context Panel */}
-        <div className="p-4 border-b border-[#E0E3E5] flex justify-between items-center bg-white sticky top-0 z-20">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-[#091426] text-white flex items-center justify-center font-bold text-sm shadow-sm">
-              {selectedLead.initials}
+        {selectedLead ? (
+          <>
+            {/* Header of Context Panel */}
+            <div className="p-4 border-b border-[#E0E3E5] flex justify-between items-center bg-white sticky top-0 z-20">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#091426] text-white flex items-center justify-center font-bold text-sm shadow-sm">
+                  {selectedLead.initials || (selectedLead.name ? selectedLead.name.slice(0, 2).toUpperCase() : 'LE')}
+                </div>
+                <div>
+                  <h2 className="text-lg font-bold text-[#091426] leading-tight">{selectedLead.name}</h2>
+                  <p className="text-xs text-[#45474C] flex items-center gap-1.5 mt-0.5">
+                    <span className="w-2 h-2 rounded-full bg-[#006C49] inline-block"></span>
+                    En línea • {selectedLead.phone}
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-1">
+                <button
+                  onClick={() => onOpenWhatsApp(selectedLead)}
+                  className="w-8 h-8 rounded hover:bg-[#F7F9FB] flex items-center justify-center text-[#45474C] transition-colors"
+                >
+                  <span className="material-symbols-outlined text-[20px]">phone</span>
+                </button>
+              </div>
             </div>
-            <div>
-              <h2 className="text-lg font-bold text-[#091426] leading-tight">{selectedLead.name}</h2>
-              <p className="text-xs text-[#45474C] flex items-center gap-1.5 mt-0.5">
-                <span className="w-2 h-2 rounded-full bg-[#006C49] inline-block"></span>
-                En línea • {selectedLead.phone}
-              </p>
-            </div>
-          </div>
-          <div className="flex gap-1">
-            <button
-              onClick={() => onOpenWhatsApp(selectedLead)}
-              className="w-8 h-8 rounded hover:bg-[#F7F9FB] flex items-center justify-center text-[#45474C] transition-colors"
-            >
-              <span className="material-symbols-outlined text-[20px]">phone</span>
-            </button>
-          </div>
-        </div>
 
         {/* Scrollable Content */}
         <div className="flex-1 overflow-y-auto p-6 space-y-5 bg-white">
@@ -321,9 +322,14 @@ export const StitchNuevasConsultasView: React.FC<Props> = ({
             Abrir WhatsApp con Respuesta IA
           </button>
         </div>
-
+      </>
+    ) : (
+      <div className="flex-1 flex items-center justify-center p-6 text-center text-xs text-slate-400">
+        Selecciona un prospecto para ver el detalle y respuestas sugeridas.
       </div>
+    )}
+  </div>
 
-    </div>
-  );
+</div>
+);
 };
