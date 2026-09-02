@@ -18,7 +18,7 @@ Este documento instruye a cualquier agente o subagente de IA que diagnostique, p
 
 ## 🧩 2. Atomic Knowledge & Reglas de Flujos de Trabajo
 
-### 2.1 Pipeline Guiado del CRM (3 Pasos)
+### 2.1 Pipeline Guiado del CRM y Gestión (5 Pasos)
 - **Paso 1 (Nuevas Consultas)**:
   - Clasificación por urgencia temporal: consultas con más de 24h y más de 48h sin respuesta.
   - Botón de respuesta adaptativo según canal (`WhatsApp`, `Instagram`, `Facebook`).
@@ -26,11 +26,16 @@ Este documento instruye a cualquier agente o subagente de IA que diagnostique, p
   - Prospectos contactados cuyo objetivo inmediato es agendar fecha y hora de visita o solicitar requisitos de garantía.
 - **Paso 3 (Visita Programada)**:
   - Prospectos con visita coordinada con martillero, con opción de enviar ubicación exacta o avanzar a reserva/contrato.
+- **Paso 4 (Clientes Ganados & Contratos)**:
+  - Transición fluida de operación ganada a Contrato de Locación con cálculo de índice de ajuste oficial (ICL/IPC).
+- **Paso 5 (Padrón & Portal de Inquilinos)**:
+  - Padrón interactivo de locatarios, registro de cobros, y emisión de comprobantes PDF oficiales con firma/sello.
 
-### 2.2 Motor de Cálculo de Aumentos de Alquiler
+### 2.2 Motor de Cálculo de Aumentos y Recibos
 - **Índice ICL (Banco Central)**: Aplica la variación porcentual del coeficiente oficial entre fecha base y fecha de ajuste.
 - **Índice IPC (INDEC)**: Aplica la tasa de inflación acumulada del período contractual.
-- **Emisión de Recibos**: Todo ajuste ejecutado debe permitir descargar inmediatamente el recibo legal en formato PDF con desglose del período.
+- **Emisión de Recibos**: Todo cobro o ajuste ejecutado permite generar y descargar inmediatamente el recibo legal en formato PDF con desglose del canon locativo mediante `jspdf`.
+- **Persistencia SQLite**: Todo cambio de estado y registro se persiste de forma relacional en SQLite WebAssembly (`sql.js`) con exportación binaria `.sqlite`.
 
 ---
 
