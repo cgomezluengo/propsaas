@@ -1,4 +1,4 @@
-import { Lead, AgencyTenant, UserProfile } from '../types';
+import { Lead, AgencyTenant, UserProfile, PropertyItem, ContractItem, TenantPortalData } from '../types';
 
 export const mockTenant: AgencyTenant = {
   id: 'tenant-1',
@@ -142,3 +142,145 @@ export const mockLeadsList: Lead[] = [
     guaranteeStatus: 'Fondos propios'
   }
 ];
+
+export const mockProperties: PropertyItem[] = [
+  {
+    id: 'prop-1',
+    title: 'Depto 2 Ambientes Belgrano',
+    address: 'Av. Rivadavia 450, Piso 4 B, Junín',
+    price: '$380.000 / mes',
+    operation: 'Alquiler',
+    type: 'Departamento',
+    bedrooms: 1,
+    bathrooms: 1,
+    coveredM2: 52,
+    status: 'Disponible',
+    image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=600',
+    featured: true
+  },
+  {
+    id: 'prop-2',
+    title: 'Casa Familiar con Parque y Quincho',
+    address: 'Barrio Cerrado Los Almendros, Junín',
+    price: 'USD 220.000',
+    operation: 'Venta',
+    type: 'Casa',
+    bedrooms: 3,
+    bathrooms: 2,
+    coveredM2: 185,
+    status: 'Disponible',
+    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=600',
+    featured: true
+  },
+  {
+    id: 'prop-3',
+    title: 'Casa Quinta con Pileta Climatizada',
+    address: 'Acceso Balneario Laguna de Gómez',
+    price: '$650.000 / mes',
+    operation: 'Alquiler',
+    type: 'Quinta',
+    bedrooms: 3,
+    bathrooms: 2,
+    coveredM2: 210,
+    status: 'Reservada',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=600'
+  },
+  {
+    id: 'prop-4',
+    title: 'Local Comercial Doble Altura Centro',
+    address: 'Calle Mayor López 120, Junín',
+    price: '$420.000 / mes',
+    operation: 'Alquiler',
+    type: 'Local Comercial',
+    bedrooms: 0,
+    bathrooms: 1,
+    coveredM2: 80,
+    status: 'Disponible',
+    image: 'https://images.unsplash.com/photo-1582037928769-181f2644ecb7?auto=format&fit=crop&q=80&w=600'
+  },
+  {
+    id: 'prop-5',
+    title: 'Semipiso 3 Ambientes con Cochera',
+    address: 'Plaza 25 de Mayo 88, Junín',
+    price: 'USD 140.000',
+    operation: 'Venta',
+    type: 'Departamento',
+    bedrooms: 2,
+    bathrooms: 2,
+    coveredM2: 95,
+    status: 'Disponible',
+    image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=600'
+  }
+];
+
+export const mockContracts: ContractItem[] = [
+  {
+    id: 'cont-101',
+    tenantName: 'Nicolás Balbi',
+    tenantPhone: '+54 236 4554433',
+    propertyAddress: 'Depto Calle Borges 142, Piso 2 A',
+    currentAmount: 320000,
+    indexType: 'ICL (Banco Central)',
+    nextAdjustmentDate: '15 de Octubre 2026',
+    monthsToAdjustment: 1,
+    status: 'Ajuste Pendiente',
+    paymentStatus: 'Pagado',
+    lastIncreasePercent: 38.4
+  },
+  {
+    id: 'cont-102',
+    tenantName: 'María Eugenia Rossi',
+    tenantPhone: '+54 236 4112233',
+    propertyAddress: 'Casa Barrio Real - Calle Ombú 54',
+    currentAmount: 480000,
+    indexType: 'IPC (Inflación INDEC)',
+    nextAdjustmentDate: '01 de Diciembre 2026',
+    monthsToAdjustment: 3,
+    status: 'Al Día',
+    paymentStatus: 'Pendiente de Validación',
+    lastIncreasePercent: 24.2
+  },
+  {
+    id: 'cont-103',
+    tenantName: 'Ignacio Zavaleta',
+    tenantPhone: '+54 236 4889900',
+    propertyAddress: 'Local Comercial Calle Arias 310',
+    currentAmount: 550000,
+    indexType: 'ICL (Banco Central)',
+    nextAdjustmentDate: '30 de Septiembre 2026',
+    monthsToAdjustment: 0,
+    status: 'Por Vencer',
+    paymentStatus: 'Atrasado',
+    lastIncreasePercent: 41.0
+  }
+];
+
+export const mockTenantPortalData: TenantPortalData = {
+  tenantName: 'Nicolás Balbi',
+  propertyAddress: 'Depto Calle Borges 142, Piso 2 A, Junín',
+  currentRent: 320000,
+  nextAdjustmentDate: '15 de Octubre 2026',
+  monthsLeft: 1,
+  indexType: 'ICL (Índice de Contratos de Locación - BCRA)',
+  paymentStatus: 'Al Día',
+  receipts: [
+    {
+      month: 'Agosto 2026',
+      amount: 320000,
+      date: '04/08/2026',
+      pdfUrl: '#'
+    },
+    {
+      month: 'Julio 2026',
+      amount: 320000,
+      date: '05/07/2026',
+      pdfUrl: '#'
+    },
+    {
+      month: 'Junio 2026',
+      amount: 231200,
+      date: '06/06/2026',
+      pdfUrl: '#'
+    }
+  ]
+};

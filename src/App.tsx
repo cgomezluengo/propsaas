@@ -5,6 +5,9 @@ import { StitchSidebar } from './components/StitchSidebar';
 import { StitchNuevasConsultasView } from './components/StitchNuevasConsultasView';
 import { StitchEnSeguimientoView } from './components/StitchEnSeguimientoView';
 import { StitchVisitasAgendadasView } from './components/StitchVisitasAgendadasView';
+import { StitchPropiedadesView } from './components/StitchPropiedadesView';
+import { StitchContratosView } from './components/StitchContratosView';
+import { StitchInquilinosView } from './components/StitchInquilinosView';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<CRMViewTab>('nuevas_consultas');
@@ -248,12 +251,30 @@ export default function App() {
           />
         )}
 
-        {(activeTab === 'cierres_ganados' || activeTab === 'descartados' || activeTab === 'propiedades' || activeTab === 'contratos' || activeTab === 'inquilinos') && (
+        {activeTab === 'propiedades' && (
+          <StitchPropiedadesView />
+        )}
+
+        {activeTab === 'contratos' && (
+          <StitchContratosView />
+        )}
+
+        {activeTab === 'inquilinos' && (
+          <StitchInquilinosView />
+        )}
+
+        {(activeTab === 'cierres_ganados' || activeTab === 'descartados') && (
           <div className="flex-1 p-8 overflow-y-auto">
             <div className="bg-white rounded-xl p-8 border border-[#E0E3E5] shadow-xs text-center">
               <span className="material-symbols-outlined text-4xl text-[#006C49] mb-2">folder_open</span>
-              <h3 className="text-lg font-bold text-[#091426]">Módulo de {activeTab.replace('_', ' ').toUpperCase()}</h3>
-              <p className="text-xs text-slate-500 mt-1">Sección sincronizada y lista para visualización.</p>
+              <h3 className="text-lg font-bold text-[#091426]">
+                {activeTab === 'cierres_ganados' ? 'Operaciones y Clientes Ganados' : 'Histórico de Consultas Descartadas'}
+              </h3>
+              <p className="text-xs text-slate-500 mt-1">
+                {activeTab === 'cierres_ganados'
+                  ? 'Aquí se listan todos los clientes que concretaron reserva o contrato.'
+                  : 'Archivo histórico de prospectos que no avanzaron.'}
+              </p>
             </div>
           </div>
         )}
