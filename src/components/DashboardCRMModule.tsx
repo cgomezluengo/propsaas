@@ -16,6 +16,7 @@ interface Props {
   currentUser: User;
   onOpenSpecsModal: () => void;
   onSelectLeadForAI: (lead: Lead) => void;
+  onNavigateModule?: (module: any) => void;
 }
 
 type CRMSection = 'nuevas' | 'conversacion' | 'visitas' | 'ganados' | 'descartados';
@@ -23,6 +24,7 @@ type CRMSection = 'nuevas' | 'conversacion' | 'visitas' | 'ganados' | 'descartad
 export const DashboardCRMModule: React.FC<Props> = ({
   currentTenant,
   currentUser,
+  onNavigateModule,
 }) => {
   const [leads, setLeads] = useState<Lead[]>(mockLeads);
   const [activeSection, setActiveSection] = useState<CRMSection>('nuevas');

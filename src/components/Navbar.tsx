@@ -19,6 +19,7 @@ interface Props {
   onOpenSpecsModal: () => void;
   onOpenNotifications: () => void;
   unreadNotificationsCount: number;
+  compactMode?: boolean;
 }
 
 export const Navbar: React.FC<Props> = ({

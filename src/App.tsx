@@ -17,7 +17,6 @@ export default function App() {
   const [activeModule, setActiveModule] = useState<ModuleType>('dashboard');
   const [currentTenant, setCurrentTenant] = useState<Tenant>(mockTenants[0]);
   const [currentUser, setCurrentUser] = useState<User>(mockUsers[0]);
-  const [darkMode, setDarkMode] = useState(false);
   const [isSpecsModalOpen, setIsSpecsModalOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [notifications, setNotifications] = useState<AppNotification[]>(mockNotifications);
@@ -42,9 +41,13 @@ export default function App() {
     setActiveModule('ai_module');
   };
 
+  // Check if current view is CRM Dashboard (which has full standalone sidebar & layout)
+  const isDashboard = activeModule === 'dashboard';
+
   return (
     <div className="min-h-screen bg-[#F7F9FB] text-[#191C1E] flex flex-col font-sans transition-colors duration-200">
-      {/* Top Main Navigation Bar */}
+      
+      {/* Top Navbar only for standard sub-modules or mobile header */}
       <Navbar
         activeModule={activeModule}
         onNavigate={setActiveModule}
@@ -57,10 +60,11 @@ export default function App() {
         onOpenSpecsModal={() => setIsSpecsModalOpen(true)}
         onOpenNotifications={() => setIsNotificationsOpen(true)}
         unreadNotificationsCount={notifications.filter(n => !n.read).length}
+        compactMode={isDashboard}
       />
 
-      {/* Main Container */}
-      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      {/* Main View Area */}
+      <main className={`flex-1 w-full ${isDashboard ? 'h-[calc(100vh-4rem)] overflow-hidden' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8'}`}>
         {activeModule === 'landing' && (
           <LandingModule onNavigate={setActiveModule} />
         )}
@@ -81,6 +85,7 @@ export default function App() {
             currentUser={currentUser}
             onOpenSpecsModal={() => setIsSpecsModalOpen(true)}
             onSelectLeadForAI={handleSelectLeadForAI}
+            onNavigateModule={setActiveModule}
           />
         )}
 
