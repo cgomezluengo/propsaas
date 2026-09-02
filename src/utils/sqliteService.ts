@@ -12,7 +12,7 @@ export async function getDatabase(): Promise<Database> {
   if (sqlPromise) return sqlPromise;
 
   sqlPromise = (async () => {
-    const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+    const base = (((import.meta as any).env?.BASE_URL as string) || '/propsaas/').replace(/\/$/, '');
     const SQL = await initSqlJs({
       locateFile: (file) => `${base}/${file}`
     });
