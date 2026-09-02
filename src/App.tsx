@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { CRMViewTab, Lead, PropertyItem, ContractItem } from './types';
-import { mockTenant, mockUser } from './data/mockData';
+import { mockTenant, mockUser, mockLeadsList, mockProperties, mockContracts } from './data/mockData';
 import { 
   getDatabase, 
   queryAllLeads, 
