@@ -47,7 +47,7 @@ export const StitchVisitasAgendadasView: React.FC<Props> = ({
         </div>
 
         {/* Timeline Cards */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#F7F9FB]">
+        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#F7F9FB] pb-24 lg:pb-4">
           {leads.map((lead) => (
             <div
               key={lead.id}

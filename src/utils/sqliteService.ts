@@ -1,11 +1,29 @@
 import initSqlJs, { Database } from 'sql.js';
-import { Lead, PropertyItem, ContractItem, TenantPortalData } from '../types';
-import { mockLeadsList, mockProperties, mockContracts, mockTenantPortalData } from '../data/mockData';
+import { 
+  Lead, 
+  PropertyItem, 
+  ContractItem, 
+  TenantPortalData,
+  MaintenanceIncident,
+  ReceptionEntry,
+  KeyCustodyItem,
+  AdCampaign
+} from '../types';
+import { 
+  mockLeadsList, 
+  mockProperties, 
+  mockContracts, 
+  mockTenantPortalData,
+  mockIncidents,
+  mockReceptionEntries,
+  mockKeyCustodyList,
+  mockAdCampaigns
+} from '../data/mockData';
 
 let dbInstance: Database | null = null;
 let sqlPromise: Promise<Database> | null = null;
 
-const DB_STORAGE_KEY = 'propsaas_sqlite_db_v1';
+const DB_STORAGE_KEY = 'propsaas_sqlite_db_v2';
 
 export async function getDatabase(): Promise<Database> {
   if (dbInstance) return dbInstance;
@@ -118,7 +136,12 @@ function initSchemaAndSeed(db: Database) {
       monthsToAdjustment INTEGER,
       status TEXT,
       paymentStatus TEXT,
-      lastIncreasePercent REAL
+      lastIncreasePercent REAL,
+      adjustmentPeriodMonths INTEGER DEFAULT 4,
+      lastAdjustmentDate TEXT,
+      ipcMonthlyRates TEXT,
+      internalAuditStatus TEXT,
+      contractStartDate TEXT
     );
 
     CREATE TABLE IF NOT EXISTS receipts (
@@ -129,6 +152,58 @@ function initSchemaAndSeed(db: Database) {
       amount REAL,
       date TEXT,
       pdfUrl TEXT
+    );
+
+    CREATE TABLE IF NOT EXISTS incidents (
+      id TEXT PRIMARY KEY,
+      propertyAddress TEXT NOT NULL,
+      tenantName TEXT,
+      tenantPhone TEXT,
+      category TEXT NOT NULL,
+      description TEXT NOT NULL,
+      urgency TEXT NOT NULL,
+      responsibility TEXT NOT NULL,
+      status TEXT NOT NULL,
+      assignedTrade TEXT,
+      estimatedCost REAL,
+      dateReported TEXT NOT NULL,
+      resolutionDate TEXT,
+      lockboxCode TEXT
+    );
+
+    CREATE TABLE IF NOT EXISTS reception_entries (
+      id TEXT PRIMARY KEY,
+      visitorName TEXT NOT NULL,
+      visitorType TEXT NOT NULL,
+      reason TEXT NOT NULL,
+      assignedMartillero TEXT NOT NULL,
+      status TEXT NOT NULL,
+      timestamp TEXT NOT NULL,
+      contactPhone TEXT
+    );
+
+    CREATE TABLE IF NOT EXISTS key_custody (
+      id TEXT PRIMARY KEY,
+      propertyTitle TEXT NOT NULL,
+      propertyAddress TEXT NOT NULL,
+      keyTag TEXT NOT NULL,
+      takenBy TEXT NOT NULL,
+      takenAt TEXT NOT NULL,
+      returnedAt TEXT,
+      status TEXT NOT NULL,
+      notes TEXT
+    );
+
+    CREATE TABLE IF NOT EXISTS ad_campaigns (
+      id TEXT PRIMARY KEY,
+      platform TEXT NOT NULL,
+      campaignTitle TEXT NOT NULL,
+      budgetMonthly REAL NOT NULL,
+      spendSoFar REAL NOT NULL,
+      leadsCount INTEGER NOT NULL,
+      costPerLead REAL NOT NULL,
+      status TEXT NOT NULL,
+      syncStatus TEXT NOT NULL
     );
   `);
 
@@ -198,7 +273,8 @@ function initSchemaAndSeed(db: Database) {
   // 4. Seed Contracts
   const insertContStmt = db.prepare(`
     INSERT INTO contracts VALUES (
-      $id, $tenantName, $tenantPhone, $propertyAddress, $currentAmount, $indexType, $nextAdjustmentDate, $monthsToAdjustment, $status, $paymentStatus, $lastIncreasePercent
+      $id, $tenantName, $tenantPhone, $propertyAddress, $currentAmount, $indexType, $nextAdjustmentDate, $monthsToAdjustment, $status, $paymentStatus, $lastIncreasePercent,
+      $adjustmentPeriodMonths, $lastAdjustmentDate, $ipcMonthlyRates, $internalAuditStatus, $contractStartDate
     )
   `);
   for (const c of mockContracts) {
@@ -213,7 +289,12 @@ function initSchemaAndSeed(db: Database) {
       $monthsToAdjustment: c.monthsToAdjustment,
       $status: c.status,
       $paymentStatus: c.paymentStatus,
-      $lastIncreasePercent: c.lastIncreasePercent
+      $lastIncreasePercent: c.lastIncreasePercent,
+      $adjustmentPeriodMonths: c.adjustmentPeriodMonths || 4,
+      $lastAdjustmentDate: c.lastAdjustmentDate || '',
+      $ipcMonthlyRates: c.ipcMonthlyRates ? JSON.stringify(c.ipcMonthlyRates) : '[]',
+      $internalAuditStatus: c.internalAuditStatus || 'al_dia',
+      $contractStartDate: c.contractStartDate || ''
     });
   }
   insertContStmt.free();
@@ -236,6 +317,94 @@ function initSchemaAndSeed(db: Database) {
     });
   }
   insertRecStmt.free();
+
+  // 6. Seed Incidents
+  const insertIncStmt = db.prepare(`
+    INSERT INTO incidents VALUES (
+      $id, $propertyAddress, $tenantName, $tenantPhone, $category, $description, $urgency, $responsibility, $status, $assignedTrade, $estimatedCost, $dateReported, $resolutionDate, $lockboxCode
+    )
+  `);
+  for (const inc of mockIncidents) {
+    insertIncStmt.run({
+      $id: inc.id,
+      $propertyAddress: inc.propertyAddress,
+      $tenantName: inc.tenantName,
+      $tenantPhone: inc.tenantPhone,
+      $category: inc.category,
+      $description: inc.description,
+      $urgency: inc.urgency,
+      $responsibility: inc.responsibility,
+      $status: inc.status,
+      $assignedTrade: inc.assignedTrade || '',
+      $estimatedCost: inc.estimatedCost || 0,
+      $dateReported: inc.dateReported,
+      $resolutionDate: inc.resolutionDate || '',
+      $lockboxCode: inc.lockboxCode || ''
+    });
+  }
+  insertIncStmt.free();
+
+  // 7. Seed Reception Entries
+  const insertRecepStmt = db.prepare(`
+    INSERT INTO reception_entries VALUES (
+      $id, $visitorName, $visitorType, $reason, $assignedMartillero, $status, $timestamp, $contactPhone
+    )
+  `);
+  for (const rec of mockReceptionEntries) {
+    insertRecepStmt.run({
+      $id: rec.id,
+      $visitorName: rec.visitorName,
+      $visitorType: rec.visitorType,
+      $reason: rec.reason,
+      $assignedMartillero: rec.assignedMartillero,
+      $status: rec.status,
+      $timestamp: rec.timestamp,
+      $contactPhone: rec.contactPhone || ''
+    });
+  }
+  insertRecepStmt.free();
+
+  // 8. Seed Key Custody
+  const insertKeyStmt = db.prepare(`
+    INSERT INTO key_custody VALUES (
+      $id, $propertyTitle, $propertyAddress, $keyTag, $takenBy, $takenAt, $returnedAt, $status, $notes
+    )
+  `);
+  for (const key of mockKeyCustodyList) {
+    insertKeyStmt.run({
+      $id: key.id,
+      $propertyTitle: key.propertyTitle,
+      $propertyAddress: key.propertyAddress,
+      $keyTag: key.keyTag,
+      $takenBy: key.takenBy,
+      $takenAt: key.takenAt,
+      $returnedAt: key.returnedAt || '',
+      $status: key.status,
+      $notes: key.notes || ''
+    });
+  }
+  insertKeyStmt.free();
+
+  // 9. Seed Ad Campaigns
+  const insertAdStmt = db.prepare(`
+    INSERT INTO ad_campaigns VALUES (
+      $id, $platform, $campaignTitle, $budgetMonthly, $spendSoFar, $leadsCount, $costPerLead, $status, $syncStatus
+    )
+  `);
+  for (const ad of mockAdCampaigns) {
+    insertAdStmt.run({
+      $id: ad.id,
+      $platform: ad.platform,
+      $campaignTitle: ad.campaignTitle,
+      $budgetMonthly: ad.budgetMonthly,
+      $spendSoFar: ad.spendSoFar,
+      $leadsCount: ad.leadsCount,
+      $costPerLead: ad.costPerLead,
+      $status: ad.status,
+      $syncStatus: ad.syncStatus
+    });
+  }
+  insertAdStmt.free();
 }
 
 // Helpers for CRUD
@@ -275,28 +444,18 @@ export async function queryAllContracts(): Promise<ContractItem[]> {
   return res[0].values.map((row) => {
     const obj: any = {};
     cols.forEach((col, idx) => {
-      obj[col] = row[idx];
+      if (col === 'ipcMonthlyRates') {
+        try {
+          obj[col] = JSON.parse(String(row[idx] || '[]'));
+        } catch {
+          obj[col] = [];
+        }
+      } else {
+        obj[col] = row[idx];
+      }
     });
     return obj as ContractItem;
   });
-}
-
-export async function queryReceiptsForContract(contractId: string, tenantName: string): Promise<TenantPortalData['receipts']> {
-  const db = await getDatabase();
-  const stmt = db.prepare("SELECT * FROM receipts WHERE contractId = $cid OR tenantName = $tname ORDER BY date DESC");
-  stmt.bind({ $cid: contractId, $tname: tenantName });
-  const list: TenantPortalData['receipts'] = [];
-  while (stmt.step()) {
-    const row = stmt.getAsObject();
-    list.push({
-      month: row.month as string,
-      amount: row.amount as number,
-      date: row.date as string,
-      pdfUrl: (row.pdfUrl as string) || '#'
-    });
-  }
-  stmt.free();
-  return list;
 }
 
 export async function insertOrUpdateLead(lead: Lead): Promise<void> {
@@ -356,9 +515,11 @@ export async function insertOrUpdateContract(contract: ContractItem): Promise<vo
   const db = await getDatabase();
   db.run(`
     INSERT INTO contracts (
-      id, tenantName, tenantPhone, propertyAddress, currentAmount, indexType, nextAdjustmentDate, monthsToAdjustment, status, paymentStatus, lastIncreasePercent
+      id, tenantName, tenantPhone, propertyAddress, currentAmount, indexType, nextAdjustmentDate, monthsToAdjustment, status, paymentStatus, lastIncreasePercent,
+      adjustmentPeriodMonths, lastAdjustmentDate, ipcMonthlyRates, internalAuditStatus, contractStartDate
     ) VALUES (
-      $id, $tenantName, $tenantPhone, $propertyAddress, $currentAmount, $indexType, $nextAdjustmentDate, $monthsToAdjustment, $status, $paymentStatus, $lastIncreasePercent
+      $id, $tenantName, $tenantPhone, $propertyAddress, $currentAmount, $indexType, $nextAdjustmentDate, $monthsToAdjustment, $status, $paymentStatus, $lastIncreasePercent,
+      $adjustmentPeriodMonths, $lastAdjustmentDate, $ipcMonthlyRates, $internalAuditStatus, $contractStartDate
     )
     ON CONFLICT(id) DO UPDATE SET
       currentAmount = excluded.currentAmount,
@@ -366,7 +527,11 @@ export async function insertOrUpdateContract(contract: ContractItem): Promise<vo
       paymentStatus = excluded.paymentStatus,
       lastIncreasePercent = excluded.lastIncreasePercent,
       nextAdjustmentDate = excluded.nextAdjustmentDate,
-      monthsToAdjustment = excluded.monthsToAdjustment
+      monthsToAdjustment = excluded.monthsToAdjustment,
+      adjustmentPeriodMonths = excluded.adjustmentPeriodMonths,
+      lastAdjustmentDate = excluded.lastAdjustmentDate,
+      ipcMonthlyRates = excluded.ipcMonthlyRates,
+      internalAuditStatus = excluded.internalAuditStatus
   `, {
     $id: contract.id,
     $tenantName: contract.tenantName,
@@ -378,7 +543,12 @@ export async function insertOrUpdateContract(contract: ContractItem): Promise<vo
     $monthsToAdjustment: contract.monthsToAdjustment,
     $status: contract.status,
     $paymentStatus: contract.paymentStatus,
-    $lastIncreasePercent: contract.lastIncreasePercent
+    $lastIncreasePercent: contract.lastIncreasePercent,
+    $adjustmentPeriodMonths: contract.adjustmentPeriodMonths || 4,
+    $lastAdjustmentDate: contract.lastAdjustmentDate || '',
+    $ipcMonthlyRates: contract.ipcMonthlyRates ? JSON.stringify(contract.ipcMonthlyRates) : '[]',
+    $internalAuditStatus: contract.internalAuditStatus || 'al_dia',
+    $contractStartDate: contract.contractStartDate || ''
   });
   saveDatabase();
 }
@@ -387,6 +557,197 @@ export async function deleteContractById(id: string): Promise<void> {
   const db = await getDatabase();
   db.run("DELETE FROM contracts WHERE id = ?", [id]);
   saveDatabase();
+}
+
+// Incidents CRUD
+export async function queryAllIncidents(): Promise<MaintenanceIncident[]> {
+  const db = await getDatabase();
+  const res = db.exec("SELECT * FROM incidents ORDER BY id DESC");
+  if (!res.length || !res[0].values) return [];
+  const cols = res[0].columns;
+  return res[0].values.map((row) => {
+    const obj: any = {};
+    cols.forEach((col, idx) => {
+      obj[col] = row[idx];
+    });
+    return obj as MaintenanceIncident;
+  });
+}
+
+export async function insertOrUpdateIncident(incident: MaintenanceIncident): Promise<void> {
+  const db = await getDatabase();
+  db.run(`
+    INSERT INTO incidents (
+      id, propertyAddress, tenantName, tenantPhone, category, description, urgency, responsibility, status, assignedTrade, estimatedCost, dateReported, resolutionDate, lockboxCode
+    ) VALUES (
+      $id, $propertyAddress, $tenantName, $tenantPhone, $category, $description, $urgency, $responsibility, $status, $assignedTrade, $estimatedCost, $dateReported, $resolutionDate, $lockboxCode
+    )
+    ON CONFLICT(id) DO UPDATE SET
+      status = excluded.status,
+      assignedTrade = excluded.assignedTrade,
+      estimatedCost = excluded.estimatedCost,
+      resolutionDate = excluded.resolutionDate
+  `, {
+    $id: incident.id,
+    $propertyAddress: incident.propertyAddress,
+    $tenantName: incident.tenantName,
+    $tenantPhone: incident.tenantPhone,
+    $category: incident.category,
+    $description: incident.description,
+    $urgency: incident.urgency,
+    $responsibility: incident.responsibility,
+    $status: incident.status,
+    $assignedTrade: incident.assignedTrade || '',
+    $estimatedCost: incident.estimatedCost || 0,
+    $dateReported: incident.dateReported,
+    $resolutionDate: incident.resolutionDate || '',
+    $lockboxCode: incident.lockboxCode || ''
+  });
+  saveDatabase();
+}
+
+export async function deleteIncidentById(id: string): Promise<void> {
+  const db = await getDatabase();
+  db.run("DELETE FROM incidents WHERE id = ?", [id]);
+  saveDatabase();
+}
+
+// Reception Entries CRUD
+export async function queryAllReceptionEntries(): Promise<ReceptionEntry[]> {
+  const db = await getDatabase();
+  const res = db.exec("SELECT * FROM reception_entries ORDER BY timestamp DESC");
+  if (!res.length || !res[0].values) return [];
+  const cols = res[0].columns;
+  return res[0].values.map((row) => {
+    const obj: any = {};
+    cols.forEach((col, idx) => {
+      obj[col] = row[idx];
+    });
+    return obj as ReceptionEntry;
+  });
+}
+
+export async function insertOrUpdateReceptionEntry(entry: ReceptionEntry): Promise<void> {
+  const db = await getDatabase();
+  db.run(`
+    INSERT INTO reception_entries (
+      id, visitorName, visitorType, reason, assignedMartillero, status, timestamp, contactPhone
+    ) VALUES (
+      $id, $visitorName, $visitorType, $reason, $assignedMartillero, $status, $timestamp, $contactPhone
+    )
+    ON CONFLICT(id) DO UPDATE SET
+      status = excluded.status,
+      assignedMartillero = excluded.assignedMartillero
+  `, {
+    $id: entry.id,
+    $visitorName: entry.visitorName,
+    $visitorType: entry.visitorType,
+    $reason: entry.reason,
+    $assignedMartillero: entry.assignedMartillero,
+    $status: entry.status,
+    $timestamp: entry.timestamp,
+    $contactPhone: entry.contactPhone || ''
+  });
+  saveDatabase();
+}
+
+// Key Custody CRUD
+export async function queryAllKeyCustody(): Promise<KeyCustodyItem[]> {
+  const db = await getDatabase();
+  const res = db.exec("SELECT * FROM key_custody ORDER BY id DESC");
+  if (!res.length || !res[0].values) return [];
+  const cols = res[0].columns;
+  return res[0].values.map((row) => {
+    const obj: any = {};
+    cols.forEach((col, idx) => {
+      obj[col] = row[idx];
+    });
+    return obj as KeyCustodyItem;
+  });
+}
+
+export async function insertOrUpdateKeyCustody(key: KeyCustodyItem): Promise<void> {
+  const db = await getDatabase();
+  db.run(`
+    INSERT INTO key_custody (
+      id, propertyTitle, propertyAddress, keyTag, takenBy, takenAt, returnedAt, status, notes
+    ) VALUES (
+      $id, $propertyTitle, $propertyAddress, $keyTag, $takenBy, $takenAt, $returnedAt, $status, $notes
+    )
+    ON CONFLICT(id) DO UPDATE SET
+      status = excluded.status,
+      takenBy = excluded.takenBy,
+      takenAt = excluded.takenAt,
+      returnedAt = excluded.returnedAt,
+      notes = excluded.notes
+  `, {
+    $id: key.id,
+    $propertyTitle: key.propertyTitle,
+    $propertyAddress: key.propertyAddress,
+    $keyTag: key.keyTag,
+    $takenBy: key.takenBy,
+    $takenAt: key.takenAt,
+    $returnedAt: key.returnedAt || '',
+    $status: key.status,
+    $notes: key.notes || ''
+  });
+  saveDatabase();
+}
+
+// Ad Campaigns CRUD
+export async function queryAllAdCampaigns(): Promise<AdCampaign[]> {
+  const db = await getDatabase();
+  const res = db.exec("SELECT * FROM ad_campaigns ORDER BY leadsCount DESC");
+  if (!res.length || !res[0].values) return [];
+  const cols = res[0].columns;
+  return res[0].values.map((row) => {
+    const obj: any = {};
+    cols.forEach((col, idx) => {
+      obj[col] = row[idx];
+    });
+    return obj as AdCampaign;
+  });
+}
+
+export async function insertOrUpdateAdCampaign(ad: AdCampaign): Promise<void> {
+  const db = await getDatabase();
+  db.run(`
+    INSERT INTO ad_campaigns (
+      id, platform, campaignTitle, budgetMonthly, spendSoFar, leadsCount, costPerLead, status, syncStatus
+    ) VALUES (
+      $id, $platform, $campaignTitle, $budgetMonthly, $spendSoFar, $leadsCount, $costPerLead, $status, $syncStatus
+    )
+    ON CONFLICT(id) DO UPDATE SET
+      budgetMonthly = excluded.budgetMonthly,
+      spendSoFar = excluded.spendSoFar,
+      leadsCount = excluded.leadsCount,
+      costPerLead = excluded.costPerLead,
+      status = excluded.status,
+      syncStatus = excluded.syncStatus
+  `, {
+    $id: ad.id,
+    $platform: ad.platform,
+    $campaignTitle: ad.campaignTitle,
+    $budgetMonthly: ad.budgetMonthly,
+    $spendSoFar: ad.spendSoFar,
+    $leadsCount: ad.leadsCount,
+    $costPerLead: ad.costPerLead,
+    $status: ad.status,
+    $syncStatus: ad.syncStatus
+  });
+  saveDatabase();
+}
+
+export async function queryReceiptsForContract(contractId: string, tenantName?: string): Promise<TenantPortalData['receipts']> {
+  const db = await getDatabase();
+  const res = db.exec("SELECT month, amount, date, pdfUrl FROM receipts WHERE contractId = ? OR tenantName = ? ORDER BY id DESC", [contractId, tenantName || '']);
+  if (!res.length || !res[0].values) return [];
+  return res[0].values.map((row) => ({
+    month: row[0] as string,
+    amount: Number(row[1]),
+    date: row[2] as string,
+    pdfUrl: (row[3] as string) || '#'
+  }));
 }
 
 export async function insertReceipt(receipt: { contractId: string; tenantName: string; month: string; amount: number; date: string; pdfUrl?: string }): Promise<void> {

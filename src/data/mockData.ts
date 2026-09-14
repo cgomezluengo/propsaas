@@ -1,4 +1,15 @@
-import { Lead, AgencyTenant, UserProfile, PropertyItem, ContractItem, TenantPortalData } from '../types';
+import { 
+  Lead, 
+  AgencyTenant, 
+  UserProfile, 
+  PropertyItem, 
+  ContractItem, 
+  TenantPortalData,
+  MaintenanceIncident,
+  ReceptionEntry,
+  KeyCustodyItem,
+  AdCampaign
+} from '../types';
 
 export const mockTenant: AgencyTenant = {
   id: 'tenant-1',
@@ -220,12 +231,17 @@ export const mockContracts: ContractItem[] = [
     tenantPhone: '+54 236 4554433',
     propertyAddress: 'Depto Calle Borges 142, Piso 2 A',
     currentAmount: 320000,
-    indexType: 'ICL (Banco Central)',
-    nextAdjustmentDate: '15 de Octubre 2026',
-    monthsToAdjustment: 1,
+    indexType: 'IPC (Inflación INDEC)',
+    adjustmentPeriodMonths: 4,
+    lastAdjustmentDate: '15 de Mayo 2026',
+    nextAdjustmentDate: '15 de Septiembre 2026',
+    monthsToAdjustment: 0,
     status: 'Ajuste Pendiente',
     paymentStatus: 'Pagado',
-    lastIncreasePercent: 38.4
+    lastIncreasePercent: 15.8,
+    ipcMonthlyRates: [4.2, 3.8, 3.5, 3.4],
+    internalAuditStatus: 'vencido_liquidar',
+    contractStartDate: '15 de Enero 2026'
   },
   {
     id: 'cont-102',
@@ -234,11 +250,16 @@ export const mockContracts: ContractItem[] = [
     propertyAddress: 'Casa Barrio Real - Calle Ombú 54',
     currentAmount: 480000,
     indexType: 'IPC (Inflación INDEC)',
-    nextAdjustmentDate: '01 de Diciembre 2026',
-    monthsToAdjustment: 3,
+    adjustmentPeriodMonths: 4,
+    lastAdjustmentDate: '01 de Junio 2026',
+    nextAdjustmentDate: '01 de Octubre 2026',
+    monthsToAdjustment: 1,
     status: 'Al Día',
     paymentStatus: 'Pendiente de Validación',
-    lastIncreasePercent: 24.2
+    lastIncreasePercent: 16.2,
+    ipcMonthlyRates: [4.0, 3.9, 3.7, 3.5],
+    internalAuditStatus: 'preventivo_30d',
+    contractStartDate: '01 de Febrero 2026'
   },
   {
     id: 'cont-103',
@@ -247,11 +268,230 @@ export const mockContracts: ContractItem[] = [
     propertyAddress: 'Local Comercial Calle Arias 310',
     currentAmount: 550000,
     indexType: 'ICL (Banco Central)',
+    adjustmentPeriodMonths: 6,
+    lastAdjustmentDate: '30 de Marzo 2026',
     nextAdjustmentDate: '30 de Septiembre 2026',
     monthsToAdjustment: 0,
     status: 'Por Vencer',
     paymentStatus: 'Atrasado',
-    lastIncreasePercent: 41.0
+    lastIncreasePercent: 41.0,
+    internalAuditStatus: 'vencido_liquidar',
+    contractStartDate: '30 de Septiembre 2025'
+  },
+  {
+    id: 'cont-104',
+    tenantName: 'Sofía Valenzuela',
+    tenantPhone: '+54 236 4332211',
+    propertyAddress: 'Depto 2 Ambientes Belgrano, Av. Rivadavia 450',
+    currentAmount: 380000,
+    indexType: 'IPC (Inflación INDEC)',
+    adjustmentPeriodMonths: 4,
+    lastAdjustmentDate: '10 de Julio 2026',
+    nextAdjustmentDate: '10 de Noviembre 2026',
+    monthsToAdjustment: 2,
+    status: 'Al Día',
+    paymentStatus: 'Pagado',
+    lastIncreasePercent: 14.9,
+    ipcMonthlyRates: [3.9, 3.6, 3.5, 3.3],
+    internalAuditStatus: 'al_dia',
+    contractStartDate: '10 de Marzo 2026'
+  }
+];
+
+export const mockIncidents: MaintenanceIncident[] = [
+  {
+    id: 'inc-01',
+    propertyAddress: 'Depto Calle Borges 142, Piso 2 A',
+    tenantName: 'Nicolás Balbi',
+    tenantPhone: '+54 236 4554433',
+    category: 'Gas y Calefón',
+    description: 'Pérdida leve de gas en la llave de paso del calefón Orbis tiro natural. Requiere gasista matriculado urgente por seguridad.',
+    urgency: 'Urgente (<24h)',
+    responsibility: 'Propietario (CCN Art. 1201)',
+    status: 'Técnico Coordinado',
+    assignedTrade: 'Gasista Matriculado Roberto Rossi (Mat. 4410)',
+    estimatedCost: 35000,
+    dateReported: 'Hoy 09:30 hs',
+    lockboxCode: '#3001-A'
+  },
+  {
+    id: 'inc-02',
+    propertyAddress: 'Casa Barrio Real - Calle Ombú 54',
+    tenantName: 'María Eugenia Rossi',
+    tenantPhone: '+54 236 4112233',
+    category: 'Humedad y Filtraciones',
+    description: 'Mancha de humedad en techo de dormitorio principal por membrana de azotea deteriorada.',
+    urgency: 'Ordinaria (<10 días)',
+    responsibility: 'Propietario (CCN Art. 1201)',
+    status: 'En Presupuesto',
+    assignedTrade: 'Techista Juan Carlos Silva',
+    estimatedCost: 120000,
+    dateReported: 'Ayer 16:00 hs',
+    lockboxCode: '#7741-B'
+  },
+  {
+    id: 'inc-03',
+    propertyAddress: 'Local Comercial Calle Arias 310',
+    tenantName: 'Ignacio Zavaleta',
+    tenantPhone: '+54 236 4889900',
+    category: 'Electricidad',
+    description: 'Disyuntor salta al encender iluminación de vidriera. Posible falso contacto en tablero seccional.',
+    urgency: 'Urgente (<24h)',
+    responsibility: 'Inquilino (Mantenimiento menor)',
+    status: 'Pendiente',
+    assignedTrade: 'Electricista Mat. Marcos Toledo',
+    estimatedCost: 28000,
+    dateReported: 'Hoy 11:15 hs',
+    lockboxCode: '#9931-E'
+  },
+  {
+    id: 'inc-04',
+    propertyAddress: 'Depto 2 Ambientes Belgrano, Av. Rivadavia 450',
+    tenantName: 'Sofía Valenzuela',
+    tenantPhone: '+54 236 4332211',
+    category: 'Cerrajería y Accesos',
+    description: 'Cerradura doble paleta de puerta de entrada trabada, llave gira en falso.',
+    urgency: 'Urgente (<24h)',
+    responsibility: 'Inquilino (Mantenimiento menor)',
+    status: 'Resuelto',
+    assignedTrade: 'Cerrajería 24hs Centro',
+    estimatedCost: 18000,
+    dateReported: '12/09/2026',
+    resolutionDate: '12/09/2026',
+    lockboxCode: '#3001-A'
+  }
+];
+
+export const mockReceptionEntries: ReceptionEntry[] = [
+  {
+    id: 'rec-entry-01',
+    visitorName: 'Horacio Fernández',
+    visitorType: 'Propietario',
+    reason: 'Vino a cobrar liquidación de alquiler de Depto Borges 142 y firmar recibo.',
+    assignedMartillero: 'Carlos Gómez',
+    status: 'En Espera',
+    timestamp: '10:45 hs',
+    contactPhone: '+54 236 4501234'
+  },
+  {
+    id: 'rec-entry-02',
+    visitorName: 'Lucía Santillán',
+    visitorType: 'Interesado Alquiler/Venta',
+    reason: 'Consulta presencial por departamento de 2 ambientes en alquiler zona céntrica.',
+    assignedMartillero: 'Mariana López',
+    status: 'En Atención',
+    timestamp: '11:10 hs',
+    contactPhone: '+54 236 4778899'
+  },
+  {
+    id: 'rec-entry-03',
+    visitorName: 'Roberto Rossi',
+    visitorType: 'Proveedor/Gremio',
+    reason: 'Retiro de llave de Depto Borges para reparación de gas.',
+    assignedMartillero: 'Carlos Gómez',
+    status: 'Completado',
+    timestamp: '09:30 hs',
+    contactPhone: '+54 236 4223344'
+  },
+  {
+    id: 'rec-entry-04',
+    visitorName: 'Andreani Encomiendas',
+    visitorType: 'Cadetería',
+    reason: 'Entrega de sobre con contrato timbrado de escribanía.',
+    assignedMartillero: 'Recepción General',
+    status: 'Completado',
+    timestamp: '08:45 hs'
+  }
+];
+
+export const mockKeyCustodyList: KeyCustodyItem[] = [
+  {
+    id: 'key-01',
+    propertyTitle: 'Depto Calle Borges 142, Piso 2 A',
+    propertyAddress: 'Calle Borges 142, Junín',
+    keyTag: 'LLA-142',
+    takenBy: 'Gasista Roberto Rossi (Mat. 4410)',
+    takenAt: 'Hoy 09:30 hs',
+    status: 'Prestada / En Visita',
+    notes: 'Para arreglo urgente de gas programado con inquilino.'
+  },
+  {
+    id: 'key-02',
+    propertyTitle: 'Semipiso 3 Ambientes con Cochera',
+    propertyAddress: 'Plaza 25 de Mayo 88, Junín',
+    keyTag: 'LLA-088',
+    takenBy: 'Martillero Carlos Gómez',
+    takenAt: 'Ayer 17:00 hs',
+    returnedAt: 'Ayer 18:30 hs',
+    status: 'En Inmobiliaria',
+    notes: 'Llave en tablero casillero B-4.'
+  },
+  {
+    id: 'key-03',
+    propertyTitle: 'Local Comercial Doble Altura Centro',
+    propertyAddress: 'Calle Mayor López 120, Junín',
+    keyTag: 'LLA-120',
+    takenBy: 'Mariana López (Martillera)',
+    takenAt: 'Hoy 11:30 hs',
+    status: 'Prestada / En Visita',
+    notes: 'Muestra a interesado gastronómico.'
+  },
+  {
+    id: 'key-04',
+    propertyTitle: 'Quinta Las Lilas 2 Hectáreas',
+    propertyAddress: 'Camino al Balneario Km 4, Junín',
+    keyTag: 'LLA-505',
+    takenBy: 'Oficina Central',
+    takenAt: 'Permanente',
+    status: 'En Inmobiliaria',
+    notes: 'Juego completo con candado de tranquera.'
+  }
+];
+
+export const mockAdCampaigns: AdCampaign[] = [
+  {
+    id: 'ad-01',
+    platform: 'Meta Ads (Instagram/FB)',
+    campaignTitle: 'Campaña Alquileres Céntricos Junín Septiembre',
+    budgetMonthly: 120000,
+    spendSoFar: 64500,
+    leadsCount: 42,
+    costPerLead: 1535,
+    status: 'Activa',
+    syncStatus: 'Sincronizado'
+  },
+  {
+    id: 'ad-02',
+    platform: 'Zonaprop',
+    campaignTitle: 'Paquete Destacados SuperDestacado Inmobiliaria Gómez',
+    budgetMonthly: 180000,
+    spendSoFar: 180000,
+    leadsCount: 68,
+    costPerLead: 2647,
+    status: 'Activa',
+    syncStatus: 'Sincronizado'
+  },
+  {
+    id: 'ad-03',
+    platform: 'Argenprop',
+    campaignTitle: 'Sindicación Automática Feed XML Catálogo Completo',
+    budgetMonthly: 95000,
+    spendSoFar: 95000,
+    leadsCount: 31,
+    costPerLead: 3064,
+    status: 'Activa',
+    syncStatus: 'Sincronizado'
+  },
+  {
+    id: 'ad-04',
+    platform: 'Mercado Libre',
+    campaignTitle: 'Publicaciones Clásicas Inmuebles',
+    budgetMonthly: 60000,
+    spendSoFar: 42000,
+    leadsCount: 19,
+    costPerLead: 2210,
+    status: 'Activa',
+    syncStatus: 'Sincronizado'
   }
 ];
 

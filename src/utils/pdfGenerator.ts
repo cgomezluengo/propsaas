@@ -144,3 +144,146 @@ export function generateRentReceiptPDF(data: ReceiptData): void {
   // Save PDF
   doc.save(`Recibo_Alquiler_${data.tenantName.replace(/\s+/g, '_')}_${data.monthPeriod.replace(/\s+/g, '_')}.pdf`);
 }
+
+export interface IpcCertificateData {
+  tenantName: string;
+  propertyAddress: string;
+  previousAmount: number;
+  newAmount: number;
+  compoundPercent: number;
+  monthlyRates: number[];
+  effectiveDate: string;
+  nextAdjustmentDate: string;
+  agencyName: string;
+  agencyCity: string;
+}
+
+export function generateIpcIncreaseCertificatePDF(data: IpcCertificateData): void {
+  const doc = new jsPDF({
+    orientation: 'portrait',
+    unit: 'mm',
+    format: 'a4'
+  });
+
+  // Background
+  doc.setFillColor(247, 249, 251);
+  doc.roundedRect(10, 10, 190, 277, 4, 4, 'F');
+
+  // Header Banner
+  doc.setFillColor(9, 20, 38); // #091426 Deep Navy
+  doc.roundedRect(15, 15, 180, 32, 3, 3, 'F');
+
+  doc.setTextColor(255, 255, 255);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(15);
+  doc.text(data.agencyName.toUpperCase(), 22, 28);
+
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9);
+  doc.setTextColor(111, 251, 190); // Emerald accent
+  doc.text('CONSTANCIA OFICIAL DE ACTUALIZACIÓN CUATRIMESTRAL (IPC - INDEC)', 22, 35);
+  doc.text(`${data.agencyCity} • Fecha de liquidación: ${data.effectiveDate}`, 22, 41);
+
+  // Body container
+  doc.setFillColor(255, 255, 255);
+  doc.roundedRect(15, 52, 180, 225, 3, 3, 'F');
+
+  doc.setTextColor(9, 20, 38);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(11);
+  doc.text('DATOS DE LA LOCACIÓN Y DEL AJUSTE', 22, 64);
+
+  doc.setDrawColor(224, 227, 229);
+  doc.line(22, 67, 188, 67);
+
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(10);
+  doc.setTextColor(69, 71, 76);
+
+  doc.text('Locatario / Inquilino:', 22, 76);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(9, 20, 38);
+  doc.text(data.tenantName, 75, 76);
+
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(69, 71, 76);
+  doc.text('Inmueble arrendado:', 22, 85);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(9, 20, 38);
+  doc.text(data.propertyAddress, 75, 85);
+
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(69, 71, 76);
+  doc.text('Régimen de actualización:', 22, 94);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(9, 20, 38);
+  doc.text('Cuatrimestral (cada 4 meses) por IPC INDEC', 75, 94);
+
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(69, 71, 76);
+  doc.text('Próxima actualización:', 22, 103);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(0, 108, 73);
+  doc.text(data.nextAdjustmentDate, 75, 103);
+
+  // Breakdown Card
+  doc.setFillColor(247, 249, 251);
+  doc.roundedRect(22, 115, 166, 62, 2, 2, 'F');
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(10);
+  doc.setTextColor(9, 20, 38);
+  doc.text('DESGLOSE DEL CÁLCULO INDEC (4 MESES)', 28, 125);
+
+  doc.setDrawColor(224, 227, 229);
+  doc.line(28, 128, 182, 128);
+
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9);
+  doc.setTextColor(69, 71, 76);
+  const m = data.monthlyRates;
+  doc.text(`Inflación mes 1: ${m[0] || 0}%  |  Mes 2: ${m[1] || 0}%  |  Mes 3: ${m[2] || 0}%  |  Mes 4: ${m[3] || 0}%`, 28, 137);
+  doc.text(`Variación acumulada compuesta: +${data.compoundPercent}%`, 28, 146);
+
+  doc.text('Canon locativo anterior:', 28, 156);
+  doc.setFont('helvetica', 'bold');
+  doc.text(`$ ${data.previousAmount.toLocaleString('es-AR')}`, 145, 156);
+
+  doc.setFont('helvetica', 'normal');
+  doc.text(`Aumento aplicado (+${data.compoundPercent}%):`, 28, 166);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(0, 108, 73);
+  const diff = data.newAmount - data.previousAmount;
+  doc.text(`+ $ ${diff.toLocaleString('es-AR')}`, 145, 166);
+
+  // New Canon Total Banner
+  doc.setFillColor(0, 108, 73); // Emerald
+  doc.roundedRect(22, 186, 166, 24, 2, 2, 'F');
+
+  doc.setTextColor(255, 255, 255);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(11);
+  doc.text('NUEVO CANON LOCATIVO MENSUAL', 28, 198);
+  doc.setFontSize(15);
+  doc.text(`$ ${data.newAmount.toLocaleString('es-AR')}`, 135, 201);
+
+  // Legal notes
+  doc.setFont('helvetica', 'italic');
+  doc.setFontSize(8);
+  doc.setTextColor(133, 144, 166);
+  doc.text('La presente liquidación se practica de conformidad con las cláusulas pactadas en el Contrato de Locación.', 22, 224);
+  doc.text('Los índices corresponden a las publicaciones oficiales del Instituto Nacional de Estadística y Censos (INDEC).', 22, 230);
+
+  // Signatures
+  doc.setDrawColor(180, 180, 180);
+  doc.line(25, 260, 85, 260);
+  doc.line(115, 260, 175, 260);
+
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(8);
+  doc.setTextColor(69, 71, 76);
+  doc.text('Firma Locatario / Inquilino', 32, 265);
+  doc.text('Firma y Sello Inmobiliaria', 125, 265);
+
+  doc.save(`Aumento_IPC_4M_${data.tenantName.replace(/\s+/g, '_')}.pdf`);
+}

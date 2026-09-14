@@ -17,7 +17,7 @@ export const StitchEnSeguimientoView: React.FC<Props> = ({
   onSearchChange,
 }) => {
   return (
-    <div className="flex-1 flex flex-col overflow-y-auto p-8 space-y-6">
+    <div className="flex-1 flex flex-col overflow-y-auto p-4 sm:p-6 md:p-8 space-y-6 pb-24 md:pb-8">
       
       {/* KPI Ribbon (Screen 2 Stitch) */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

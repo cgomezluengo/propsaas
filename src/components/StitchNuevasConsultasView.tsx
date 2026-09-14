@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Lead } from '../types';
 
 interface Props {
@@ -32,6 +32,8 @@ export const StitchNuevasConsultasView: React.FC<Props> = ({
   onToggleUrgentOnly,
   urgentCount,
 }) => {
+  const [isMobileDetailOpen, setIsMobileDetailOpen] = useState(false);
+
   return (
     <div className="flex-1 flex overflow-hidden">
       
@@ -75,7 +77,7 @@ export const StitchNuevasConsultasView: React.FC<Props> = ({
         </div>
 
         {/* Scrollable Action Cards List */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#F7F9FB]">
+        <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#F7F9FB] pb-24 lg:pb-4">
           {leads.map((lead) => {
             const isSelected = selectedLead.id === lead.id;
             const isUrgent48 = lead.urgencyLevel === 'urgent_48h';
@@ -84,8 +86,11 @@ export const StitchNuevasConsultasView: React.FC<Props> = ({
             return (
               <div
                 key={lead.id}
-                onClick={() => onSelectLead(lead)}
-                className={`bg-white rounded-xl p-5 shadow-xs border transition-all cursor-pointer relative overflow-hidden group ${
+                onClick={() => {
+                  onSelectLead(lead);
+                  setIsMobileDetailOpen(true);
+                }}
+                className={`bg-white rounded-xl p-4 sm:p-5 shadow-xs border transition-all cursor-pointer relative overflow-hidden group ${
                   isSelected
                     ? 'ring-2 ring-[#091426] border-transparent shadow-md'
                     : 'border-[#E0E3E5] hover:shadow-md'
@@ -319,7 +324,7 @@ export const StitchNuevasConsultasView: React.FC<Props> = ({
             className="w-full py-2.5 bg-[#091426] hover:bg-[#1E293B] text-white font-bold text-xs rounded-lg flex items-center justify-center gap-2 shadow-sm active:scale-[0.98] transition-all"
           >
             <span className="material-symbols-outlined text-[18px]">send</span>
-            Abrir WhatsApp con Respuesta IA
+            Abrir WhatsApp
           </button>
         </div>
       </>
@@ -329,6 +334,124 @@ export const StitchNuevasConsultasView: React.FC<Props> = ({
       </div>
     )}
   </div>
+
+  {/* Mobile Lead Detail Modal / Bottom Sheet */}
+  {isMobileDetailOpen && selectedLead && (
+    <div className="lg:hidden fixed inset-0 z-50 flex flex-col justify-end bg-[#091426]/75 backdrop-blur-xs animate-fadeIn">
+      <div className="bg-white w-full rounded-t-2xl max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+        {/* Header */}
+        <div className="p-4 border-b border-[#E0E3E5] flex items-center justify-between bg-white shrink-0">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-[#091426] text-white flex items-center justify-center font-bold text-xs">
+              {selectedLead.initials}
+            </div>
+            <div>
+              <h3 className="font-bold text-sm text-[#091426]">{selectedLead.name}</h3>
+              <p className="text-[11px] text-slate-500">{selectedLead.phone} • {selectedLead.channel}</p>
+            </div>
+          </div>
+          <button
+            onClick={() => setIsMobileDetailOpen(false)}
+            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100"
+            title="Cerrar detalle"
+          >
+            <span className="material-symbols-outlined text-xl">close</span>
+          </button>
+        </div>
+
+        {/* Scrollable Content */}
+        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          {/* Property Snippet */}
+          <div className="bg-[#F7F9FB] rounded-xl p-3.5 border border-[#E0E3E5] flex gap-3">
+            <img
+              src={selectedLead.propertyImage}
+              alt={selectedLead.propertyTitle}
+              className="w-20 h-20 rounded-lg object-cover shadow-xs shrink-0"
+            />
+            <div className="min-w-0 flex-1">
+              <h4 className="font-bold text-xs text-[#091426] truncate">{selectedLead.propertyTitle}</h4>
+              <p className="font-bold text-xs text-[#006C49] font-mono mt-0.5">{selectedLead.propertyPrice}</p>
+              <p className="text-[11px] text-slate-500 mt-1">
+                📍 {selectedLead.propertyAddress}
+              </p>
+              <p className="text-[11px] text-slate-600 font-mono mt-0.5">
+                🔑 Lockbox: <strong>{selectedLead.lockboxCode}</strong>
+              </p>
+            </div>
+          </div>
+
+          {/* Last Message */}
+          <div className="bg-slate-50 rounded-xl p-3 border border-[#E0E3E5]">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Última consulta:</p>
+            <p className="text-xs text-[#191C1E] italic">"{selectedLead.lastMessage}"</p>
+            <p className="text-[10px] text-slate-400 text-right mt-1">{selectedLead.timeAgo}</p>
+          </div>
+
+          {/* AI Quick Responses */}
+          <div>
+            <p className="text-[11px] font-bold text-[#006C49] flex items-center gap-1 mb-2">
+              <span className="material-symbols-outlined text-sm">psychology</span>
+              Respuestas rápidas sugeridas:
+            </p>
+            <div className="space-y-1.5">
+              <button
+                onClick={() => {
+                  setIsMobileDetailOpen(false);
+                  onOpenWhatsApp(selectedLead);
+                }}
+                className="w-full text-left p-2.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200 text-xs transition-colors"
+              >
+                📅 Coordinar visita para mañana
+              </button>
+              <button
+                onClick={() => {
+                  setIsMobileDetailOpen(false);
+                  onOpenWhatsApp(selectedLead);
+                }}
+                className="w-full text-left p-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs transition-colors"
+              >
+                📑 Solicitar recibo de sueldo y garantía
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer Actions */}
+        <div className="p-3 border-t border-[#E0E3E5] bg-white flex gap-2 shrink-0">
+          <button
+            onClick={() => {
+              setIsMobileDetailOpen(false);
+              onOpenWhatsApp(selectedLead);
+            }}
+            className="flex-1 bg-[#006C49] hover:bg-[#007D55] text-white text-xs font-bold py-2.5 rounded-lg flex items-center justify-center gap-1.5 shadow-xs"
+          >
+            <span className="material-symbols-outlined text-[16px]">chat</span>
+            WhatsApp
+          </button>
+          <button
+            onClick={() => {
+              setIsMobileDetailOpen(false);
+              onScheduleVisit(selectedLead);
+            }}
+            className="flex-1 bg-[#091426] hover:bg-[#1E293B] text-white text-xs font-bold py-2.5 rounded-lg flex items-center justify-center gap-1.5 shadow-xs"
+          >
+            <span className="material-symbols-outlined text-[16px]">calendar_today</span>
+            Agendar Visita
+          </button>
+          <button
+            onClick={() => {
+              setIsMobileDetailOpen(false);
+              onDiscardLead(selectedLead.id);
+            }}
+            className="p-2.5 text-slate-400 hover:text-[#BA1A1A] hover:bg-red-50 rounded-lg"
+            title="Descartar"
+          >
+            <span className="material-symbols-outlined text-lg">delete</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  )}
 
 </div>
 );

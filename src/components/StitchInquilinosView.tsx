@@ -136,25 +136,20 @@ export const StitchInquilinosView: React.FC<Props> = ({
         </div>
 
         {/* Inquilinos List */}
-        <div className="flex-1 overflow-y-auto divide-y divide-[#E0E3E5]">
+        <div className="flex-1 overflow-y-auto divide-y divide-[#E0E3E5] pb-24 md:pb-0">
           {filteredContracts.length === 0 ? (
-            <div className="p-6 text-center text-xs text-slate-400">
-              No se encontraron inquilinos con contrato activo.
+            <div className="p-8 text-center text-xs text-slate-400">
+              No se encontraron inquilinos.
             </div>
           ) : (
             filteredContracts.map((c) => {
-              const isSelected = (activeContract?.id === c.id);
+              const isSelected = c.id === activeContract?.id;
               return (
                 <button
                   key={c.id}
-                  onClick={() => {
-                    setSelectedContractId(c.id);
-                    setUploadedReceipt(false);
-                  }}
-                  className={`w-full text-left p-4 transition-all flex items-start gap-3 ${
-                    isSelected
-                      ? 'bg-[#F7F9FB] border-l-4 border-l-[#006C49]'
-                      : 'hover:bg-[#F9FAFB]'
+                  onClick={() => setSelectedContractId(c.id)}
+                  className={`w-full text-left p-3.5 flex items-start gap-3 transition-colors ${
+                    isSelected ? 'bg-emerald-50/60 border-l-4 border-[#006C49]' : 'hover:bg-slate-50'
                   }`}
                 >
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs shrink-0 ${
@@ -191,7 +186,7 @@ export const StitchInquilinosView: React.FC<Props> = ({
       </div>
 
       {/* 2. Tenant Mobile Portal View (Right Canvas) */}
-      <div className="flex-1 overflow-y-auto p-6 flex flex-col items-center justify-start space-y-6">
+      <div className="flex-1 overflow-y-auto p-4 sm:p-6 flex flex-col items-center justify-start space-y-6 pb-24 md:pb-6">
         
         {activeContract ? (
           <div className="w-full max-w-lg bg-white rounded-2xl border border-[#E0E3E5] shadow-lg overflow-hidden flex flex-col">

@@ -56,7 +56,7 @@ export const StitchPropiedadesView: React.FC<Props> = ({
   };
 
   return (
-    <div className="flex-1 flex flex-col overflow-y-auto p-8 space-y-6">
+    <div className="flex-1 flex flex-col overflow-y-auto p-4 sm:p-6 md:p-8 space-y-6 pb-24 md:pb-8">
       
       {/* Top Header & Search Bar */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white p-4 rounded-xl border border-[#E0E3E5] shadow-xs">
